@@ -1,0 +1,164 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --tp-canvas: #F7F8F7;
+    --tp-surface: #FFFFFF;
+    --tp-rail: #F1F3F2;
+    --tp-ink: #0B110E;
+    --tp-muted: #5C6660;
+    --tp-hairline: #E4E7E5;
+    --tp-forest: #0B130F;
+    --tp-lime: #65C91D;
+    --tp-amber: #D97706;
+  }
+
+  .dark {
+    --tp-canvas: #060807;
+    --tp-surface: #0D1210;
+    --tp-rail: #090C0B;
+    --tp-ink: #F3F5F4;
+    --tp-muted: #8C9891;
+    --tp-hairline: #1B231F;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  body {
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    letter-spacing: -0.01em;
+    text-wrap: pretty;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  .font-editorial {
+    font-family: 'Bricolage Grotesque', 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    letter-spacing: -0.032em;
+    text-wrap: balance;
+  }
+
+  .font-accent-serif {
+    font-family: 'Fraunces', Georgia, serif;
+    font-style: italic;
+  }
+
+  .font-mono-num {
+    font-family: 'DM Sans', 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+  }
+
+  .font-display-num {
+    font-family: 'Bricolage Grotesque', 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.038em;
+  }
+
+  .font-code {
+    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Architectural hairline surface with restrained single-elevation clarity */
+.bento-card {
+  position: relative;
+  box-shadow: 0 1px 1px rgba(11, 17, 14, 0.025);
+  transition:
+    border-color 200ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bento-card:hover {
+  border-color: rgba(11, 19, 15, 0.18);
+  box-shadow: 0 10px 24px -16px rgba(11, 17, 14, 0.12);
+}
+
+.dark .bento-card {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.03),
+    0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+.dark .bento-card:hover {
+  border-color: rgba(140, 224, 44, 0.28);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 14px 32px -16px rgba(0, 0, 0, 0.65);
+}
+
+@keyframes subtleFadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-enter {
+  animation: subtleFadeSlide 200ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bento-card,
+  .animate-enter {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Clean custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(11, 19, 15, 0.16);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(11, 19, 15, 0.32);
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.14);
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+@layer base {
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  select:focus-visible {
+    outline: 2px solid #65C91D;
+    outline-offset: 2px;
+  }
+}

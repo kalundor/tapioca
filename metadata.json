@@ -1,0 +1,6 @@
+{
+  "name": "Duo Finn — Finanças Pessoais & Casal com Open Finance",
+  "description": "Plataforma inteligente de gestão financeira pessoal e em casal com integração Open Finance (Meu Pluggy), sincronização bancária automática, metas de economia, alertas push de despesas excedentes, relatórios de redução de custos e Google Workspace.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
