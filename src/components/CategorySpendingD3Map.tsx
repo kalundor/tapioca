@@ -53,39 +53,39 @@ const CATEGORY_CATALOG: Record<SpendingCategoryKey, CategoryMeta> = {
     id: 'alimentacao',
     label: 'Mercado & Padaria',
     shortLabel: 'Mercado',
-    fill: '#56AD17',
-    fillDark: '#7AC128',
-    surfaceTint: 'rgba(86, 173, 23, 0.08)',
-    surfaceTintDark: 'rgba(122, 193, 40, 0.14)',
+    fill: '#0F766E',
+    fillDark: '#14B8A6',
+    surfaceTint: 'rgba(15, 118, 110, 0.06)',
+    surfaceTintDark: 'rgba(20, 184, 166, 0.14)',
     textOnFill: '#FFFFFF',
   },
   restaurantes: {
     id: 'restaurantes',
     label: 'Restaurantes & Café',
     shortLabel: 'Restaurantes',
-    fill: '#D97706',
-    fillDark: '#E6A136',
-    surfaceTint: 'rgba(217, 119, 6, 0.08)',
-    surfaceTintDark: 'rgba(230, 161, 54, 0.14)',
+    fill: '#B45309',
+    fillDark: '#D97706',
+    surfaceTint: 'rgba(180, 83, 9, 0.06)',
+    surfaceTintDark: 'rgba(217, 119, 6, 0.14)',
     textOnFill: '#FFFFFF',
   },
   moradia: {
     id: 'moradia',
     label: 'Casa, Telecom & Saúde',
     shortLabel: 'Casa & Saúde',
-    fill: '#0B130F',
-    fillDark: '#23382C',
-    surfaceTint: 'rgba(11, 19, 15, 0.06)',
-    surfaceTintDark: 'rgba(35, 56, 44, 0.3)',
-    textOnFill: '#F3F5F4',
+    fill: '#18181B',
+    fillDark: '#3F3F46',
+    surfaceTint: 'rgba(17, 17, 16, 0.05)',
+    surfaceTintDark: 'rgba(63, 63, 70, 0.28)',
+    textOnFill: '#F5F5F2',
   },
   transporte: {
     id: 'transporte',
     label: 'Transporte & Apps',
     shortLabel: 'Transporte',
-    fill: '#2563EB',
+    fill: '#1D4ED8',
     fillDark: '#3B82F6',
-    surfaceTint: 'rgba(37, 99, 235, 0.08)',
+    surfaceTint: 'rgba(29, 78, 216, 0.06)',
     surfaceTintDark: 'rgba(59, 130, 246, 0.16)',
     textOnFill: '#FFFFFF',
   },
@@ -93,30 +93,30 @@ const CATEGORY_CATALOG: Record<SpendingCategoryKey, CategoryMeta> = {
     id: 'compras',
     label: 'Compras & Digital',
     shortLabel: 'Compras',
-    fill: '#6D28D9',
-    fillDark: '#8B5CF6',
-    surfaceTint: 'rgba(109, 40, 217, 0.08)',
-    surfaceTintDark: 'rgba(139, 92, 246, 0.16)',
+    fill: '#4338CA',
+    fillDark: '#6366F1',
+    surfaceTint: 'rgba(67, 56, 202, 0.06)',
+    surfaceTintDark: 'rgba(99, 102, 241, 0.16)',
     textOnFill: '#FFFFFF',
   },
   reserva: {
     id: 'reserva',
     label: 'Reservas & CDB',
     shortLabel: 'Reservas',
-    fill: '#0F766E',
-    fillDark: '#14B8A6',
-    surfaceTint: 'rgba(15, 118, 110, 0.08)',
-    surfaceTintDark: 'rgba(20, 184, 166, 0.16)',
+    fill: '#0E7490',
+    fillDark: '#06B6D4',
+    surfaceTint: 'rgba(14, 116, 144, 0.06)',
+    surfaceTintDark: 'rgba(6, 182, 212, 0.16)',
     textOnFill: '#FFFFFF',
   },
   outros: {
     id: 'outros',
     label: 'Pix & Despesas Gerais',
     shortLabel: 'Outros & Pix',
-    fill: '#5C6660',
-    fillDark: '#6E7A73',
-    surfaceTint: 'rgba(92, 102, 96, 0.08)',
-    surfaceTintDark: 'rgba(110, 122, 115, 0.16)',
+    fill: '#C83E2B',
+    fillDark: '#E05A47',
+    surfaceTint: 'rgba(200, 62, 43, 0.06)',
+    surfaceTintDark: 'rgba(224, 90, 71, 0.16)',
     textOnFill: '#FFFFFF',
   },
 };
@@ -648,21 +648,21 @@ export function CategorySpendingD3Map({
       className="p-5 sm:p-6"
     >
       {/* HEADER + LAYOUT SWITCHER */}
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+      <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
         <div className="min-w-0">
           <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-            <h2 className="font-editorial text-lg sm:text-xl font-bold text-[#0B110E] dark:text-[#F3F5F4]">
+            <h2 className="font-broadsheet text-xl sm:text-2xl font-semibold text-[#111110] dark:text-[#F5F5F2] tracking-[-0.02em]">
               Mapa de Gastos por Categoria{' '}
-              <span className="font-accent-serif text-[#56AD17] dark:text-[#8CE02C] font-semibold">
+              <span className="font-accent-serif text-[#1D4ED8] dark:text-[#6088FF] font-normal">
                 {layoutMode === 'treemap' ? 'Treemap' : 'Círculos'}
               </span>
             </h2>
-            <span className="inline-flex items-center gap-1 text-[11px] font-mono-num text-[#5C6660] dark:text-[#8C9891]">
-              <Layers className="w-3 h-3 text-[#56AD17] dark:text-[#8CE02C]" />
+            <span className="inline-flex items-center gap-1.5 text-[11px] font-mono-num text-[#5A5A54] dark:text-[#8E8E96]">
+              <Layers className="w-3 h-3 text-[#1D4ED8] dark:text-[#6088FF]" />
               D3.js · {filteredTxs.length} lançamentos
             </span>
           </div>
-          <p className="text-xs text-[#5C6660] dark:text-[#8C9891] mt-1">
+          <p className="text-xs text-[#5A5A54] dark:text-[#8E8E96] mt-1">
             Hierarquia interativa por categoria e estabelecimento com filtros dinâmicos de mês e grupo
           </p>
         </div>
@@ -694,9 +694,9 @@ export function CategorySpendingD3Map({
             <button
               type="button"
               onClick={handleResetFilters}
-              className="min-h-[38px] px-3 py-1.5 rounded-lg bg-[#F1F3F2] dark:bg-[#111714] border border-[#E4E7E5] dark:border-[#1B231F] hover:border-[#0B130F]/40 text-xs font-semibold text-[#0B110E] dark:text-[#F3F5F4] flex items-center gap-1.5 cursor-pointer transition-colors"
+              className="min-h-[38px] px-3 py-1.5 rounded-xs bg-[#F3F3EF] dark:bg-[#161619] border border-[#E2E2DC] dark:border-[#242429] hover:border-[#1D4ED8] dark:hover:border-[#6088FF] text-xs font-semibold text-[#111110] dark:text-[#F5F5F2] flex items-center gap-1.5 cursor-pointer transition-colors"
             >
-              <RotateCcw className="w-3.5 h-3.5 text-[#56AD17] dark:text-[#8CE02C]" />
+              <RotateCcw className="w-3.5 h-3.5 text-[#1D4ED8] dark:text-[#6088FF]" />
               <span>Limpar</span>
             </button>
           )}
@@ -704,12 +704,12 @@ export function CategorySpendingD3Map({
       </div>
 
       {/* DYNAMIC FILTER CONTROLS: MONTH & CATEGORY */}
-      <div className="mt-5 pt-4 border-t border-[#E4E7E5] dark:border-[#1B231F] space-y-3">
+      <div className="mt-5 pt-4 border-t border-[#E2E2DC] dark:border-[#242429] space-y-2.5">
         {/* Month filter row */}
         <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-0.5">
-          <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-[#5C6660] dark:text-[#8C9891] shrink-0 mr-1">
-            <Calendar className="w-3.5 h-3.5 text-[#56AD17] dark:text-[#8CE02C]" />
-            Mês:
+          <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.06em] text-[#5A5A54] dark:text-[#8E8E96] shrink-0 mr-1">
+            <Calendar className="w-3.5 h-3.5 text-[#1D4ED8] dark:text-[#6088FF]" />
+            Mês
           </span>
 
           <button
@@ -719,10 +719,10 @@ export function CategorySpendingD3Map({
               setActiveNodeId(null);
             }}
             aria-pressed={selectedMonth === 'all'}
-            className={`min-h-[32px] px-3 py-1 rounded-lg text-xs font-semibold whitespace-nowrap shrink-0 transition-colors cursor-pointer ${
+            className={`min-h-[30px] px-2.5 py-1 rounded-xs text-xs font-semibold whitespace-nowrap shrink-0 border transition-colors cursor-pointer ${
               selectedMonth === 'all'
-                ? 'bg-[#0B130F] dark:bg-[#8CE02C] text-white dark:text-[#060807]'
-                : 'bg-[#F1F3F2] dark:bg-[#111714] text-[#5C6660] dark:text-[#8C9891] hover:text-[#0B110E] dark:hover:text-white'
+                ? 'bg-[#111110] dark:bg-[#F5F5F2] text-[#FAFAF8] dark:text-[#09090B] border-[#111110] dark:border-[#F5F5F2]'
+                : 'bg-[#FAFAF8] dark:bg-[#161619] text-[#5A5A54] dark:text-[#8E8E96] border-[#E2E2DC] dark:border-[#242429] hover:text-[#111110] dark:hover:text-[#F5F5F2]'
             }`}
           >
             Todos ({outflowTransactions.length})
@@ -739,10 +739,10 @@ export function CategorySpendingD3Map({
                   setActiveNodeId(null);
                 }}
                 aria-pressed={active}
-                className={`min-h-[32px] px-3 py-1 rounded-lg text-xs font-semibold font-mono-num whitespace-nowrap shrink-0 transition-colors cursor-pointer ${
+                className={`min-h-[30px] px-2.5 py-1 rounded-xs text-xs font-semibold font-mono-num whitespace-nowrap shrink-0 border transition-colors cursor-pointer ${
                   active
-                    ? 'bg-[#0B130F] dark:bg-[#8CE02C] text-white dark:text-[#060807]'
-                    : 'bg-[#F1F3F2] dark:bg-[#111714] text-[#5C6660] dark:text-[#8C9891] hover:text-[#0B110E] dark:hover:text-white'
+                    ? 'bg-[#1D4ED8] dark:bg-[#6088FF] text-white dark:text-[#09090B] border-[#1D4ED8] dark:border-[#6088FF]'
+                    : 'bg-[#FAFAF8] dark:bg-[#161619] text-[#5A5A54] dark:text-[#8E8E96] border-[#E2E2DC] dark:border-[#242429] hover:text-[#111110] dark:hover:text-[#F5F5F2]'
                 }`}
               >
                 {m.label}
@@ -753,9 +753,9 @@ export function CategorySpendingD3Map({
 
         {/* Category filter row */}
         <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-0.5">
-          <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-[#5C6660] dark:text-[#8C9891] shrink-0 mr-1">
-            <Filter className="w-3.5 h-3.5 text-[#D97706]" />
-            Categoria:
+          <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.06em] text-[#5A5A54] dark:text-[#8E8E96] shrink-0 mr-1">
+            <Filter className="w-3.5 h-3.5 text-[#0F766E] dark:text-[#2DD4BF]" />
+            Grupo
           </span>
 
           <button
@@ -765,10 +765,10 @@ export function CategorySpendingD3Map({
               setActiveNodeId(null);
             }}
             aria-pressed={selectedCategory === 'all'}
-            className={`min-h-[32px] px-3 py-1 rounded-lg text-xs font-semibold whitespace-nowrap shrink-0 transition-colors cursor-pointer ${
+            className={`min-h-[30px] px-2.5 py-1 rounded-xs text-xs font-semibold whitespace-nowrap shrink-0 border transition-colors cursor-pointer ${
               selectedCategory === 'all'
-                ? 'bg-[#0B130F] dark:bg-[#8CE02C] text-white dark:text-[#060807]'
-                : 'bg-[#F1F3F2] dark:bg-[#111714] text-[#5C6660] dark:text-[#8C9891] hover:text-[#0B110E] dark:hover:text-white'
+                ? 'bg-[#111110] dark:bg-[#F5F5F2] text-[#FAFAF8] dark:text-[#09090B] border-[#111110] dark:border-[#F5F5F2]'
+                : 'bg-[#FAFAF8] dark:bg-[#161619] text-[#5A5A54] dark:text-[#8E8E96] border-[#E2E2DC] dark:border-[#242429] hover:text-[#111110] dark:hover:text-[#F5F5F2]'
             }`}
           >
             Todas
@@ -785,20 +785,28 @@ export function CategorySpendingD3Map({
                   setActiveNodeId(null);
                 }}
                 aria-pressed={active}
-                className={`min-h-[32px] px-3 py-1 rounded-lg text-xs font-semibold whitespace-nowrap shrink-0 flex items-center gap-1.5 transition-colors cursor-pointer ${
+                className={`min-h-[30px] px-2.5 py-1 rounded-xs text-xs font-semibold whitespace-nowrap shrink-0 border flex items-center gap-1.5 transition-colors cursor-pointer ${
                   active
-                    ? 'bg-[#0B130F] dark:bg-[#8CE02C] text-white dark:text-[#060807]'
-                    : 'bg-[#F1F3F2] dark:bg-[#111714] text-[#0B110E] dark:text-[#D5DBD8] hover:bg-[#E4E7E5] dark:hover:bg-[#19221D]'
+                    ? 'bg-[#1D4ED8] dark:bg-[#6088FF] text-white dark:text-[#09090B] border-[#1D4ED8] dark:border-[#6088FF]'
+                    : 'bg-[#FAFAF8] dark:bg-[#161619] text-[#111110] dark:text-[#D5D5D0] border-[#E2E2DC] dark:border-[#242429] hover:border-[#111110]/30 dark:hover:border-[#F5F5F2]/30'
                 }`}
               >
                 <span
-                  className="w-2 h-2 rounded-full shrink-0"
-                  style={{ backgroundColor: isDark ? cat.meta.fillDark : cat.meta.fill }}
+                  className="w-2 h-2 rounded-xs shrink-0"
+                  style={{
+                    backgroundColor: active
+                      ? isDark
+                        ? '#09090B'
+                        : '#FFFFFF'
+                      : isDark
+                        ? cat.meta.fillDark
+                        : cat.meta.fill,
+                  }}
                 />
                 <span>{cat.meta.shortLabel}</span>
                 <span
                   className={`font-mono-num text-[10px] ${
-                    active ? 'opacity-85' : 'text-[#5C6660] dark:text-[#8C9891]'
+                    active ? 'opacity-85' : 'text-[#5A5A54] dark:text-[#8E8E96]'
                   }`}
                 >
                   {cat.pct.toFixed(0)}%
@@ -814,20 +822,20 @@ export function CategorySpendingD3Map({
         {/* LEFT 8 COLS: RESPONSIVE D3 SVG CANVAS */}
         <div
           ref={canvasContainerRef}
-          className="xl:col-span-8 relative rounded-xl border border-[#E4E7E5] dark:border-[#1B231F] bg-[#F7F8F7] dark:bg-[#080B09] p-3 flex flex-col justify-between overflow-hidden min-h-[360px]"
+          className="xl:col-span-8 relative rounded-sm border border-[#E2E2DC] dark:border-[#242429] bg-[#FAFAF8] dark:bg-[#0D0D10] p-3 flex flex-col justify-between overflow-hidden min-h-[360px]"
         >
           {filteredTxs.length === 0 ? (
             <div className="flex-1 flex flex-col items-center justify-center text-center py-12 px-4 space-y-3">
-              <p className="font-editorial text-base font-bold text-[#0B110E] dark:text-[#F3F5F4]">
+              <p className="font-broadsheet text-lg font-semibold text-[#111110] dark:text-[#F5F5F2]">
                 Nenhum gasto encontrado neste filtro
               </p>
-              <p className="text-xs text-[#5C6660] dark:text-[#8C9891] max-w-sm">
+              <p className="text-xs text-[#5A5A54] dark:text-[#8E8E96] max-w-sm">
                 Ajuste o mês ou restaure todas as categorias para visualizar o mapa D3 completo.
               </p>
               <button
                 type="button"
                 onClick={handleResetFilters}
-                className="min-h-[38px] px-4 py-2 rounded-lg bg-[#0B130F] dark:bg-[#8CE02C] text-white dark:text-[#060807] text-xs font-bold cursor-pointer"
+                className="min-h-[38px] px-4 py-2 rounded-xs bg-[#1D4ED8] dark:bg-[#6088FF] text-white dark:text-[#09090B] text-xs font-bold cursor-pointer"
               >
                 Restaurar filtros
               </button>
@@ -876,19 +884,19 @@ export function CategorySpendingD3Map({
                           y={group.y0}
                           width={w}
                           height={h}
-                          rx={14}
+                          rx={2}
                           fill={groupFill}
                           stroke={strokeColor}
-                          strokeOpacity={isSelected ? 0.95 : 0.38}
+                          strokeOpacity={isSelected ? 0.95 : 0.42}
                           strokeWidth={isSelected ? 2 : 1}
                         />
                         {w >= 88 && h >= 44 && (
                           <text
-                            x={group.x0 + 10}
+                            x={group.x0 + 8}
                             y={group.y0 + 17}
                             fontSize="11"
                             fontWeight="700"
-                            fill={isDark ? '#F3F5F4' : '#0B110E'}
+                            fill={isDark ? '#F5F5F2' : '#111110'}
                             className="font-editorial pointer-events-none"
                           >
                             {w > 170 ? meta.label : meta.shortLabel}
@@ -896,12 +904,12 @@ export function CategorySpendingD3Map({
                         )}
                         {w >= 170 && h >= 44 && (
                           <text
-                            x={group.x1 - 10}
+                            x={group.x1 - 8}
                             y={group.y0 + 17}
                             textAnchor="end"
                             fontSize="10.5"
                             fontWeight="600"
-                            fill={isDark ? '#8C9891' : '#5C6660'}
+                            fill={isDark ? '#8E8E96' : '#5A5A54'}
                             className="font-mono-num pointer-events-none"
                           >
                             R$ {formatBRL(group.value || 0)}
@@ -942,10 +950,10 @@ export function CategorySpendingD3Map({
                           y={leaf.y0}
                           width={w}
                           height={h}
-                          rx={9}
+                          rx={1}
                           fill={fillBase}
-                          fillOpacity={isFocused ? 1 : 0.88}
-                          stroke={isDark ? '#09120D' : '#FFFFFF'}
+                          fillOpacity={isFocused ? 1 : 0.9}
+                          stroke={isDark ? '#0D0D10' : '#FAFAF8'}
                           strokeWidth={isFocused ? 2.2 : 1.2}
                         />
                         {showName && (
@@ -967,7 +975,7 @@ export function CategorySpendingD3Map({
                             fontSize="10"
                             fontWeight="700"
                             fill={meta.textOnFill}
-                            fillOpacity={0.9}
+                            fillOpacity={0.92}
                             className="font-mono-num pointer-events-none"
                           >
                             R$ {formatBRL(leaf.value || 0)}
@@ -1016,8 +1024,8 @@ export function CategorySpendingD3Map({
                             textAnchor="middle"
                             fontSize="10.5"
                             fontWeight="700"
-                            fill={isDark ? '#F3F5F4' : '#0B110E'}
-                            stroke={isDark ? '#080B09' : '#F7F8F7'}
+                            fill={isDark ? '#F5F5F2' : '#111110'}
+                            stroke={isDark ? '#0D0D10' : '#FAFAF8'}
                             strokeWidth={3}
                             paintOrder="stroke"
                             className="font-editorial pointer-events-none"
@@ -1058,8 +1066,8 @@ export function CategorySpendingD3Map({
                           cy={leaf.y}
                           r={Math.max(2, leaf.r)}
                           fill={fillColor}
-                          fillOpacity={isFocused ? 1 : 0.88}
-                          stroke={isDark ? '#09120D' : '#FFFFFF'}
+                          fillOpacity={isFocused ? 1 : 0.9}
+                          stroke={isDark ? '#0D0D10' : '#FAFAF8'}
                           strokeWidth={isFocused ? 2.2 : 1.2}
                         />
                         {showLabel && (
@@ -1083,7 +1091,7 @@ export function CategorySpendingD3Map({
                             fontSize="9.5"
                             fontWeight="700"
                             fill={meta.textOnFill}
-                            fillOpacity={0.9}
+                            fillOpacity={0.92}
                             className="font-mono-num pointer-events-none"
                           >
                             R$ {Math.round(leaf.value || 0)}
@@ -1101,15 +1109,15 @@ export function CategorySpendingD3Map({
         {/* RIGHT 4 COLS: LIVE INSPECTOR & TOP LAUNCHES */}
         <aside
           aria-label="Detalhes do filtro e categoria selecionada"
-          className="xl:col-span-4 rounded-xl border border-[#E4E7E5] dark:border-[#1B231F] bg-[#F7F8F7] dark:bg-[#090C0B] p-4 sm:p-5 flex flex-col justify-between gap-4"
+          className="xl:col-span-4 rounded-sm border border-[#E2E2DC] dark:border-[#242429] bg-[#FAFAF8] dark:bg-[#0D0D10] p-4 sm:p-5 flex flex-col justify-between gap-4"
         >
           <div>
-            <div className="flex items-start justify-between gap-3 pb-3.5 border-b border-[#E4E7E5] dark:border-[#1B231F]">
+            <div className="flex items-start justify-between gap-3 pb-3.5 border-b border-[#E2E2DC] dark:border-[#242429]">
               <div>
-                <div className="text-[11px] font-medium text-[#5C6660] dark:text-[#8C9891]">
+                <div className="text-[11px] font-semibold uppercase tracking-[0.06em] text-[#5A5A54] dark:text-[#8E8E96]">
                   Total no recorte ativo
                 </div>
-                <div className="mt-1 font-display-num text-2xl font-bold text-[#0B110E] dark:text-white leading-none tabular-nums">
+                <div className="mt-1.5 font-display-num text-2xl font-bold text-[#111110] dark:text-[#F5F5F2] leading-none tabular-nums">
                   <NumberTicker
                     value={filteredTotal}
                     prefix="R$ "
@@ -1117,7 +1125,7 @@ export function CategorySpendingD3Map({
                   />
                 </div>
               </div>
-              <span className="text-[11px] font-mono-num font-semibold text-[#5C6660] dark:text-[#8C9891] shrink-0">
+              <span className="text-[11px] font-mono-num font-semibold text-[#5A5A54] dark:text-[#8E8E96] shrink-0">
                 {selectedMonth === 'all' ? 'Histórico' : formatMonthChip(selectedMonth)}
               </span>
             </div>
@@ -1126,9 +1134,9 @@ export function CategorySpendingD3Map({
               <div className="mt-4 space-y-3">
                 <div className="flex items-start justify-between gap-2">
                   <div className="min-w-0">
-                    <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#5C6660] dark:text-[#8C9891]">
+                    <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#5A5A54] dark:text-[#8E8E96]">
                       <span
-                        className="w-2.5 h-2.5 rounded-full shrink-0"
+                        className="w-2.5 h-2.5 rounded-xs shrink-0"
                         style={{
                           backgroundColor: isDark
                             ? inspectedInfo.catMeta.fillDark
@@ -1141,30 +1149,30 @@ export function CategorySpendingD3Map({
                           : 'Categoria em foco'}
                       </span>
                     </div>
-                    <h3 className="font-editorial text-base font-bold text-[#0B110E] dark:text-[#F3F5F4] truncate mt-0.5">
+                    <h3 className="font-broadsheet text-lg font-semibold text-[#111110] dark:text-[#F5F5F2] truncate mt-0.5">
                       {inspectedInfo.title}
                     </h3>
                   </div>
 
                   <div className="text-right shrink-0">
-                    <div className="font-display-num text-base font-bold text-[#0B110E] dark:text-white tabular-nums">
+                    <div className="font-mono-num text-base font-bold text-[#111110] dark:text-[#F5F5F2] tabular-nums">
                       R$ {formatBRL(inspectedInfo.value)}
                     </div>
-                    <div className="font-mono-num text-[11px] font-semibold text-[#56AD17] dark:text-[#8CE02C]">
+                    <div className="font-mono-num text-[11px] font-semibold text-[#1D4ED8] dark:text-[#6088FF]">
                       {inspectedInfo.sharePct.toFixed(1).replace('.', ',')}% do recorte
                     </div>
                   </div>
                 </div>
 
                 {/* Top matching transactions inside selected/hovered D3 node */}
-                <div className="pt-2 border-t border-[#E4E7E5] dark:border-[#1B231F]">
-                  <div className="flex items-center justify-between text-[11px] font-semibold text-[#5C6660] dark:text-[#8C9891] mb-2">
+                <div className="pt-2.5 border-t border-[#E2E2DC] dark:border-[#242429]">
+                  <div className="flex items-center justify-between text-[11px] font-semibold text-[#5A5A54] dark:text-[#8E8E96] mb-2">
                     <span>Principais lançamentos ({inspectedInfo.txCount})</span>
                     {selectedCategory !== inspectedInfo.catMeta.id && (
                       <button
                         type="button"
                         onClick={() => setSelectedCategory(inspectedInfo.catMeta.id)}
-                        className="text-[#56AD17] dark:text-[#8CE02C] hover:underline inline-flex items-center gap-0.5 cursor-pointer"
+                        className="text-[#1D4ED8] dark:text-[#6088FF] hover:underline inline-flex items-center gap-0.5 cursor-pointer"
                       >
                         <span>Isolar</span>
                         <ArrowUpRight className="w-3 h-3" />
@@ -1172,21 +1180,21 @@ export function CategorySpendingD3Map({
                     )}
                   </div>
 
-                  <ul className="divide-y divide-[#E4E7E5] dark:divide-[#1B231F] text-xs">
+                  <ul className="divide-y divide-[#ECECE6] dark:divide-[#1D1D22] text-xs">
                     {inspectedInfo.sampleTxs.map((tx) => (
                       <li
                         key={tx.id}
                         className="py-2 flex items-center justify-between gap-2.5"
                       >
                         <div className="min-w-0">
-                          <div className="font-medium text-[#0B110E] dark:text-[#F3F5F4] truncate">
+                          <div className="font-medium text-[#111110] dark:text-[#F5F5F2] truncate">
                             {cleanTxDescription(tx.description)}
                           </div>
-                          <div className="text-[10px] text-[#5C6660] dark:text-[#8C9891] truncate">
+                          <div className="text-[10px] font-mono-num text-[#5A5A54] dark:text-[#8E8E96] truncate">
                             {tx.date} · {tx.accountName}
                           </div>
                         </div>
-                        <span className="font-mono-num font-bold text-[#0B110E] dark:text-white whitespace-nowrap shrink-0">
+                        <span className="font-mono-num font-bold text-[#111110] dark:text-[#F5F5F2] whitespace-nowrap shrink-0">
                           R$ {formatBRL(Math.abs(tx.amount))}
                         </span>
                       </li>
@@ -1195,7 +1203,7 @@ export function CategorySpendingD3Map({
                 </div>
               </div>
             ) : (
-              <p className="mt-4 text-xs text-[#5C6660] dark:text-[#8C9891]">
+              <p className="mt-4 text-xs text-[#5A5A54] dark:text-[#8E8E96]">
                 Passe o mouse ou toque em qualquer bloco ou círculo para detalhar os lançamentos.
               </p>
             )}
@@ -1203,11 +1211,11 @@ export function CategorySpendingD3Map({
 
           {/* Quick Category Ranking Bar */}
           {categorySummaries.length > 0 && (
-            <div className="pt-3 border-t border-[#E4E7E5] dark:border-[#1B231F] space-y-2">
-              <div className="text-[11px] font-semibold text-[#5C6660] dark:text-[#8C9891]">
+            <div className="pt-3 border-t border-[#E2E2DC] dark:border-[#242429] space-y-2">
+              <div className="text-[11px] font-semibold text-[#5A5A54] dark:text-[#8E8E96]">
                 Peso por categoria ({selectedMonth === 'all' ? 'Todos' : formatMonthChip(selectedMonth)})
               </div>
-              <div className="h-2.5 w-full rounded-full overflow-hidden flex bg-[#E4E7E5] dark:bg-[#18221D]">
+              <div className="h-2 w-full rounded-xs overflow-hidden flex bg-[#ECECE6] dark:bg-[#1D1D22]">
                 {categorySummaries.map((cat) => (
                   <button
                     key={cat.meta.id}
@@ -1222,7 +1230,7 @@ export function CategorySpendingD3Map({
                       width: `${Math.max(4, cat.pct)}%`,
                       backgroundColor: isDark ? cat.meta.fillDark : cat.meta.fill,
                       opacity:
-                        selectedCategory === 'all' || selectedCategory === cat.meta.id ? 1 : 0.28,
+                        selectedCategory === 'all' || selectedCategory === cat.meta.id ? 1 : 0.25,
                     }}
                     className="h-full transition-opacity cursor-pointer"
                   />

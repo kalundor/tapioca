@@ -1,0 +1,25 @@
+Aplique EXATAMENTE este ajuste (Tapioca Skin v2.1). Cole o bloco CSS abaixo no FINAL de src/index.css, depois de todo o resto, sem alterar nada. Em seguida, procure no código qualquer cor azul restante (classes blue-*/indigo-*/sky-*, hex como #1D4ED8, #2563EB, #3B82F6, #1E40AF e os stroke/fill de gráficos e anéis) e troque pela paleta da marca: lima #8CE02C, verde #56AD17 / #65C91D e floresta #0B130F. Não use azul em lugar nenhum da interface. Depois confirme que o app compila.
+
+/* ===== TAPIOCA SKIN v2.1 — marca sem azul ===== */
+/* Botões primários azuis -> lima luminoso com texto floresta */
+[class*="bg-blue-"], [class*="bg-indigo-"], [class*="bg-sky-"],
+[class*="bg-[#1D4ED8" i], [class*="bg-[#2563EB" i], [class*="bg-[#3B82F6" i], [class*="bg-[#1E40AF" i], [class*="bg-[#1A56DB" i] {
+  background-image: linear-gradient(180deg, #A6F04A, #8CE02C 55%, #6FC21A) !important;
+  background-color: #8CE02C !important; color: #0B130F !important;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.35) inset, 0 10px 26px -10px rgba(140,224,44,.7) !important;
+}
+[class*="bg-blue-"] *, [class*="bg-indigo-"] *, [class*="bg-[#1D4ED8" i] *, [class*="bg-[#2563EB" i] * { color: #0B130F !important; }
+/* Textos e links azuis -> verde da marca */
+[class*="text-blue-"], [class*="text-indigo-"], [class*="text-sky-"],
+[class*="text-[#1D4ED8" i], [class*="text-[#2563EB" i], [class*="text-[#3B82F6" i], [class*="text-[#1E40AF" i] { color: #3F8A0E !important; }
+.dark [class*="text-blue-"], .dark [class*="text-indigo-"], .dark [class*="text-sky-"],
+.dark [class*="text-[#1D4ED8" i], .dark [class*="text-[#2563EB" i], .dark [class*="text-[#3B82F6" i] { color: #8CE02C !important; }
+/* Bordas e anéis */
+[class*="border-blue-"], [class*="border-indigo-"], [class*="ring-blue-"], [class*="border-[#2563EB" i], [class*="border-[#1D4ED8" i] { border-color: #65C91D !important; --tw-ring-color: #65C91D !important; }
+/* Gráficos, anel de progresso e ícones SVG azuis */
+[stroke="#1D4ED8" i], [stroke="#2563EB" i], [stroke="#3B82F6" i], [stroke="#1E40AF" i], [stroke*="blue" i] { stroke: #65C91D !important; }
+[fill="#1D4ED8" i], [fill="#2563EB" i], [fill="#3B82F6" i], [fill="#1E40AF" i] { fill: #65C91D !important; }
+[style*="#1d4ed8" i], [style*="#2563eb" i], [style*="#3b82f6" i] { color: #3F8A0E !important; border-color: #65C91D !important; }
+[stop-color="#3B82F6" i], [stop-color="#2563EB" i], [stop-color="#1D4ED8" i] { stop-color: #8CE02C !important; }
+/* Botões secundários (ex.: "Sync Pluggy"): papel marfim com borda lima ao passar o mouse */
+button:hover { border-color: rgba(101,201,29,.7); }

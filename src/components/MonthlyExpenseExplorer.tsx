@@ -47,33 +47,33 @@ export const EXPENSE_CATEGORIES: Array<{
     id: 'moradia',
     label: 'Moradia & Casa (50%)',
     shortLabel: 'Moradia',
-    color: '#0B130F',
-    bgClass: 'bg-[#0B130F]',
-    dotClass: 'bg-[#0B130F]',
+    color: '#18181B',
+    bgClass: 'bg-[#18181B]',
+    dotClass: 'bg-[#18181B]',
   },
   {
     id: 'cartoes',
     label: 'Cartões & Faturas',
     shortLabel: 'Cartões',
-    color: '#3B7A1E',
-    bgClass: 'bg-[#3B7A1E]',
-    dotClass: 'bg-[#3B7A1E]',
+    color: '#1D4ED8',
+    bgClass: 'bg-[#1D4ED8]',
+    dotClass: 'bg-[#1D4ED8]',
   },
   {
     id: 'reserva',
     label: 'Reservas & CDB',
     shortLabel: 'Reserva',
-    color: '#56AD17',
-    bgClass: 'bg-[#56AD17]',
-    dotClass: 'bg-[#56AD17]',
+    color: '#0F766E',
+    bgClass: 'bg-[#0F766E]',
+    dotClass: 'bg-[#0F766E]',
   },
   {
     id: 'alimentacao',
     label: 'Alimentação & Café',
     shortLabel: 'Alimentação',
-    color: '#D97706',
-    bgClass: 'bg-[#D97706]',
-    dotClass: 'bg-[#D97706]',
+    color: '#C83E2B',
+    bgClass: 'bg-[#C83E2B]',
+    dotClass: 'bg-[#C83E2B]',
   },
   {
     id: 'lazer',
@@ -280,7 +280,7 @@ export function MonthlyExpenseExplorer({
         value: baseIncome,
         start: 0,
         end: baseIncome,
-        color: '#0B130F',
+        color: '#18181B',
         kind: 'income',
       },
     ];
@@ -307,7 +307,7 @@ export function MonthlyExpenseExplorer({
       value: running,
       start: 0,
       end: running,
-      color: '#7AC128',
+      color: '#0F766E',
       kind: 'final',
     });
 
@@ -406,16 +406,16 @@ export function MonthlyExpenseExplorer({
       className="p-4 sm:p-6"
     >
       {/* HEADER + CHART GENERATOR TOOLBAR */}
-      <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-3 pb-4 border-b border-[#E4E7E5] dark:border-[#1B231F]">
-        <div className="flex items-center gap-2.5">
-          <span className="w-9 h-9 rounded-lg bg-[#F1F3F2] dark:bg-[#111714] border border-[#E4E7E5] dark:border-[#1B231F] flex items-center justify-center text-[#0B110E] dark:text-[#8CE02C] shrink-0">
+      <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-3 pb-4 border-b border-[#E2E2DC] dark:border-[#242429]">
+        <div className="flex items-center gap-3">
+          <span className="w-9 h-9 rounded-xs bg-[#F3F3EF] dark:bg-[#161619] border border-[#E2E2DC] dark:border-[#242429] flex items-center justify-center text-[#1D4ED8] dark:text-[#6088FF] shrink-0">
             <BarChart3 className="w-4 h-4" />
           </span>
           <div>
-            <h2 className="font-editorial text-lg font-semibold text-[#0B110E] dark:text-[#F3F5F4]">
+            <h2 className="font-broadsheet text-xl font-semibold text-[#111110] dark:text-[#F5F5F2] tracking-[-0.02em]">
               Estúdio de Gráficos &amp; Série Histórica
             </h2>
-            <p className="text-xs text-[#5C6660] dark:text-[#8C9891]">
+            <p className="text-xs text-[#5A5A54] dark:text-[#8E8E96]">
               Alterne entre 5 motores visuais, dê zoom ou exporte a planilha pronta para Excel
             </p>
           </div>
@@ -434,17 +434,17 @@ export function MonthlyExpenseExplorer({
             ariaLabel="Janela temporal"
           />
 
-          <div className="inline-flex items-center gap-0.5 bg-[#F1F3F2] dark:bg-[#111714] border border-[#E4E7E5] dark:border-[#1B231F] p-1 rounded-lg">
+          <div className="inline-flex items-center gap-0.5 bg-[#F3F3EF] dark:bg-[#161619] border border-[#E2E2DC] dark:border-[#242429] p-1 rounded-sm">
             <button
               type="button"
               onClick={handleZoomIn}
               aria-label="Aumentar zoom no gráfico"
               title="Zoom In (+)"
-              className="w-8 h-8 rounded-md flex items-center justify-center text-[#0B110E] dark:text-[#D5DBD8] hover:bg-white dark:hover:bg-[#19221D] transition-colors cursor-pointer"
+              className="w-8 h-8 rounded-xs flex items-center justify-center text-[#111110] dark:text-[#D5D5D0] hover:bg-white dark:hover:bg-[#1E1E24] transition-colors cursor-pointer"
             >
               <ZoomIn className="w-3.5 h-3.5" />
             </button>
-            <span className="font-mono-num text-[11px] font-bold text-[#0B110E] dark:text-[#F3F5F4] px-1">
+            <span className="font-mono-num text-[11px] font-bold text-[#111110] dark:text-[#F5F5F2] px-1">
               {Math.round(zoomScale * 100)}%
             </span>
             <button
@@ -452,7 +452,7 @@ export function MonthlyExpenseExplorer({
               onClick={handleZoomOut}
               aria-label="Diminuir zoom no gráfico"
               title="Zoom Out (-)"
-              className="w-8 h-8 rounded-md flex items-center justify-center text-[#0B110E] dark:text-[#D5DBD8] hover:bg-white dark:hover:bg-[#19221D] transition-colors cursor-pointer"
+              className="w-8 h-8 rounded-xs flex items-center justify-center text-[#111110] dark:text-[#D5D5D0] hover:bg-white dark:hover:bg-[#1E1E24] transition-colors cursor-pointer"
             >
               <ZoomOut className="w-3.5 h-3.5" />
             </button>
@@ -461,7 +461,7 @@ export function MonthlyExpenseExplorer({
               onClick={handleResetZoom}
               aria-label="Resetar zoom e filtros"
               title="Resetar Zoom e Filtros"
-              className="w-8 h-8 rounded-md flex items-center justify-center text-[#5C6660] hover:text-[#0B110E] dark:hover:text-[#8CE02C] hover:bg-white dark:hover:bg-[#19221D] transition-colors cursor-pointer"
+              className="w-8 h-8 rounded-xs flex items-center justify-center text-[#5A5A54] hover:text-[#1D4ED8] dark:hover:text-[#6088FF] hover:bg-white dark:hover:bg-[#1E1E24] transition-colors cursor-pointer"
             >
               <RotateCcw className="w-3.5 h-3.5" />
             </button>
@@ -470,9 +470,9 @@ export function MonthlyExpenseExplorer({
           <button
             type="button"
             onClick={handleExportExcelCsv}
-            className="min-h-[38px] px-3 py-1.5 rounded-lg bg-[#0B130F] dark:bg-[#8CE02C] hover:opacity-90 text-white dark:text-[#060807] text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer whitespace-nowrap"
+            className="min-h-[38px] px-3.5 py-1.5 rounded-xs bg-[#1D4ED8] dark:bg-[#6088FF] hover:bg-[#1E40AF] dark:hover:bg-[#4F78F5] text-white dark:text-[#09090B] text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer whitespace-nowrap"
           >
-            <Download className="w-3.5 h-3.5 text-[#8CE02C] dark:text-[#060807]" />
+            <Download className="w-3.5 h-3.5" />
             <span>{csvExportedNotice ? 'Planilha Baixada ✓' : 'Exportar Excel (.csv)'}</span>
           </button>
         </div>
@@ -491,20 +491,20 @@ export function MonthlyExpenseExplorer({
         </div>
 
         <div className="flex items-center gap-1.5 overflow-x-auto sm:overflow-visible sm:flex-wrap no-scrollbar pb-0.5">
-          <span className="text-[11px] font-semibold text-[#5C6660] dark:text-[#8C9891] flex items-center gap-1 mr-1 shrink-0">
-            <Filter className="w-3 h-3" /> Séries:
+          <span className="text-[11px] font-semibold uppercase tracking-[0.06em] text-[#5A5A54] dark:text-[#8E8E96] flex items-center gap-1 mr-1 shrink-0">
+            <Filter className="w-3 h-3" /> Séries
           </span>
 
           <button
             type="button"
             onClick={() => setActiveCategories(EXPENSE_CATEGORIES.map((c) => c.id))}
-            className={`min-h-[32px] px-2.5 py-1 rounded-lg text-[11px] font-semibold border transition-all flex items-center gap-1 shrink-0 cursor-pointer ${
+            className={`min-h-[30px] px-2.5 py-1 rounded-xs text-[11px] font-semibold border transition-all flex items-center gap-1 shrink-0 cursor-pointer ${
               isAllCategoriesSelected
-                ? 'bg-[#0B130F] dark:bg-[#8CE02C] text-white dark:text-[#060807] border-[#0B130F] dark:border-[#8CE02C]'
-                : 'bg-[#F7F8F7] dark:bg-[#111714] text-[#5C6660] dark:text-[#8C9891] border-[#E4E7E5] dark:border-[#1B231F]'
+                ? 'bg-[#111110] dark:bg-[#F5F5F2] text-[#FAFAF8] dark:text-[#09090B] border-[#111110] dark:border-[#F5F5F2]'
+                : 'bg-[#FAFAF8] dark:bg-[#161619] text-[#5A5A54] dark:text-[#8E8E96] border-[#E2E2DC] dark:border-[#242429]'
             }`}
           >
-            {isAllCategoriesSelected && <Check className="w-3 h-3 text-[#8CE02C] dark:text-[#060807]" />}
+            {isAllCategoriesSelected && <Check className="w-3 h-3" />}
             <span>Todas ({EXPENSE_CATEGORIES.length})</span>
           </button>
 
@@ -518,18 +518,18 @@ export function MonthlyExpenseExplorer({
                 onClick={() => toggleCategory(cat.id)}
                 onDoubleClick={() => selectOnlyCategory(cat.id)}
                 title="Clique para ativar/desativar (duplo clique para isolar)"
-                className={`min-h-[32px] px-2.5 py-1 rounded-lg text-[11px] font-medium border transition-all flex items-center gap-1.5 shrink-0 cursor-pointer ${
+                className={`min-h-[30px] px-2.5 py-1 rounded-xs text-[11px] font-medium border transition-all flex items-center gap-1.5 shrink-0 cursor-pointer ${
                   isSelected
-                    ? 'bg-white dark:bg-[#19221D] text-[#0B110E] dark:text-[#F3F5F4] border-[#D0D6D2] dark:border-[#28352E] shadow-2xs'
-                    : 'bg-[#F7F8F7] dark:bg-[#090C0B] text-[#8C9891] border-[#E4E7E5] dark:border-[#1B231F] opacity-60 hover:opacity-100'
+                    ? 'bg-white dark:bg-[#161619] text-[#111110] dark:text-[#F5F5F2] border-[#D4D4CC] dark:border-[#2C2C34]'
+                    : 'bg-[#FAFAF8] dark:bg-[#0D0D10] text-[#8E8E96] border-[#E2E2DC] dark:border-[#242429] opacity-55 hover:opacity-100'
                 }`}
               >
                 <span
-                  className="w-2 h-2 rounded-full shrink-0"
+                  className="w-2 h-2 rounded-xs shrink-0"
                   style={{ backgroundColor: isSelected ? cat.color : '#94A3B8' }}
                 />
                 <span>{cat.shortLabel}</span>
-                <span className="font-mono-num text-[10px] text-[#5C6660] dark:text-[#8C9891]">
+                <span className="font-mono-num text-[10px] text-[#5A5A54] dark:text-[#8E8E96]">
                   {catStat.pct}%
                 </span>
               </button>
@@ -539,52 +539,52 @@ export function MonthlyExpenseExplorer({
       </div>
 
       {/* UNIFIED HAIRLINE SUMMARY KPI STRIP */}
-      <div className="mt-4 rounded-xl border border-[#E4E7E5] dark:border-[#1B231F] bg-[#F7F8F7] dark:bg-[#090C0B] grid grid-cols-2 sm:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-[#E4E7E5] dark:divide-[#1B231F] overflow-hidden">
+      <div className="mt-4 rounded-sm border border-[#E2E2DC] dark:border-[#242429] bg-[#FAFAF8] dark:bg-[#0D0D10] grid grid-cols-2 sm:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-[#E2E2DC] dark:divide-[#242429] overflow-hidden">
         <div className="p-3.5">
-          <div className="text-[11px] font-medium text-[#5C6660] dark:text-[#8C9891]">
+          <div className="text-[11px] font-semibold uppercase tracking-[0.06em] text-[#5A5A54] dark:text-[#8E8E96]">
             Média mensal
           </div>
-          <div className="font-mono-num text-sm sm:text-base font-bold text-[#0B110E] dark:text-white mt-0.5">
+          <div className="font-mono-num text-sm sm:text-base font-bold text-[#111110] dark:text-[#F5F5F2] mt-1">
             R$ {formatBRL(explorerData.windowAverage)}
           </div>
-          <div className="text-[11px] text-[#5C6660] dark:text-[#8C9891] truncate">
+          <div className="text-[11px] text-[#5A5A54] dark:text-[#8E8E96] truncate">
             {explorerData.points.length} meses visíveis
           </div>
         </div>
 
         <div className="p-3.5">
-          <div className="text-[11px] font-medium text-[#5C6660] dark:text-[#8C9891]">
+          <div className="text-[11px] font-semibold uppercase tracking-[0.06em] text-[#5A5A54] dark:text-[#8E8E96]">
             Total no período
           </div>
-          <div className="font-mono-num text-sm sm:text-base font-bold text-[#56AD17] dark:text-[#8CE02C] mt-0.5">
+          <div className="font-mono-num text-sm sm:text-base font-bold text-[#1D4ED8] dark:text-[#6088FF] mt-1">
             R$ {formatBRL(explorerData.windowTotal)}
           </div>
-          <div className="text-[11px] text-[#5C6660] dark:text-[#8C9891] truncate">
+          <div className="text-[11px] text-[#5A5A54] dark:text-[#8E8E96] truncate">
             {activeCategories.length} de 5 séries
           </div>
         </div>
 
         <div className="p-3.5">
-          <div className="text-[11px] font-medium text-[#5C6660] dark:text-[#8C9891]">
+          <div className="text-[11px] font-semibold uppercase tracking-[0.06em] text-[#5A5A54] dark:text-[#8E8E96]">
             Pico na janela
           </div>
-          <div className="font-mono-num text-sm sm:text-base font-bold text-[#0B110E] dark:text-white mt-0.5 truncate">
+          <div className="font-mono-num text-sm sm:text-base font-bold text-[#111110] dark:text-[#F5F5F2] mt-1 truncate">
             {explorerData.peakMonth.label} · R$ {formatBRL(explorerData.peakMonth.amount)}
           </div>
-          <div className="text-[11px] text-[#5C6660] dark:text-[#8C9891] truncate">
+          <div className="text-[11px] text-[#5A5A54] dark:text-[#8E8E96] truncate">
             Menor: {explorerData.lowestMonth.label} (R$ {formatBRL(explorerData.lowestMonth.amount)})
           </div>
         </div>
 
         <div className="p-3.5">
-          <div className="text-[11px] font-medium text-[#5C6660] dark:text-[#8C9891]">
+          <div className="text-[11px] font-semibold uppercase tracking-[0.06em] text-[#5A5A54] dark:text-[#8E8E96]">
             Variação mensal
           </div>
           <div
-            className={`font-mono-num text-sm sm:text-base font-bold mt-0.5 flex items-center gap-1 ${
+            className={`font-mono-num text-sm sm:text-base font-bold mt-1 flex items-center gap-1 ${
               explorerData.momDeltaPct <= 0
-                ? 'text-[#56AD17] dark:text-[#8CE02C]'
-                : 'text-[#D97706] dark:text-[#F59E0B]'
+                ? 'text-[#0F766E] dark:text-[#2DD4BF]'
+                : 'text-[#C83E2B] dark:text-[#F9735B]'
             }`}
           >
             {explorerData.momDeltaPct <= 0 ? (
@@ -597,7 +597,7 @@ export function MonthlyExpenseExplorer({
               {explorerData.momDeltaPct.toFixed(1).replace('.', ',')}%
             </span>
           </div>
-          <div className="text-[11px] text-[#5C6660] dark:text-[#8C9891] truncate">
+          <div className="text-[11px] text-[#5A5A54] dark:text-[#8E8E96] truncate">
             Sobra: R$ {formatBRL(selectedPoint?.leftover || 0)}
           </div>
         </div>
@@ -614,7 +614,7 @@ export function MonthlyExpenseExplorer({
               else handleZoomOut();
             }
           }}
-          className="lg:col-span-8 rounded-xl border border-[#E4E7E5] dark:border-[#1B231F] bg-[#F7F8F7] dark:bg-[#080B09] p-3.5 sm:p-4 flex flex-col justify-between"
+          className="lg:col-span-8 rounded-sm border border-[#E2E2DC] dark:border-[#242429] bg-[#FAFAF8] dark:bg-[#0D0D10] p-3.5 sm:p-4 flex flex-col justify-between"
         >
           {chartMode === 'stacked' && (
             <div className="overflow-x-auto no-scrollbar">
@@ -639,26 +639,26 @@ export function MonthlyExpenseExplorer({
                       type="button"
                       onClick={() => setSelectedMonthKey(pt.monthKey)}
                       aria-label={`Inspecionar gastos de ${pt.fullMonthLabel}`}
-                      className={`group flex flex-col items-center justify-end h-full rounded-xl p-1 sm:p-1.5 transition-all cursor-pointer ${
+                      className={`group flex flex-col items-center justify-end h-full rounded-xs p-1 sm:p-1.5 transition-all cursor-pointer ${
                         isSelected
-                          ? 'bg-[#E4E7E5]/80 dark:bg-[#19221D] ring-1 ring-[#0B130F]/30 dark:ring-[#8CE02C]/50'
-                          : 'hover:bg-[#F1F3F2] dark:hover:bg-[#111714]'
+                          ? 'bg-[#ECECE6]/90 dark:bg-[#1A1A20] ring-1 ring-[#1D4ED8]/50 dark:ring-[#6088FF]/60'
+                          : 'hover:bg-[#F3F3EF] dark:hover:bg-[#161619]'
                       }`}
                     >
                       <span
                         className={`font-mono-num text-[10px] font-bold mb-1.5 transition-colors ${
                           isSelected
-                            ? 'text-[#0B110E] dark:text-[#8CE02C]'
-                            : 'text-[#5C6660] dark:text-[#8C9891]'
+                            ? 'text-[#1D4ED8] dark:text-[#6088FF]'
+                            : 'text-[#5A5A54] dark:text-[#8E8E96]'
                         }`}
                       >
                         {(pt.filteredTotal / 1000).toFixed(1).replace('.', ',')}k
                       </span>
 
-                      <div className="w-full max-w-[40px] h-36 bg-[#E4E7E5] dark:bg-[#19221D] rounded-lg overflow-hidden flex flex-col justify-end p-0.5">
+                      <div className="w-full max-w-[38px] h-36 bg-[#ECECE6] dark:bg-[#1D1D22] rounded-xs overflow-hidden flex flex-col justify-end p-0.5">
                         <div
                           style={{ height: `${totalHeightPct}%` }}
-                          className="w-full rounded-md overflow-hidden flex flex-col-reverse gap-[1px] transition-all duration-300"
+                          className="w-full overflow-hidden flex flex-col-reverse gap-[1px] transition-all duration-300"
                         >
                           {EXPENSE_CATEGORIES.map((cat) => {
                             const val = pt.categoryValues[cat.id];
@@ -685,8 +685,8 @@ export function MonthlyExpenseExplorer({
                       <span
                         className={`mt-2 text-[11px] font-bold ${
                           isSelected
-                            ? 'text-[#0B110E] dark:text-[#8CE02C]'
-                            : 'text-[#5C6660] dark:text-[#8C9891]'
+                            ? 'text-[#1D4ED8] dark:text-[#6088FF]'
+                            : 'text-[#5A5A54] dark:text-[#8E8E96]'
                         }`}
                       >
                         {pt.monthLabel}
@@ -708,8 +708,8 @@ export function MonthlyExpenseExplorer({
               >
                 <defs>
                   <linearGradient id="tapiocaAreaGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#8CE02C" stopOpacity="0.34" />
-                    <stop offset="100%" stopColor="#0B130F" stopOpacity="0.02" />
+                    <stop offset="0%" stopColor="#1D4ED8" stopOpacity="0.28" />
+                    <stop offset="100%" stopColor="#1D4ED8" stopOpacity="0.01" />
                   </linearGradient>
                 </defs>
 
@@ -723,14 +723,14 @@ export function MonthlyExpenseExplorer({
                         x2={svgWidth - padX}
                         y2={y}
                         stroke="currentColor"
-                        className="text-[#E4E7E5] dark:text-[#1B231F]"
+                        className="text-[#E2E2DC] dark:text-[#242429]"
                         strokeDasharray="3 3"
                         strokeWidth="1"
                       />
                       <text
                         x={4}
                         y={y + 3}
-                        className="fill-[#5C6660] dark:fill-[#8C9891] text-[9px] font-mono-num"
+                        className="fill-[#5A5A54] dark:fill-[#8E8E96] text-[9px] font-mono-num"
                       >
                         {((explorerData.yAxisMax * ratio) / 1000).toFixed(0)}k
                       </text>
@@ -743,8 +743,8 @@ export function MonthlyExpenseExplorer({
                   <path
                     d={linePath}
                     fill="none"
-                    stroke="#56AD17"
-                    strokeWidth="2.5"
+                    stroke="#1D4ED8"
+                    strokeWidth="2.4"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
@@ -759,21 +759,21 @@ export function MonthlyExpenseExplorer({
                       className="cursor-pointer"
                     >
                       {isSelected && (
-                        <circle cx={x} cy={y} r={10} fill="#8CE02C" fillOpacity={0.22} />
+                        <circle cx={x} cy={y} r={9} fill="#1D4ED8" fillOpacity={0.18} />
                       )}
                       <circle
                         cx={x}
                         cy={y}
-                        r={isSelected ? 5.5 : 4}
-                        fill={isSelected ? '#8CE02C' : '#FFFFFF'}
-                        stroke="#0B130F"
-                        strokeWidth="2.5"
+                        r={isSelected ? 5 : 3.8}
+                        fill={isSelected ? '#1D4ED8' : '#FFFFFF'}
+                        stroke="#111110"
+                        strokeWidth="2"
                       />
                       <text
                         x={x}
                         y={y - 10}
                         textAnchor="middle"
-                        className="fill-[#0B110E] dark:fill-[#F3F5F4] text-[10px] font-bold font-mono-num"
+                        className="fill-[#111110] dark:fill-[#F5F5F2] text-[10px] font-bold font-mono-num"
                       >
                         {(pt.filteredTotal / 1000).toFixed(1).replace('.', ',')}k
                       </text>
@@ -783,8 +783,8 @@ export function MonthlyExpenseExplorer({
                         textAnchor="middle"
                         className={`text-[10px] font-bold ${
                           isSelected
-                            ? 'fill-[#0B110E] dark:fill-[#8CE02C]'
-                            : 'fill-[#5C6660] dark:fill-[#8C9891]'
+                            ? 'fill-[#1D4ED8] dark:fill-[#6088FF]'
+                            : 'fill-[#5A5A54] dark:fill-[#8E8E96]'
                         }`}
                       >
                         {pt.monthLabel}
@@ -799,37 +799,45 @@ export function MonthlyExpenseExplorer({
           {chartMode === 'waterfall' && selectedPoint && (
             <div className="space-y-3 py-1">
               <div className="flex items-center justify-between text-xs">
-                <span className="font-semibold text-[#0B110E] dark:text-[#F3F5F4]">
+                <span className="font-semibold text-[#111110] dark:text-[#F5F5F2]">
                   Ponte de Fluxo (Waterfall) — {selectedPoint.fullMonthLabel}
                 </span>
-                <span className="font-mono-num text-[11px] text-[#5C6660] dark:text-[#8C9891]">
+                <span className="font-mono-num text-[11px] text-[#5A5A54] dark:text-[#8E8E96]">
                   Entradas R$ {formatBRL(selectedPoint.income)} → Sobra R${' '}
                   {formatBRL(waterfallSteps[waterfallSteps.length - 1]?.value || 0)}
                 </span>
               </div>
 
               <div className="overflow-x-auto no-scrollbar">
-                <div className="min-w-[460px] h-48 grid gap-2 items-end pt-4 pb-1" style={{ gridTemplateColumns: `repeat(${waterfallSteps.length}, minmax(0, 1fr))` }}>
+                <div
+                  className="min-w-[460px] h-48 grid gap-2 items-end pt-4 pb-1"
+                  style={{
+                    gridTemplateColumns: `repeat(${waterfallSteps.length}, minmax(0, 1fr))`,
+                  }}
+                >
                   {waterfallSteps.map((step) => {
                     const maxIncome = Math.max(1, selectedPoint.income);
                     const bottomPct = Math.round((step.start / maxIncome) * 100);
-                    const heightPct = Math.max(4, Math.round(((step.end - step.start) / maxIncome) * 100));
+                    const heightPct = Math.max(
+                      4,
+                      Math.round(((step.end - step.start) / maxIncome) * 100)
+                    );
                     return (
                       <div key={step.id} className="h-full flex flex-col items-center justify-end">
-                        <span className="font-mono-num text-[10px] font-bold text-[#0B110E] dark:text-white mb-1 whitespace-nowrap">
+                        <span className="font-mono-num text-[10px] font-bold text-[#111110] dark:text-[#F5F5F2] mb-1 whitespace-nowrap">
                           {step.kind === 'expense' ? '–' : ''}R$ {Math.round(Math.abs(step.value))}
                         </span>
-                        <div className="relative w-full max-w-[46px] h-32 bg-[#E4E7E5]/80 dark:bg-[#19221D] rounded-lg overflow-hidden">
+                        <div className="relative w-full max-w-[44px] h-32 bg-[#ECECE6] dark:bg-[#1D1D22] rounded-xs overflow-hidden">
                           <div
                             style={{
                               bottom: `${bottomPct}%`,
                               height: `${heightPct}%`,
                               backgroundColor: step.color,
                             }}
-                            className="absolute left-1 right-1 rounded-md transition-all duration-300"
+                            className="absolute left-1 right-1 transition-all duration-300"
                           />
                         </div>
-                        <span className="mt-1.5 text-[10px] font-semibold text-[#5C6660] dark:text-[#8C9891] truncate max-w-full">
+                        <span className="mt-1.5 text-[10px] font-semibold text-[#5A5A54] dark:text-[#8E8E96] truncate max-w-full">
                           {step.label}
                         </span>
                       </div>
@@ -850,7 +858,7 @@ export function MonthlyExpenseExplorer({
                     r="64"
                     fill="none"
                     stroke="currentColor"
-                    className="text-[#E4E7E5] dark:text-[#19221D]"
+                    className="text-[#ECECE6] dark:text-[#1D1D22]"
                     strokeWidth="22"
                   />
                   {donutSegments.map((seg) => {
@@ -863,7 +871,7 @@ export function MonthlyExpenseExplorer({
                         r="64"
                         fill="none"
                         stroke={seg.color}
-                        strokeWidth={isFocused ? 27 : 22}
+                        strokeWidth={isFocused ? 26 : 22}
                         strokeDasharray={seg.dasharray}
                         strokeDashoffset={seg.dashoffset}
                         onClick={() =>
@@ -875,12 +883,12 @@ export function MonthlyExpenseExplorer({
                   })}
                 </svg>
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none px-4">
-                  <span className="text-[10px] font-semibold text-[#5C6660] dark:text-[#8C9891]">
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.06em] text-[#5A5A54] dark:text-[#8E8E96]">
                     {activeDonutCat
                       ? donutSegments.find((d) => d.id === activeDonutCat)?.shortLabel
                       : selectedPoint.monthLabel}
                   </span>
-                  <span className="font-mono-num text-base font-extrabold text-[#0B110E] dark:text-white leading-tight mt-0.5">
+                  <span className="font-mono-num text-base font-extrabold text-[#111110] dark:text-[#F5F5F2] leading-tight mt-0.5">
                     R${' '}
                     {formatBRL(
                       activeDonutCat
@@ -901,25 +909,25 @@ export function MonthlyExpenseExplorer({
                       onClick={() =>
                         setActiveDonutCat((prev) => (prev === seg.id ? null : seg.id))
                       }
-                      className={`p-2.5 rounded-xl border text-left transition-all cursor-pointer ${
+                      className={`p-2.5 rounded-sm border text-left transition-all cursor-pointer ${
                         isFocused
-                          ? 'bg-white dark:bg-[#19221D] border-[#0B130F] dark:border-[#8CE02C]'
-                          : 'bg-white dark:bg-[#0D1210] border-[#E4E7E5] dark:border-[#1B231F]'
+                          ? 'bg-white dark:bg-[#161619] border-[#1D4ED8] dark:border-[#6088FF]'
+                          : 'bg-white dark:bg-[#111113] border-[#E2E2DC] dark:border-[#242429]'
                       }`}
                     >
                       <div className="flex items-center justify-between gap-2">
-                        <span className="flex items-center gap-1.5 font-semibold text-[#0B110E] dark:text-white truncate">
+                        <span className="flex items-center gap-1.5 font-semibold text-[#111110] dark:text-[#F5F5F2] truncate">
                           <span
-                            className="w-2.5 h-2.5 rounded-full shrink-0"
+                            className="w-2.5 h-2.5 rounded-xs shrink-0"
                             style={{ backgroundColor: seg.color }}
                           />
                           {seg.shortLabel}
                         </span>
-                        <span className="font-mono-num font-bold text-[#56AD17] dark:text-[#8CE02C]">
+                        <span className="font-mono-num font-bold text-[#1D4ED8] dark:text-[#6088FF]">
                           {seg.pct}%
                         </span>
                       </div>
-                      <div className="font-mono-num font-bold text-[#0B110E] dark:text-[#D5DBD8] mt-1">
+                      <div className="font-mono-num font-bold text-[#111110] dark:text-[#D5D5D0] mt-1">
                         R$ {formatBRL(seg.value)}
                       </div>
                     </button>
@@ -932,17 +940,17 @@ export function MonthlyExpenseExplorer({
           {chartMode === 'couple' && (
             <div className="space-y-3 py-1 min-h-[224px] flex flex-col justify-between">
               <div className="flex flex-wrap items-center justify-between gap-2 text-xs">
-                <span className="font-semibold text-[#0B110E] dark:text-[#F3F5F4]">
+                <span className="font-semibold text-[#111110] dark:text-[#F5F5F2]">
                   Comparativo Lado a Lado: {profile.displayName.split(' ')[0]} vs.{' '}
                   {profile.partnerName.split(' ')[0]}
                 </span>
                 <div className="flex items-center gap-3 text-[11px] font-semibold">
-                  <span className="flex items-center gap-1.5 text-[#0B110E] dark:text-[#F3F5F4]">
-                    <span className="w-2.5 h-2.5 rounded-xs bg-[#0B130F] dark:bg-[#8CE02C]" />
+                  <span className="flex items-center gap-1.5 text-[#111110] dark:text-[#F5F5F2]">
+                    <span className="w-2.5 h-2.5 rounded-xs bg-[#1D4ED8] dark:bg-[#6088FF]" />
                     {profile.displayName.split(' ')[0]}
                   </span>
-                  <span className="flex items-center gap-1.5 text-[#B45309] dark:text-[#F59E0B]">
-                    <span className="w-2.5 h-2.5 rounded-xs bg-[#D97706]" />
+                  <span className="flex items-center gap-1.5 text-[#C83E2B] dark:text-[#F9735B]">
+                    <span className="w-2.5 h-2.5 rounded-xs bg-[#C83E2B] dark:bg-[#F9735B]" />
                     {profile.partnerName.split(' ')[0]}
                   </span>
                 </div>
@@ -951,28 +959,31 @@ export function MonthlyExpenseExplorer({
               <div className="space-y-2.5 text-xs">
                 {coupleComparison.rows.map((row) => {
                   const alanPct = Math.max(4, Math.round((row.alan / coupleComparison.maxVal) * 100));
-                  const larissaPct = Math.max(4, Math.round((row.larissa / coupleComparison.maxVal) * 100));
+                  const larissaPct = Math.max(
+                    4,
+                    Math.round((row.larissa / coupleComparison.maxVal) * 100)
+                  );
                   return (
                     <div key={row.label} className="space-y-1">
                       <div className="flex items-center justify-between text-[11px]">
-                        <span className="font-semibold text-[#5C6660] dark:text-[#D5DBD8]">
+                        <span className="font-semibold text-[#5A5A54] dark:text-[#D5D5D0]">
                           {row.label}
                         </span>
-                        <span className="font-mono-num text-[#0B110E] dark:text-white">
+                        <span className="font-mono-num text-[#111110] dark:text-[#F5F5F2]">
                           R$ {formatBRL(row.alan)} / R$ {formatBRL(row.larissa)}
                         </span>
                       </div>
                       <div className="grid grid-cols-2 gap-1.5">
-                        <div className="h-2 rounded-full bg-[#E4E7E5] dark:bg-[#19221D] overflow-hidden flex justify-end">
+                        <div className="h-2 rounded-xs bg-[#ECECE6] dark:bg-[#1D1D22] overflow-hidden flex justify-end">
                           <div
                             style={{ width: `${alanPct}%` }}
-                            className="h-full rounded-full bg-[#0B130F] dark:bg-[#8CE02C] transition-all duration-300"
+                            className="h-full bg-[#1D4ED8] dark:bg-[#6088FF] transition-all duration-300"
                           />
                         </div>
-                        <div className="h-2 rounded-full bg-[#E4E7E5] dark:bg-[#19221D] overflow-hidden">
+                        <div className="h-2 rounded-xs bg-[#ECECE6] dark:bg-[#1D1D22] overflow-hidden">
                           <div
                             style={{ width: `${larissaPct}%` }}
-                            className="h-full rounded-full bg-[#D97706] transition-all duration-300"
+                            className="h-full bg-[#C83E2B] dark:bg-[#F9735B] transition-all duration-300"
                           />
                         </div>
                       </div>
@@ -984,10 +995,10 @@ export function MonthlyExpenseExplorer({
           )}
 
           {/* Range Bar */}
-          <div className="mt-3 pt-3 border-t border-[#E4E7E5] dark:border-[#1B231F] flex flex-wrap items-center justify-between gap-2.5 text-xs">
+          <div className="mt-3 pt-3 border-t border-[#E2E2DC] dark:border-[#242429] flex flex-wrap items-center justify-between gap-2.5 text-xs">
             <div className="flex flex-wrap items-center gap-2">
-              <Calendar className="w-3.5 h-3.5 text-[#56AD17] dark:text-[#8CE02C]" />
-              <span className="text-[11px] font-semibold text-[#5C6660] dark:text-[#8C9891]">
+              <Calendar className="w-3.5 h-3.5 text-[#1D4ED8] dark:text-[#6088FF]" />
+              <span className="text-[11px] font-semibold text-[#5A5A54] dark:text-[#8E8E96]">
                 Período:
               </span>
               <select
@@ -997,7 +1008,7 @@ export function MonthlyExpenseExplorer({
                   const nextStart = Number(e.target.value);
                   setStartIndex(Math.min(nextStart, endIndex));
                 }}
-                className="min-h-[32px] px-2 py-1 rounded-lg border border-[#E4E7E5] dark:border-[#1B231F] bg-white dark:bg-[#0D1210] text-[11px] font-semibold text-[#0B110E] dark:text-[#F3F5F4]"
+                className="min-h-[32px] px-2 py-1 rounded-xs border border-[#E2E2DC] dark:border-[#242429] bg-white dark:bg-[#111113] text-[11px] font-semibold font-mono-num text-[#111110] dark:text-[#F5F5F2]"
               >
                 {annualSeries.map((m, idx) => (
                   <option key={m.monthKey} value={idx} disabled={idx > endIndex}>
@@ -1005,7 +1016,7 @@ export function MonthlyExpenseExplorer({
                   </option>
                 ))}
               </select>
-              <span className="text-[#5C6660] dark:text-[#8C9891]">até</span>
+              <span className="text-[#5A5A54] dark:text-[#8E8E96]">até</span>
               <select
                 aria-label="Mês final do zoom"
                 value={endIndex}
@@ -1013,7 +1024,7 @@ export function MonthlyExpenseExplorer({
                   const nextEnd = Number(e.target.value);
                   setEndIndex(Math.max(nextEnd, startIndex));
                 }}
-                className="min-h-[32px] px-2 py-1 rounded-lg border border-[#E4E7E5] dark:border-[#1B231F] bg-white dark:bg-[#0D1210] text-[11px] font-semibold text-[#0B110E] dark:text-[#F3F5F4]"
+                className="min-h-[32px] px-2 py-1 rounded-xs border border-[#E2E2DC] dark:border-[#242429] bg-white dark:bg-[#111113] text-[11px] font-semibold font-mono-num text-[#111110] dark:text-[#F5F5F2]"
               >
                 {annualSeries.map((m, idx) => (
                   <option key={m.monthKey} value={idx} disabled={idx < startIndex}>
@@ -1023,7 +1034,7 @@ export function MonthlyExpenseExplorer({
               </select>
             </div>
 
-            <div className="text-[11px] text-[#5C6660] dark:text-[#8C9891] hidden sm:block">
+            <div className="text-[11px] text-[#5A5A54] dark:text-[#8E8E96] hidden sm:block">
               Toque em qualquer mês ou fatia para detalhar
             </div>
           </div>
@@ -1031,20 +1042,20 @@ export function MonthlyExpenseExplorer({
 
         {/* Right 4 cols: Selected Month Drill-Down Inspector */}
         {selectedPoint && (
-          <div className="lg:col-span-4 rounded-xl border border-[#E4E7E5] dark:border-[#1B231F] bg-[#F7F8F7] dark:bg-[#090C0B] p-4 flex flex-col justify-between">
+          <div className="lg:col-span-4 rounded-sm border border-[#E2E2DC] dark:border-[#242429] bg-[#FAFAF8] dark:bg-[#0D0D10] p-4 flex flex-col justify-between">
             <div>
-              <div className="flex items-center justify-between gap-2 pb-3 border-b border-[#E4E7E5] dark:border-[#1B231F]">
+              <div className="flex items-center justify-between gap-2 pb-3 border-b border-[#E2E2DC] dark:border-[#242429]">
                 <div>
-                  <span className="text-[11px] font-semibold text-[#56AD17] dark:text-[#8CE02C]">
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.06em] text-[#1D4ED8] dark:text-[#6088FF]">
                     Mês inspecionado
                   </span>
-                  <h3 className="font-editorial text-base font-bold text-[#0B110E] dark:text-white mt-0.5">
+                  <h3 className="font-broadsheet text-lg font-semibold text-[#111110] dark:text-[#F5F5F2] mt-0.5">
                     {selectedPoint.fullMonthLabel}
                   </h3>
                 </div>
                 <div className="text-right">
-                  <div className="text-[11px] text-[#5C6660] dark:text-[#8C9891]">Total</div>
-                  <div className="font-mono-num text-sm font-bold text-[#0B110E] dark:text-white">
+                  <div className="text-[11px] text-[#5A5A54] dark:text-[#8E8E96]">Total</div>
+                  <div className="font-mono-num text-sm font-bold text-[#111110] dark:text-[#F5F5F2]">
                     R$ {formatBRL(selectedPoint.filteredTotal)}
                   </div>
                 </div>
@@ -1064,35 +1075,35 @@ export function MonthlyExpenseExplorer({
                       type="button"
                       key={cat.id}
                       onClick={() => toggleCategory(cat.id)}
-                      className={`w-full text-left p-2.5 rounded-xl border transition-all cursor-pointer ${
+                      className={`w-full text-left p-2.5 rounded-sm border transition-all cursor-pointer ${
                         isCatActive
-                          ? 'border-[#E4E7E5] dark:border-[#1B231F] bg-white dark:bg-[#0D1210]'
-                          : 'border-dashed border-[#E4E7E5] dark:border-[#1B231F] opacity-45'
+                          ? 'border-[#E2E2DC] dark:border-[#242429] bg-white dark:bg-[#111113]'
+                          : 'border-dashed border-[#E2E2DC] dark:border-[#242429] opacity-45'
                       }`}
                     >
                       <div className="flex items-center justify-between text-xs">
-                        <span className="font-semibold text-[#0B110E] dark:text-[#D5DBD8] flex items-center gap-1.5 truncate">
+                        <span className="font-semibold text-[#111110] dark:text-[#D5D5D0] flex items-center gap-1.5 truncate">
                           <span
-                            className="w-2 h-2 rounded-full shrink-0"
+                            className="w-2 h-2 rounded-xs shrink-0"
                             style={{ backgroundColor: cat.color }}
                           />
                           <span className="truncate">{cat.label}</span>
                         </span>
-                        <span className="font-mono-num font-bold text-[#0B110E] dark:text-white whitespace-nowrap ml-2">
+                        <span className="font-mono-num font-bold text-[#111110] dark:text-[#F5F5F2] whitespace-nowrap ml-2">
                           R$ {formatBRL(rawAmount)}
                         </span>
                       </div>
                       <div className="mt-1.5 flex items-center gap-2">
-                        <div className="flex-1 h-1.5 bg-[#E4E7E5] dark:bg-[#19221D] rounded-full overflow-hidden">
+                        <div className="flex-1 h-1.5 bg-[#ECECE6] dark:bg-[#1D1D22] rounded-xs overflow-hidden">
                           <div
                             style={{
                               width: `${isCatActive ? Math.max(4, pctOfFiltered) : 0}%`,
                               backgroundColor: cat.color,
                             }}
-                            className="h-full rounded-full transition-all duration-300"
+                            className="h-full transition-all duration-300"
                           />
                         </div>
-                        <span className="font-mono-num text-[10px] text-[#5C6660] dark:text-[#8C9891] w-8 text-right">
+                        <span className="font-mono-num text-[10px] text-[#5A5A54] dark:text-[#8E8E96] w-8 text-right">
                           {isCatActive ? `${pctOfFiltered}%` : 'oculto'}
                         </span>
                       </div>
@@ -1103,9 +1114,9 @@ export function MonthlyExpenseExplorer({
             </div>
 
             {!compact && (
-              <div className="mt-3 pt-3 border-t border-[#E4E7E5] dark:border-[#1B231F] flex items-center justify-between text-xs">
-                <span className="text-[#5C6660] dark:text-[#8C9891]">Sobra Livre do Mês:</span>
-                <span className="font-mono-num font-bold text-[#56AD17] dark:text-[#8CE02C]">
+              <div className="mt-3 pt-3 border-t border-[#E2E2DC] dark:border-[#242429] flex items-center justify-between text-xs">
+                <span className="text-[#5A5A54] dark:text-[#8E8E96]">Sobra Livre do Mês:</span>
+                <span className="font-mono-num font-bold text-[#0F766E] dark:text-[#2DD4BF]">
                   R$ {formatBRL(selectedPoint.leftover)} (
                   {Math.round((selectedPoint.leftover / Math.max(1, selectedPoint.income)) * 100)}
                   %)

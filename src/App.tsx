@@ -61,6 +61,7 @@ import {
   EditorialModalShell,
   EDITORIAL_EASE,
   EDITORIAL_EXIT_EASE,
+  EDITORIAL_SPRING,
 } from './components/MotionPrimitives';
 
 type ActiveSection =
@@ -749,26 +750,40 @@ export default function App() {
 
   const connectedPluggyCount = pluggyConnections.filter((c) => c.status === 'connected').length;
 
-  const navMenuItems: Array<{
+  // Strictly 5 top-level desktop navigation destinations (Zero Left Sidebar!)
+  const primaryTopNav: Array<{
     id: ActiveSection;
     label: string;
-    icon: React.ReactNode;
+    matchSections: ActiveSection[];
+    meta?: string;
   }> = [
-    { id: 'overview', label: 'Visão geral', icon: <LayoutGrid className="w-4 h-4" /> },
-    { id: 'cards', label: 'Pluggy (2 Contas)', icon: <CreditCard className="w-4 h-4" /> },
-    { id: 'cashflow', label: 'Fluxo & Insights', icon: <ArrowLeftRight className="w-4 h-4" /> },
-    { id: 'savings', label: 'Nossa reserva', icon: <PiggyBank className="w-4 h-4" /> },
+    { id: 'overview', label: 'Resumo', matchSections: ['overview'] },
+    {
+      id: 'cards',
+      label: 'Pluggy',
+      matchSections: ['cards'],
+      meta: `${connectedPluggyCount}/2`,
+    },
+    { id: 'cashflow', label: 'Fluxo & Gráficos', matchSections: ['cashflow'] },
+    { id: 'savings', label: 'Reservas', matchSections: ['savings'] },
+    {
+      id: 'house',
+      label: 'Casa & Casal',
+      matchSections: ['house', 'income', 'workspace'],
+    },
   ];
 
-  const navSettingsItems: Array<{
+  const coupleSubNav: Array<{
     id: ActiveSection;
     label: string;
     icon: React.ReactNode;
   }> = [
-    { id: 'house', label: 'Casa & Contas', icon: <Building2 className="w-4 h-4" /> },
-    { id: 'income', label: 'Renda & Divisão', icon: <Wallet className="w-4 h-4" /> },
-    { id: 'workspace', label: 'Google Workspace', icon: <Share2 className="w-4 h-4" /> },
+    { id: 'house', label: 'Casa & Contas', icon: <Building2 className="w-3.5 h-3.5" /> },
+    { id: 'income', label: 'Renda & Divisão', icon: <Wallet className="w-3.5 h-3.5" /> },
+    { id: 'workspace', label: 'Google Workspace', icon: <Share2 className="w-3.5 h-3.5" /> },
   ];
+
+  const isInCoupleGroup = ['house', 'income', 'workspace'].includes(activeSection);
 
   const navigateTo = (sec: ActiveSection) => {
     setActiveSection(sec);
@@ -778,21 +793,18 @@ export default function App() {
 
   return (
     <MotionConfig reducedMotion="user">
-      <div className="min-h-screen bg-[#F7F8F7] dark:bg-[#060807] text-[#0B110E] dark:text-[#F3F5F4] flex flex-col lg:flex-row">
-      {/* DESKTOP ARCHITECTURAL HAIRLINE RAIL (lg+) */}
-      <aside
-        aria-label="Menu lateral Tapioca Pay"
-        className="hidden lg:flex w-[236px] sticky top-0 h-screen shrink-0 bg-[#F1F3F2] dark:bg-[#090C0B] border-r border-[#E4E7E5] dark:border-[#1B231F] px-3.5 py-5 flex-col justify-between select-none"
-      >
-        <div className="space-y-5">
-          {/* Clean Brand Wordmark (No Subtitle Clutter) */}
-          <div className="px-1.5 pb-4 border-b border-[#E4E7E5] dark:border-[#1B231F]">
+      <div className="min-h-screen bg-[#FAFAF8] dark:bg-[#09090B] text-[#111110] dark:text-[#F5F5F2] flex flex-col tp-grain relative">
+        <div aria-hidden="true" className="tp-aurora" />
+        {/* DESKTOP ARCHITECTURAL TOP SHELL (lg+) — Strict 3-Zone Contract, Zero Generic Sidebar */}
+        <header className="hidden lg:block sticky top-0 z-30 bg-[#FAFAF8]/94 dark:bg-[#09090B]/94 backdrop-blur-md border-b border-[#111110]/12 dark:border-[#242429]">
+          <div className="max-w-[1440px] mx-auto px-8 xl:px-10 h-16 flex items-center justify-between gap-8">
+            {/* Zone 1: Crisp Broadsheet Brand Wordmark */}
             <button
               type="button"
               onClick={() => navigateTo('overview')}
-              className="w-full text-left flex items-center gap-2.5 group cursor-pointer"
+              className="flex items-center gap-2.5 whitespace-nowrap shrink-0 group cursor-pointer"
             >
-              <div className="w-9 h-9 rounded-xl overflow-hidden border border-[#0B110E]/10 dark:border-white/10 shrink-0 bg-[#0B130F]">
+              <div className="w-8 h-8 rounded-xs overflow-hidden bg-[#111110] border border-[#111110]/20 dark:border-white/15 shrink-0">
                 <img
                   src="/assets/aistudio/2_326139fa.png"
                   alt="Emblema Tapioca Pay"
@@ -800,228 +812,345 @@ export default function App() {
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
                 />
               </div>
-              <div className="font-editorial text-[19px] font-extrabold tracking-tight text-[#0B110E] dark:text-[#F3F5F4] leading-none flex items-baseline gap-1 whitespace-nowrap">
+              <span className="font-editorial text-[19px] font-extrabold tracking-tight text-[#111110] dark:text-[#F5F5F2] leading-none flex items-baseline gap-1">
                 <span>Tapioca</span>
-                <span className="font-accent-serif text-[#56AD17] dark:text-[#8CE02C] font-semibold">
+                <span className="font-accent-serif text-[#1D4ED8] dark:text-[#6088FF] font-semibold text-[21px]">
                   pay
                 </span>
-              </div>
+              </span>
             </button>
-          </div>
 
-          {/* Search Command Palette Trigger */}
-          <button
-            type="button"
-            onClick={() => setIsCommandPaletteOpen(true)}
-            className="w-full h-9 px-3 rounded-lg bg-white dark:bg-[#0D1210] border border-[#E4E7E5] dark:border-[#1B231F] hover:border-[#0B110E]/25 dark:hover:border-[#8CE02C]/40 flex items-center justify-between gap-2 text-xs text-[#5C6660] dark:text-[#8C9891] transition-colors cursor-pointer"
-          >
-            <span className="flex items-center gap-2 truncate">
-              <Search className="w-3.5 h-3.5 text-[#56AD17] dark:text-[#8CE02C] shrink-0" />
-              <span className="truncate">Buscar ou comando...</span>
-            </span>
-            <kbd className="font-code text-[10px] px-1.5 py-0.5 rounded bg-[#F1F3F2] dark:bg-[#141C17] text-[#0B110E] dark:text-[#D5E0D9] shrink-0">
-              ⌘K
-            </kbd>
-          </button>
-
-          <nav aria-label="Navegação principal" className="space-y-5">
-            <div>
-              <div className="px-2.5 text-[11px] font-semibold tracking-wide text-[#5C6660] dark:text-[#6E7A73] mb-1.5">
-                Principal
-              </div>
-              <ul className="space-y-0.5">
-                {navMenuItems.map((item) => {
-                  const isActive = activeSection === item.id;
-                  return (
-                    <li key={item.id}>
-                      <button
-                        type="button"
-                        onClick={() => navigateTo(item.id)}
-                        className={`relative w-full h-9 px-2.5 rounded-lg text-[13px] flex items-center justify-between gap-2 transition-colors whitespace-nowrap cursor-pointer ${
+            {/* Zone 2: 5 Single-Line Typographic Nav Links with Flush Ink Underline */}
+            <nav
+              aria-label="Navegação principal"
+              className="flex items-center gap-7 h-full whitespace-nowrap shrink-0"
+            >
+              {primaryTopNav.map((item) => {
+                const isActive = item.matchSections.includes(activeSection);
+                return (
+                  <button
+                    key={item.id}
+                    type="button"
+                    onClick={() => navigateTo(item.id)}
+                    className={`relative h-full inline-flex items-center gap-1.5 text-[13px] transition-colors cursor-pointer whitespace-nowrap ${
+                      isActive
+                        ? 'text-[#111110] dark:text-white font-bold'
+                        : 'text-[#5A5A54] dark:text-[#8E8E96] hover:text-[#111110] dark:hover:text-[#F5F5F2] font-medium'
+                    }`}
+                  >
+                    <span>{item.label}</span>
+                    {item.meta && (
+                      <span
+                        className={`font-mono-num text-[10px] font-semibold ${
                           isActive
-                            ? 'text-[#0B110E] dark:text-white font-semibold'
-                            : 'text-[#4B5550] dark:text-[#8C9891] hover:bg-[#E7EAE8]/70 dark:hover:bg-[#121815] hover:text-[#0B110E] dark:hover:text-white font-medium'
+                            ? 'text-[#1D4ED8] dark:text-[#6088FF]'
+                            : 'text-[#8A8A82] dark:text-[#6E6E77]'
                         }`}
                       >
-                        {isActive && (
-                          <motion.span
-                            layoutId="sidebar-active-rail"
-                            transition={{ type: 'spring', stiffness: 440, damping: 34 }}
-                            className="absolute inset-0 rounded-lg bg-white dark:bg-[#141C17] border border-[#E4E7E5] dark:border-[#24302A] shadow-2xs"
-                          />
-                        )}
-                        {isActive && (
-                          <span className="absolute left-0 top-1.5 bottom-1.5 w-[2.5px] rounded-r-full bg-[#56AD17] dark:bg-[#8CE02C] z-20" />
-                        )}
-                        <div className="relative z-10 flex items-center gap-2.5">
-                          <span
-                            className={
-                              isActive
-                                ? 'text-[#56AD17] dark:text-[#8CE02C]'
-                                : 'text-[#6A756F] dark:text-[#6E7A73]'
-                            }
-                          >
-                            {item.icon}
-                          </span>
-                          <span>{item.label}</span>
-                        </div>
-                        {item.id === 'cards' && (
-                          <span
-                            className={`relative z-10 font-mono-num text-[11px] font-semibold ${
-                              isActive ? 'text-[#56AD17] dark:text-[#8CE02C]' : 'text-[#5C6660] dark:text-[#8C9891]'
-                            }`}
-                          >
-                            {connectedPluggyCount}/2
-                          </span>
-                        )}
-                      </button>
-                    </li>
-                  );
-                })}
-              </ul>
+                        {item.meta}
+                      </span>
+                    )}
+                    {isActive && (
+                      <motion.span
+                        layoutId="desktop-top-nav-rule"
+                        transition={EDITORIAL_SPRING}
+                        className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#1D4ED8] dark:bg-[#6088FF]"
+                      />
+                    )}
+                  </button>
+                );
+              })}
+            </nav>
+
+            {/* Zone 3: Single Primary Action CTA */}
+            <div className="shrink-0">
+              <ShimmerActionButton
+                type="button"
+                variant="forest"
+                onClick={() => {
+                  setAddBillDefaultCat('house');
+                  setIsAddBillOpen(true);
+                }}
+                className="h-9 px-4 rounded-sm text-xs font-semibold tracking-tight whitespace-nowrap"
+              >
+                <Plus className="w-3.5 h-3.5 stroke-[2.5]" />
+                <span>Novo lançamento</span>
+              </ShimmerActionButton>
             </div>
+          </div>
+        </header>
 
-            <div>
-              <div className="px-2.5 text-[11px] font-semibold tracking-wide text-[#5C6660] dark:text-[#6E7A73] mb-1.5">
-                Ajustes do Casal
+        {/* DESKTOP ARCHITECTURAL UTILITY RIBBON (Non-sticky Ledger Strip below Header) */}
+        <div className="hidden lg:block border-b border-[#E2E2DC] dark:border-[#1E1E24] bg-[#F3F3EF]/70 dark:bg-[#0D0D10]">
+          <div className="max-w-[1440px] mx-auto px-8 xl:px-10 h-11 flex items-center justify-between gap-4 text-xs">
+            {/* Left: Month Stepper + Unboxed Metadata + Optional Couple Sub-Nav */}
+            <div className="flex items-center gap-4 min-w-0">
+              <div className="flex items-center gap-1 shrink-0">
+                <button
+                  type="button"
+                  aria-label="Mês anterior"
+                  onClick={() => setMonthIdx((prev) => Math.max(0, prev - 1))}
+                  className="w-6 h-6 flex items-center justify-center text-[#5A5A54] hover:text-[#111110] dark:text-[#8E8E96] dark:hover:text-white transition-colors cursor-pointer"
+                >
+                  <ChevronLeft className="w-3.5 h-3.5" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setMonthIdx(1)}
+                  className="flex items-baseline gap-1.5 px-1 cursor-pointer whitespace-nowrap"
+                >
+                  <span className="font-editorial text-[13px] font-bold text-[#111110] dark:text-[#F5F5F2]">
+                    {MONTHS[monthIdx].split(' ')[0]}
+                  </span>
+                  <span className="font-accent-serif text-[13px] text-[#1D4ED8] dark:text-[#6088FF]">
+                    {MONTHS[monthIdx].split(' ')[1]}
+                  </span>
+                </button>
+                <button
+                  type="button"
+                  aria-label="Próximo mês"
+                  onClick={() => setMonthIdx((prev) => Math.min(MONTHS.length - 1, prev + 1))}
+                  className="w-6 h-6 flex items-center justify-center text-[#5A5A54] hover:text-[#111110] dark:text-[#8E8E96] dark:hover:text-white transition-colors cursor-pointer"
+                >
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </button>
               </div>
-              <ul className="space-y-0.5">
-                {navSettingsItems.map((item) => {
-                  const isActive = activeSection === item.id;
-                  return (
-                    <li key={item.id}>
-                      <button
-                        type="button"
-                        onClick={() => navigateTo(item.id)}
-                        className={`relative w-full h-9 px-2.5 rounded-lg text-[13px] flex items-center gap-2.5 transition-colors whitespace-nowrap cursor-pointer ${
-                          isActive
-                            ? 'text-[#0B110E] dark:text-white font-semibold'
-                            : 'text-[#4B5550] dark:text-[#8C9891] hover:bg-[#E7EAE8]/70 dark:hover:bg-[#121815] hover:text-[#0B110E] dark:hover:text-white font-medium'
-                        }`}
-                      >
-                        {isActive && (
-                          <motion.span
-                            layoutId="sidebar-active-rail"
-                            transition={{ type: 'spring', stiffness: 440, damping: 34 }}
-                            className="absolute inset-0 rounded-lg bg-white dark:bg-[#141C17] border border-[#E4E7E5] dark:border-[#24302A] shadow-2xs"
-                          />
-                        )}
-                        {isActive && (
-                          <span className="absolute left-0 top-1.5 bottom-1.5 w-[2.5px] rounded-r-full bg-[#56AD17] dark:bg-[#8CE02C] z-20" />
-                        )}
-                        <span
-                          className={`relative z-10 ${
-                            isActive
-                              ? 'text-[#56AD17] dark:text-[#8CE02C]'
-                              : 'text-[#6A756F] dark:text-[#6E7A73]'
+
+              <span className="text-[#D0D0C8] dark:text-[#2A2A32]" aria-hidden="true">
+                |
+              </span>
+
+              <span className="text-[11px] font-mono-num text-[#5A5A54] dark:text-[#8E8E96] truncate">
+                {profile.displayName.split(' ')[0]} &amp; {profile.partnerName.split(' ')[0]} ·{' '}
+                {connectedPluggyCount}/2 Pluggy · {transactions.length} lançamentos
+              </span>
+
+              {isInCoupleGroup && (
+                <>
+                  <span className="text-[#D0D0C8] dark:text-[#2A2A32]" aria-hidden="true">
+                    /
+                  </span>
+                  <div className="flex items-center gap-3">
+                    {coupleSubNav.map((sub) => {
+                      const active = activeSection === sub.id;
+                      return (
+                        <button
+                          key={sub.id}
+                          type="button"
+                          onClick={() => navigateTo(sub.id)}
+                          className={`inline-flex items-center gap-1.5 text-[11px] transition-colors cursor-pointer whitespace-nowrap ${
+                            active
+                              ? 'text-[#1D4ED8] dark:text-[#6088FF] font-bold underline underline-offset-4 decoration-2'
+                              : 'text-[#5A5A54] dark:text-[#8E8E96] hover:text-[#111110] dark:hover:text-white font-medium'
                           }`}
                         >
-                          {item.icon}
-                        </span>
-                        <span className="relative z-10">{item.label}</span>
-                      </button>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          </nav>
-        </div>
-
-        {/* Bottom Theme Switcher + Alan & Larissa Profile */}
-        <div className="flex flex-col gap-3 pt-4 border-t border-[#E4E7E5] dark:border-[#1B231F]">
-          <div className="flex items-center justify-between px-1">
-            <span className="text-xs text-[#5C6660] dark:text-[#8C9891] flex items-center gap-1.5">
-              {darkMode ? (
-                <Moon className="w-3.5 h-3.5 text-[#8CE02C]" />
-              ) : (
-                <Sun className="w-3.5 h-3.5 text-[#D97706]" />
+                          {sub.icon}
+                          <span>{sub.label}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </>
               )}
-              <span>Tema</span>
-            </span>
-            <div className="flex items-center bg-[#E4E7E5] dark:bg-[#111714] p-0.5 rounded-lg">
+            </div>
+
+            {/* Right: Search ⌘K, Copilot AI, Workspace/Google, Alerts, Theme */}
+            <div className="flex items-center gap-2 shrink-0">
               <button
                 type="button"
-                aria-label="Ativar tema claro"
-                onClick={() => setDarkMode(false)}
-                className={`px-2.5 py-1 rounded-md text-[10px] font-semibold transition-colors cursor-pointer ${
-                  !darkMode
-                    ? 'bg-white text-[#0B110E] shadow-2xs'
-                    : 'text-[#5C6660] dark:text-[#8C9891]'
-                }`}
+                onClick={() => setIsCommandPaletteOpen(true)}
+                aria-label="Abrir busca rápida e atalhos"
+                className="h-7 px-2.5 rounded-xs border border-[#D8D8D0] dark:border-[#242429] bg-white dark:bg-[#111113] hover:border-[#111110] dark:hover:border-[#6088FF] text-[11px] text-[#5A5A54] dark:text-[#8E8E96] flex items-center gap-2 transition-colors cursor-pointer"
               >
-                Claro
+                <Search className="w-3 h-3" />
+                <span>Buscar</span>
+                <kbd className="font-code text-[10px] text-[#111110] dark:text-[#D4D4DC]">⌘K</kbd>
               </button>
+
               <button
                 type="button"
-                aria-label="Ativar tema escuro"
-                onClick={() => setDarkMode(true)}
-                className={`px-2.5 py-1 rounded-md text-[10px] font-semibold transition-colors cursor-pointer ${
-                  darkMode
-                    ? 'bg-[#19221D] text-[#F3F5F4] shadow-2xs'
-                    : 'text-[#5C6660]'
-                }`}
+                onClick={() => setIsVoiceStudioOpen(true)}
+                aria-label="Abrir Copiloto Tapioca AI"
+                className="h-7 px-2.5 rounded-xs border border-[#1D4ED8]/30 dark:border-[#6088FF]/35 bg-[#1D4ED8]/[0.06] dark:bg-[#6088FF]/10 hover:bg-[#1D4ED8]/[0.12] dark:hover:bg-[#6088FF]/20 text-[11px] font-semibold text-[#1D4ED8] dark:text-[#6088FF] flex items-center gap-1.5 transition-colors cursor-pointer"
               >
-                Escuro
+                <Bot className="w-3.5 h-3.5" />
+                <span>Copiloto AI</span>
+              </button>
+
+              {!isInCoupleGroup && (
+                <button
+                  type="button"
+                  onClick={() => navigateTo('workspace')}
+                  className="h-7 px-2 rounded-xs text-[11px] font-medium text-[#5A5A54] dark:text-[#8E8E96] hover:text-[#111110] dark:hover:text-white flex items-center gap-1 transition-colors cursor-pointer"
+                >
+                  <Share2 className="w-3 h-3" />
+                  <span>Workspace</span>
+                </button>
+              )}
+
+              {!isAuthenticated ? (
+                <button
+                  type="button"
+                  onClick={handleGoogleLogin}
+                  className="h-7 px-2.5 rounded-xs border border-[#D8D8D0] dark:border-[#242429] bg-white dark:bg-[#111113] hover:border-[#111110] text-[11px] font-medium text-[#111110] dark:text-[#F5F5F2] flex items-center gap-1.5 transition-colors cursor-pointer"
+                >
+                  <svg className="w-3 h-3 shrink-0" viewBox="0 0 48 48" aria-hidden="true">
+                    <path
+                      fill="#EA4335"
+                      d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"
+                    />
+                    <path
+                      fill="#4285F4"
+                      d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"
+                    />
+                    <path
+                      fill="#FBBC05"
+                      d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"
+                    />
+                    <path
+                      fill="#34A853"
+                      d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"
+                    />
+                  </svg>
+                  <span>Google</span>
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  onClick={logout}
+                  className="h-7 px-2.5 rounded-xs border border-[#0F766E]/35 bg-[#0F766E]/10 text-[11px] font-semibold text-[#0F766E] dark:text-[#2DD4BF] cursor-pointer"
+                >
+                  {userEmail?.split('@')[0]} · Sair
+                </button>
+              )}
+
+              {/* Alerts Popover */}
+              <div className="relative">
+                <button
+                  type="button"
+                  aria-label="Abrir alertas de despesas"
+                  onClick={() => setShowNotificationsPopover((prev) => !prev)}
+                  className="w-7 h-7 rounded-xs border border-[#D8D8D0] dark:border-[#242429] bg-white dark:bg-[#111113] hover:border-[#111110] flex items-center justify-center text-[#111110] dark:text-[#F5F5F2] relative cursor-pointer transition-colors"
+                >
+                  <Bell className="w-3.5 h-3.5" />
+                  {budgetAlerts.length > 0 && (
+                    <span className="absolute -top-1 -right-1 bg-[#C83E2B] text-white text-[9px] font-mono-num font-bold px-1 rounded-xs leading-tight">
+                      {budgetAlerts.length}
+                    </span>
+                  )}
+                </button>
+
+                <AnimatePresence>
+                  {showNotificationsPopover && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -6, scale: 0.98 }}
+                      animate={{
+                        opacity: 1,
+                        y: 0,
+                        scale: 1,
+                        transition: { duration: 0.2, ease: EDITORIAL_EASE },
+                      }}
+                      exit={{
+                        opacity: 0,
+                        y: -4,
+                        scale: 0.98,
+                        transition: { duration: 0.14, ease: EDITORIAL_EXIT_EASE },
+                      }}
+                      className="absolute right-0 mt-2 w-80 bg-white dark:bg-[#111113] rounded-sm border border-[#111110]/20 dark:border-[#2C2C34] shadow-xl p-4 z-40 space-y-3 text-xs whitespace-normal origin-top-right"
+                    >
+                      <div className="flex items-center justify-between pb-2 border-b border-[#E2E2DC] dark:border-[#242429]">
+                        <span className="font-editorial font-bold text-sm text-[#111110] dark:text-white">
+                          Alertas Open Finance
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => setShowNotificationsPopover(false)}
+                          className="text-[#5A5A54] hover:text-[#111110] dark:hover:text-white cursor-pointer"
+                        >
+                          <X className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                      <div className="space-y-2 max-h-60 overflow-y-auto">
+                        {budgetAlerts.map((al) => (
+                          <div
+                            key={al.id}
+                            className="p-2.5 rounded-xs bg-[#FDF3F1] dark:bg-[#221514] border border-[#F3CBC4] dark:border-[#4A2520]"
+                          >
+                            <div className="font-bold text-[#9F2B1C] dark:text-[#F9735B]">
+                              {al.category}
+                            </div>
+                            <div className="text-[11px] font-mono-num text-[#5A5A54] dark:text-[#A4A4AE] mt-0.5">
+                              Realizado R$ {formatBRL(al.currentSpent)} · Meta R${' '}
+                              {formatBRL(al.limitAmount)}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setShowNotificationsPopover(false);
+                          navigateTo('cashflow');
+                        }}
+                        className="w-full py-1.5 text-center font-semibold text-[#1D4ED8] dark:text-[#6088FF] hover:underline cursor-pointer"
+                      >
+                        Ver Relatório de Custos →
+                      </button>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* Theme Toggle */}
+              <button
+                type="button"
+                onClick={() => setDarkMode((prev) => !prev)}
+                aria-label={darkMode ? 'Ativar tema claro' : 'Ativar tema escuro'}
+                title={darkMode ? 'Tema Claro (Porcelain)' : 'Tema Escuro (Obsidian)'}
+                className="h-7 px-2 rounded-xs border border-[#D8D8D0] dark:border-[#242429] bg-white dark:bg-[#111113] hover:border-[#111110] text-[11px] font-medium text-[#111110] dark:text-[#F5F5F2] flex items-center gap-1.5 transition-colors cursor-pointer"
+              >
+                {darkMode ? (
+                  <>
+                    <Sun className="w-3.5 h-3.5 text-[#F9735B]" />
+                    <span>Claro</span>
+                  </>
+                ) : (
+                  <>
+                    <Moon className="w-3.5 h-3.5 text-[#1D4ED8]" />
+                    <span>Escuro</span>
+                  </>
+                )}
               </button>
             </div>
           </div>
-
-          <button
-            type="button"
-            onClick={() => navigateTo('cards')}
-            className="w-full p-2.5 rounded-xl bg-white dark:bg-[#0D1210] border border-[#E4E7E5] dark:border-[#1B231F] flex items-center justify-between text-left hover:border-[#0B110E]/25 dark:hover:border-[#8CE02C]/40 transition-colors cursor-pointer"
-          >
-            <div className="flex items-center gap-2.5 min-w-0">
-              <div className="flex -space-x-2 shrink-0">
-                <span className="w-7 h-7 rounded-full bg-[#0B130F] text-[#8CE02C] text-[10px] font-bold flex items-center justify-center ring-2 ring-[#F1F3F2] dark:ring-[#090C0B] font-editorial">
-                  AL
-                </span>
-                <span className="w-7 h-7 rounded-full bg-[#D97706] text-white text-[10px] font-bold flex items-center justify-center ring-2 ring-[#F1F3F2] dark:ring-[#090C0B] font-editorial">
-                  LF
-                </span>
-              </div>
-              <div className="min-w-0">
-                <div className="text-xs font-bold text-[#0B110E] dark:text-[#F3F5F4] truncate">
-                  {profile.displayName.split(' ')[0]} &amp; {profile.partnerName.split(' ')[0]}
-                </div>
-                <div className="text-[11px] text-[#5C6660] dark:text-[#8C9891] truncate">
-                  {connectedPluggyCount}/2 Pluggy
-                </div>
-              </div>
-            </div>
-            <ChevronRight className="w-3.5 h-3.5 text-[#5C6660] shrink-0" />
-          </button>
         </div>
-      </aside>
 
-      {/* MOBILE / TABLET BOTTOM SHEET (< lg) */}
-      <EditorialModalShell
-        isOpen={mobileMenuOpen}
-        onClose={() => setMobileMenuOpen(false)}
-        ariaLabel="Menu Tapioca Pay"
-        variant="sheet"
-        containerClassName="lg:hidden flex items-end justify-center"
-      >
-        <div className="w-full bg-[#F7F8F7] dark:bg-[#090C0B] rounded-t-3xl border-t border-[#E4E7E5] dark:border-[#1B231F] px-5 pt-3 pb-7 pb-safe max-h-[85vh] overflow-y-auto shadow-2xl space-y-5">
-            <div className="w-10 h-1 rounded-full bg-[#CFD5D1] dark:bg-[#27332D] mx-auto" />
+        {/* MOBILE / TABLET BOTTOM SHEET (< lg) */}
+        <EditorialModalShell
+          isOpen={mobileMenuOpen}
+          onClose={() => setMobileMenuOpen(false)}
+          ariaLabel="Menu Tapioca Pay"
+          variant="sheet"
+          containerClassName="lg:hidden flex items-end justify-center"
+        >
+          <div className="w-full bg-[#FAFAF8] dark:bg-[#0D0D10] rounded-t-xl border-t border-[#E2E2DC] dark:border-[#242429] px-5 pt-3 pb-7 pb-safe max-h-[85vh] overflow-y-auto shadow-2xl space-y-5">
+            <div className="w-10 h-1 rounded-full bg-[#D0D0C8] dark:bg-[#2C2C34] mx-auto" />
 
-            {/* Sheet Header: Couple summary + close */}
-            <div className="flex items-center justify-between gap-3 pb-3.5 border-b border-[#E4E7E5] dark:border-[#1B231F]">
+            <div className="flex items-center justify-between gap-3 pb-3.5 border-b border-[#E2E2DC] dark:border-[#242429]">
               <div className="flex items-center gap-3 min-w-0">
                 <div className="flex -space-x-2 shrink-0">
-                  <span className="w-9 h-9 rounded-full bg-[#0B130F] text-[#8CE02C] text-xs font-bold flex items-center justify-center ring-2 ring-[#F7F8F7] dark:ring-[#090C0B] font-editorial">
+                  <span className="w-9 h-9 rounded-xs bg-[#111110] text-white text-xs font-bold flex items-center justify-center ring-2 ring-[#FAFAF8] dark:ring-[#0D0D10] font-editorial">
                     AL
                   </span>
-                  <span className="w-9 h-9 rounded-full bg-[#D97706] text-white text-xs font-bold flex items-center justify-center ring-2 ring-[#F7F8F7] dark:ring-[#090C0B] font-editorial">
+                  <span className="w-9 h-9 rounded-xs bg-[#C83E2B] text-white text-xs font-bold flex items-center justify-center ring-2 ring-[#FAFAF8] dark:ring-[#0D0D10] font-editorial">
                     LF
                   </span>
                 </div>
                 <div className="min-w-0">
-                  <div className="text-sm font-bold text-[#0B110E] dark:text-[#F3F5F4] truncate">
+                  <div className="text-sm font-bold text-[#111110] dark:text-[#F5F5F2] truncate">
                     {profile.displayName.split(' ')[0]} &amp; {profile.partnerName.split(' ')[0]}
                   </div>
-                  <div className="text-xs text-[#5C6660] dark:text-[#8C9891] truncate">
+                  <div className="text-xs text-[#5A5A54] dark:text-[#8E8E96] truncate">
                     Namorada · {connectedPluggyCount}/2 Pluggy conectado
                   </div>
                 </div>
@@ -1030,7 +1159,7 @@ export default function App() {
                 type="button"
                 aria-label="Fechar menu"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-10 h-10 rounded-xl bg-[#ECEFEE] dark:bg-[#141C17] text-[#5C6660] dark:text-[#8C9891] flex items-center justify-center shrink-0"
+                className="w-9 h-9 rounded-sm bg-[#F3F3EF] dark:bg-[#161619] text-[#5A5A54] dark:text-[#8E8E96] flex items-center justify-center shrink-0"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -1038,43 +1167,43 @@ export default function App() {
 
             {/* Month Selector + Theme Toggle Row */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-              <div className="flex items-center justify-between px-3 py-2 rounded-xl bg-white dark:bg-[#0D1210] border border-[#E4E7E5] dark:border-[#1B231F]">
+              <div className="flex items-center justify-between px-3 py-2 rounded-sm bg-white dark:bg-[#111113] border border-[#E2E2DC] dark:border-[#242429]">
                 <button
                   type="button"
                   aria-label="Mês anterior"
                   onClick={() => setMonthIdx((prev) => Math.max(0, prev - 1))}
-                  className="w-9 h-9 rounded-lg flex items-center justify-center text-[#0B110E] dark:text-[#F3F5F4]"
+                  className="w-9 h-9 rounded-xs flex items-center justify-center text-[#111110] dark:text-[#F5F5F2]"
                 >
                   <ChevronLeft className="w-4 h-4" />
                 </button>
-                <span className="font-editorial font-bold text-sm text-[#0B110E] dark:text-[#F3F5F4]">
+                <span className="font-editorial font-bold text-sm text-[#111110] dark:text-[#F5F5F2]">
                   {MONTHS[monthIdx]}
                 </span>
                 <button
                   type="button"
                   aria-label="Próximo mês"
                   onClick={() => setMonthIdx((prev) => Math.min(MONTHS.length - 1, prev + 1))}
-                  className="w-9 h-9 rounded-lg flex items-center justify-center text-[#0B110E] dark:text-[#F3F5F4]"
+                  className="w-9 h-9 rounded-xs flex items-center justify-center text-[#111110] dark:text-[#F5F5F2]"
                 >
                   <ChevronRight className="w-4 h-4" />
                 </button>
               </div>
 
-              <div className="flex items-center justify-between px-3 py-2 rounded-xl bg-white dark:bg-[#0D1210] border border-[#E4E7E5] dark:border-[#1B231F]">
-                <span className="text-xs font-medium text-[#5C6660] dark:text-[#8C9891] flex items-center gap-1.5">
+              <div className="flex items-center justify-between px-3 py-2 rounded-sm bg-white dark:bg-[#111113] border border-[#E2E2DC] dark:border-[#242429]">
+                <span className="text-xs font-medium text-[#5A5A54] dark:text-[#8E8E96] flex items-center gap-1.5">
                   {darkMode ? (
-                    <Moon className="w-3.5 h-3.5 text-[#8CE02C]" />
+                    <Moon className="w-3.5 h-3.5 text-[#6088FF]" />
                   ) : (
-                    <Sun className="w-3.5 h-3.5 text-[#D97706]" />
+                    <Sun className="w-3.5 h-3.5 text-[#C83E2B]" />
                   )}
                   <span>Tema</span>
                 </span>
-                <div className="flex items-center bg-[#F1F3F2] dark:bg-[#141C17] p-0.5 rounded-lg">
+                <div className="flex items-center bg-[#F3F3EF] dark:bg-[#161619] p-0.5 rounded-xs">
                   <button
                     type="button"
                     onClick={() => setDarkMode(false)}
-                    className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-colors ${
-                      !darkMode ? 'bg-white text-[#0B110E]' : 'text-[#5C6660]'
+                    className={`px-3 py-1.5 rounded-xs text-xs font-semibold transition-colors ${
+                      !darkMode ? 'bg-white text-[#111110]' : 'text-[#5A5A54]'
                     }`}
                   >
                     Claro
@@ -1082,8 +1211,8 @@ export default function App() {
                   <button
                     type="button"
                     onClick={() => setDarkMode(true)}
-                    className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-colors ${
-                      darkMode ? 'bg-[#19221D] text-[#F3F5F4]' : 'text-[#5C6660]'
+                    className={`px-3 py-1.5 rounded-xs text-xs font-semibold transition-colors ${
+                      darkMode ? 'bg-[#222228] text-[#F5F5F2]' : 'text-[#5A5A54]'
                     }`}
                   >
                     Escuro
@@ -1094,29 +1223,29 @@ export default function App() {
 
             {/* Casal & Ajustes Routes */}
             <div>
-              <div className="px-1 text-xs font-semibold text-[#5C6660] dark:text-[#8C9891] mb-2">
-                Casal &amp; Ajustes
+              <div className="px-1 text-xs font-semibold text-[#5A5A54] dark:text-[#8E8E96] mb-2">
+                Casa, Renda &amp; Integrações
               </div>
               <ul className="space-y-1.5">
-                {navSettingsItems.map((item) => {
+                {coupleSubNav.map((item) => {
                   const isActive = activeSection === item.id;
                   return (
                     <li key={item.id}>
                       <button
                         type="button"
                         onClick={() => navigateTo(item.id)}
-                        className={`w-full min-h-[48px] px-3.5 py-3 rounded-xl text-sm flex items-center justify-between transition-colors ${
+                        className={`w-full min-h-[46px] px-3.5 py-2.5 rounded-sm text-sm flex items-center justify-between transition-colors ${
                           isActive
-                            ? 'bg-[#0B130F] dark:bg-[#19221D] text-white font-semibold'
-                            : 'bg-white dark:bg-[#0D1210] border border-[#E4E7E5] dark:border-[#1B231F] text-[#0B110E] dark:text-[#F3F5F4]'
+                            ? 'bg-[#111110] dark:bg-[#F5F5F2] text-white dark:text-[#09090B] font-semibold'
+                            : 'bg-white dark:bg-[#111113] border border-[#E2E2DC] dark:border-[#242429] text-[#111110] dark:text-[#F5F5F2]'
                         }`}
                       >
                         <span className="flex items-center gap-3">
                           <span
                             className={
                               isActive
-                                ? 'text-[#8CE02C]'
-                                : 'text-[#5C6660] dark:text-[#8C9891]'
+                                ? 'text-[#6088FF] dark:text-[#1D4ED8]'
+                                : 'text-[#5A5A54] dark:text-[#8E8E96]'
                             }
                           >
                             {item.icon}
@@ -1132,16 +1261,16 @@ export default function App() {
             </div>
 
             {/* Actions: Busca + Copiloto AI + Google */}
-            <div className="space-y-2.5 pt-2 border-t border-[#E4E7E5] dark:border-[#1B231F]">
+            <div className="space-y-2.5 pt-2 border-t border-[#E2E2DC] dark:border-[#242429]">
               <button
                 type="button"
                 onClick={() => {
                   setMobileMenuOpen(false);
                   setIsCommandPaletteOpen(true);
                 }}
-                className="w-full min-h-[46px] px-4 rounded-xl bg-white dark:bg-[#0D1210] border border-[#E4E7E5] dark:border-[#1B231F] text-[#0B110E] dark:text-[#F3F5F4] text-sm font-semibold flex items-center justify-center gap-2"
+                className="w-full min-h-[44px] px-4 rounded-sm bg-white dark:bg-[#111113] border border-[#E2E2DC] dark:border-[#242429] text-[#111110] dark:text-[#F5F5F2] text-sm font-semibold flex items-center justify-center gap-2"
               >
-                <Search className="w-4 h-4 text-[#56AD17] dark:text-[#8CE02C]" />
+                <Search className="w-4 h-4 text-[#1D4ED8] dark:text-[#6088FF]" />
                 <span>Busca Rápida &amp; Atalhos</span>
               </button>
 
@@ -1151,9 +1280,9 @@ export default function App() {
                   setMobileMenuOpen(false);
                   setIsVoiceStudioOpen(true);
                 }}
-                className="w-full min-h-[48px] px-4 rounded-xl bg-[#0B130F] dark:bg-[#8CE02C] text-white dark:text-[#060807] text-sm font-semibold flex items-center justify-center gap-2"
+                className="w-full min-h-[46px] px-4 rounded-sm bg-[#1D4ED8] dark:bg-[#6088FF] text-white dark:text-[#09090B] text-sm font-semibold flex items-center justify-center gap-2"
               >
-                <Bot className="w-4 h-4 text-[#8CE02C] dark:text-[#060807]" />
+                <Bot className="w-4 h-4" />
                 <span>Copiloto Tapioca AI (Chat &amp; Voz)</span>
               </button>
 
@@ -1161,7 +1290,7 @@ export default function App() {
                 <button
                   type="button"
                   onClick={handleGoogleLogin}
-                  className="w-full min-h-[48px] px-4 rounded-xl border border-[#E4E7E5] dark:border-[#1B231F] text-sm font-medium text-[#0B110E] dark:text-[#F3F5F4]"
+                  className="w-full min-h-[44px] px-4 rounded-sm border border-[#E2E2DC] dark:border-[#242429] text-sm font-medium text-[#111110] dark:text-[#F5F5F2]"
                 >
                   Conectar Google Workspace
                 </button>
@@ -1169,25 +1298,23 @@ export default function App() {
                 <button
                   type="button"
                   onClick={logout}
-                  className="w-full min-h-[48px] px-4 rounded-xl border border-[#8CE02C]/40 text-sm font-medium text-[#0B110E] dark:text-[#8CE02C]"
+                  className="w-full min-h-[44px] px-4 rounded-sm border border-[#0F766E]/40 text-sm font-medium text-[#0F766E] dark:text-[#2DD4BF]"
                 >
                   {userEmail?.split('@')[0]} · Sair
                 </button>
               )}
             </div>
           </div>
-      </EditorialModalShell>
+        </EditorialModalShell>
 
-      {/* MAIN VIEWPORT */}
-      <div className="flex-1 min-w-0 pb-24 lg:pb-10 px-4 sm:px-6 lg:px-9 pt-3 lg:pt-5 space-y-6 max-w-[1440px] mx-auto w-full">
-        {/* COMPACT MOBILE TOP HEADER (< lg, strictly 48px height, frosted hairline) */}
-        <header className="flex lg:hidden items-center justify-between gap-2 h-12 bg-white/90 dark:bg-[#0D1210]/90 backdrop-blur-md rounded-xl border border-[#E4E7E5] dark:border-[#1B231F] px-2.5 relative">
+        {/* COMPACT MOBILE TOP HEADER (< lg, strictly 48px height, crisp hairline) */}
+        <header className="flex lg:hidden items-center justify-between gap-2 h-12 bg-[#FAFAF8]/95 dark:bg-[#09090B]/95 backdrop-blur-md border-b border-[#E2E2DC] dark:border-[#242429] px-4 relative">
           <button
             type="button"
             onClick={() => navigateTo('overview')}
             className="flex items-center gap-2 min-w-0 text-left"
           >
-            <div className="w-7 h-7 rounded-lg overflow-hidden bg-[#0B130F] shrink-0">
+            <div className="w-7 h-7 rounded-xs overflow-hidden bg-[#111110] shrink-0">
               <img
                 src="/assets/aistudio/2_326139fa.png"
                 alt="Tapioca Pay"
@@ -1195,10 +1322,10 @@ export default function App() {
               />
             </div>
             <div className="min-w-0">
-              <div className="font-editorial text-sm font-bold text-[#0B110E] dark:text-[#F3F5F4] leading-tight truncate">
-                Tapioca <span className="font-accent-serif text-[#56AD17] dark:text-[#8CE02C]">pay</span>
+              <div className="font-editorial text-sm font-extrabold text-[#111110] dark:text-[#F5F5F2] leading-tight truncate">
+                Tapioca <span className="font-accent-serif text-[#1D4ED8] dark:text-[#6088FF]">pay</span>
               </div>
-              <div className="text-[10px] text-[#5C6660] dark:text-[#8C9891] truncate leading-tight">
+              <div className="text-[10px] text-[#5A5A54] dark:text-[#8E8E96] truncate leading-tight">
                 {SECTION_TITLES[activeSection]} · {MONTHS[monthIdx].split(' ')[0]}
               </div>
             </div>
@@ -1209,7 +1336,7 @@ export default function App() {
               type="button"
               aria-label="Abrir Copiloto Tapioca AI"
               onClick={() => setIsVoiceStudioOpen(true)}
-              className="w-9 h-9 rounded-lg border border-[#E4E7E5] dark:border-[#1B231F] bg-[#F1F3F2] dark:bg-[#141C17] flex items-center justify-center text-[#0B110E] dark:text-[#8CE02C]"
+              className="w-8 h-8 rounded-xs border border-[#1D4ED8]/30 dark:border-[#6088FF]/35 bg-[#1D4ED8]/[0.06] dark:bg-[#6088FF]/10 flex items-center justify-center text-[#1D4ED8] dark:text-[#6088FF]"
             >
               <Bot className="w-4 h-4" />
             </button>
@@ -1217,11 +1344,11 @@ export default function App() {
               type="button"
               aria-label="Abrir alertas"
               onClick={() => setShowNotificationsPopover((prev) => !prev)}
-              className="w-9 h-9 rounded-lg border border-[#E4E7E5] dark:border-[#1B231F] flex items-center justify-center text-[#3D4741] dark:text-[#D5E0D9] relative"
+              className="w-8 h-8 rounded-xs border border-[#E2E2DC] dark:border-[#242429] flex items-center justify-center text-[#111110] dark:text-[#F5F5F2] relative"
             >
               <Bell className="w-4 h-4" />
               {budgetAlerts.length > 0 && (
-                <span className="absolute -top-1 -right-1 bg-[#D97706] text-white text-[9px] font-bold px-1.5 rounded-full leading-tight">
+                <span className="absolute -top-1 -right-1 bg-[#C83E2B] text-white text-[9px] font-mono-num font-bold px-1 rounded-xs leading-tight">
                   {budgetAlerts.length}
                 </span>
               )}
@@ -1232,23 +1359,23 @@ export default function App() {
                 setAddBillDefaultCat('house');
                 setIsAddBillOpen(true);
               }}
-              className="min-h-[36px] px-3 rounded-lg bg-[#0B130F] dark:bg-[#8CE02C] text-[#F3F5F4] dark:text-[#060807] text-xs font-semibold flex items-center gap-1 whitespace-nowrap"
+              className="h-8 px-2.5 rounded-xs bg-[#111110] dark:bg-[#F5F5F2] text-[#FAFAF8] dark:text-[#09090B] text-xs font-semibold flex items-center gap-1 whitespace-nowrap"
             >
-              <Plus className="w-3.5 h-3.5 text-[#8CE02C] dark:text-[#060807]" />
+              <Plus className="w-3.5 h-3.5" />
               <span>Novo</span>
             </button>
           </div>
 
           {showNotificationsPopover && (
-            <div className="absolute left-0 right-0 top-full mt-2 bg-white dark:bg-[#0D1210] rounded-2xl border border-[#E4E7E5] dark:border-[#1B231F] shadow-xl p-4 z-40 space-y-3 text-xs">
-              <div className="flex items-center justify-between">
-                <span className="font-editorial font-bold text-sm text-[#0B110E] dark:text-white">
+            <div className="absolute left-3 right-3 top-full mt-2 bg-white dark:bg-[#111113] rounded-sm border border-[#111110]/20 dark:border-[#2C2C34] shadow-xl p-4 z-40 space-y-3 text-xs">
+              <div className="flex items-center justify-between pb-2 border-b border-[#E2E2DC] dark:border-[#242429]">
+                <span className="font-editorial font-bold text-sm text-[#111110] dark:text-white">
                   Alertas Open Finance
                 </span>
                 <button
                   type="button"
                   onClick={() => setShowNotificationsPopover(false)}
-                  className="w-8 h-8 rounded-lg flex items-center justify-center text-[#5C6660] hover:text-[#0B110E]"
+                  className="w-8 h-8 flex items-center justify-center text-[#5A5A54]"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -1257,12 +1384,10 @@ export default function App() {
                 {budgetAlerts.map((al) => (
                   <div
                     key={al.id}
-                    className="p-2.5 rounded-xl bg-[#FEF7EC] dark:bg-[#1E1A11] border border-[#F3D9B1] dark:border-[#3A2F1C]"
+                    className="p-2.5 rounded-xs bg-[#FDF3F1] dark:bg-[#221514] border border-[#F3CBC4] dark:border-[#4A2520]"
                   >
-                    <div className="font-bold text-[#9A5B13] dark:text-[#F1B74A]">
-                      {al.category}
-                    </div>
-                    <div className="text-[11px] text-[#5C6660] dark:text-[#B8AE9E] mt-0.5 tabular-nums">
+                    <div className="font-bold text-[#9F2B1C] dark:text-[#F9735B]">{al.category}</div>
+                    <div className="text-[11px] font-mono-num text-[#5A5A54] dark:text-[#A4A4AE] mt-0.5">
                       Realizado R$ {formatBRL(al.currentSpent)} · Meta R$ {formatBRL(al.limitAmount)}
                     </div>
                   </div>
@@ -1274,7 +1399,7 @@ export default function App() {
                   setShowNotificationsPopover(false);
                   navigateTo('cashflow');
                 }}
-                className="w-full min-h-[40px] py-2 text-center font-semibold text-[#0B110E] dark:text-[#8CE02C] bg-[#F1F3F2] dark:bg-[#141C17] rounded-xl"
+                className="w-full min-h-[38px] py-2 text-center font-semibold text-[#1D4ED8] dark:text-[#6088FF] bg-[#F3F3EF] dark:bg-[#161619] rounded-xs"
               >
                 Ver Relatório de Custos →
               </button>
@@ -1282,457 +1407,259 @@ export default function App() {
           )}
         </header>
 
-        {/* ARCHITECTURAL DESKTOP TOP BAR (lg+) — Crisp 3-Zone Contract */}
-        <header className="hidden lg:flex items-center justify-between gap-8 h-14 pb-3 border-b border-[#E4E7E5] dark:border-[#1B231F]">
-          {/* Zone 1: Active Section + Month Switcher + Unboxed Metadata */}
-          <div className="flex items-center gap-3.5 whitespace-nowrap shrink-0">
-            <span className="font-editorial text-xl font-bold text-[#0B110E] dark:text-[#F3F5F4]">
-              {SECTION_TITLES[activeSection]}
-            </span>
-
-            <span className="text-[#D4D8D5] dark:text-[#27332D]" aria-hidden="true">
-              /
-            </span>
-
-            <div className="flex items-center gap-1">
-              <button
-                type="button"
-                aria-label="Mês anterior"
-                onClick={() => setMonthIdx((prev) => Math.max(0, prev - 1))}
-                className="p-1.5 text-[#5C6660] hover:text-[#0B110E] dark:hover:text-white hover:bg-[#ECEFEE] dark:hover:bg-[#141C17] rounded-lg transition-colors cursor-pointer"
+        {/* FULL-WIDTH BROADSHEET MAIN VIEWPORT */}
+        <div className="flex-1 min-w-0 pb-24 lg:pb-12 px-4 sm:px-6 lg:px-8 xl:px-10 pt-5 lg:pt-7 space-y-6 max-w-[1440px] mx-auto w-full">
+          {/* PUSH NOTIFICATION BANNER */}
+          <AnimatePresence>
+            {pushBanner && (
+              <motion.div
+                role="status"
+                initial={{ opacity: 0, y: -8, scale: 0.99 }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                  scale: 1,
+                  transition: { duration: 0.24, ease: EDITORIAL_EASE },
+                }}
+                exit={{
+                  opacity: 0,
+                  y: -6,
+                  scale: 0.99,
+                  transition: { duration: 0.16, ease: EDITORIAL_EXIT_EASE },
+                }}
+                className="bg-[#111110] dark:bg-[#161619] text-[#F5F5F2] rounded-sm p-4 flex items-center justify-between gap-4 border border-[#2C2C34]"
               >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-              <button
-                type="button"
-                onClick={() => setMonthIdx(1)}
-                className="flex items-baseline gap-1.5 px-1 cursor-pointer"
-              >
-                <span className="font-editorial text-[15px] font-bold text-[#0B110E] dark:text-[#F3F5F4] tracking-tight">
-                  {MONTHS[monthIdx].split(' ')[0]}
-                </span>
-                <span className="font-accent-serif text-sm text-[#56AD17] dark:text-[#8CE02C]">
-                  {MONTHS[monthIdx].split(' ')[1]}
-                </span>
-              </button>
-              <button
-                type="button"
-                aria-label="Próximo mês"
-                onClick={() => setMonthIdx((prev) => Math.min(MONTHS.length - 1, prev + 1))}
-                className="p-1.5 text-[#5C6660] hover:text-[#0B110E] dark:hover:text-white hover:bg-[#ECEFEE] dark:hover:bg-[#141C17] rounded-lg transition-colors cursor-pointer"
-              >
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
-
-            <span className="text-xs text-[#5C6660] dark:text-[#8C9891] pl-3 border-l border-[#E4E7E5] dark:border-[#1B231F] tabular-nums">
-              {connectedPluggyCount}/2 Pluggy · {transactions.length} lançamentos
-            </span>
-          </div>
-
-          {/* Zone 2 & 3: Search + Copilot + Alerts + Primary Action */}
-          <div className="flex items-center gap-2 whitespace-nowrap shrink-0">
-            <button
-              type="button"
-              onClick={() => setIsCommandPaletteOpen(true)}
-              aria-label="Abrir busca rápida e atalhos"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white dark:bg-[#0D1210] border border-[#E4E7E5] dark:border-[#1B231F] text-[#5C6660] dark:text-[#8C9891] hover:border-[#0B110E]/25 text-xs font-medium transition-colors cursor-pointer"
-            >
-              <Search className="w-3.5 h-3.5" />
-              <span>Buscar</span>
-              <kbd className="font-code text-[10px] px-1 py-0.2 rounded bg-[#F1F3F2] dark:bg-[#141C17] text-[#0B110E] dark:text-[#D5E0D9]">
-                ⌘K
-              </kbd>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setIsVoiceStudioOpen(true)}
-              aria-label="Abrir Copiloto Tapioca AI"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white dark:bg-[#0D1210] text-[#0B110E] dark:text-[#F3F5F4] hover:border-[#56AD17] border border-[#E4E7E5] dark:border-[#1B231F] text-xs font-semibold transition-colors cursor-pointer"
-            >
-              <Bot className="w-3.5 h-3.5 text-[#56AD17] dark:text-[#8CE02C]" />
-              <span>Copiloto AI</span>
-            </button>
-
-            {!isAuthenticated ? (
-              <button
-                type="button"
-                onClick={handleGoogleLogin}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#E4E7E5] dark:border-[#1B231F] bg-white dark:bg-[#0D1210] text-xs font-medium text-[#3D4741] dark:text-[#D5E0D9] hover:border-[#0B110E]/25 transition-colors cursor-pointer"
-              >
-                <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 48 48" aria-hidden="true">
-                  <path
-                    fill="#EA4335"
-                    d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"
-                  />
-                  <path
-                    fill="#4285F4"
-                    d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"
-                  />
-                  <path
-                    fill="#FBBC05"
-                    d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"
-                  />
-                  <path
-                    fill="#34A853"
-                    d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"
-                  />
-                </svg>
-                <span>Google</span>
-              </button>
-            ) : (
-              <button
-                type="button"
-                onClick={logout}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#8CE02C]/40 bg-[#8CE02C]/10 text-xs font-medium text-[#0B110E] dark:text-[#8CE02C] cursor-pointer"
-              >
-                <span>{userEmail?.split('@')[0]} · Sair</span>
-              </button>
-            )}
-
-            <div className="relative">
-              <button
-                type="button"
-                aria-label="Abrir alertas de despesas"
-                onClick={() => setShowNotificationsPopover((prev) => !prev)}
-                className="w-8 h-8 rounded-lg bg-white dark:bg-[#0D1210] border border-[#E4E7E5] dark:border-[#1B231F] flex items-center justify-center text-[#3D4741] dark:text-[#D5E0D9] hover:border-[#0B110E]/25 transition-colors relative cursor-pointer"
-              >
-                <Bell className="w-4 h-4" />
-                {budgetAlerts.length > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-[#D97706] text-white text-[9px] font-bold px-1.5 py-0.2 rounded-full leading-tight">
-                    {budgetAlerts.length}
+                <div className="flex items-center gap-3">
+                  <span className="w-8 h-8 rounded-xs bg-[#1D4ED8] dark:bg-[#6088FF] flex items-center justify-center shrink-0">
+                    <Bell className="w-4 h-4 text-white dark:text-[#09090B]" />
                   </span>
-                )}
-              </button>
-
-              <AnimatePresence>
-                {showNotificationsPopover && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -8, scale: 0.97 }}
-                    animate={{
-                      opacity: 1,
-                      y: 0,
-                      scale: 1,
-                      transition: { duration: 0.24, ease: EDITORIAL_EASE },
-                    }}
-                    exit={{
-                      opacity: 0,
-                      y: -6,
-                      scale: 0.98,
-                      transition: { duration: 0.16, ease: EDITORIAL_EXIT_EASE },
-                    }}
-                    className="absolute right-0 mt-2 w-80 bg-white dark:bg-[#0D1210] rounded-2xl border border-[#E4E7E5] dark:border-[#1B231F] shadow-xl p-4 z-40 space-y-3 text-xs whitespace-normal origin-top-right"
-                  >
-                  <div className="flex items-center justify-between">
-                    <span className="font-editorial font-bold text-sm text-[#0B110E] dark:text-white">
-                      Alertas Open Finance
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => setShowNotificationsPopover(false)}
-                      className="text-[#5C6660] hover:text-[#0B110E] dark:hover:text-white"
-                    >
-                      <X className="w-3.5 h-3.5" />
-                    </button>
+                  <div>
+                    <div className="text-xs font-bold">{pushBanner.title}</div>
+                    <div className="text-[11px] text-[#A4A4AE] mt-0.5">{pushBanner.body}</div>
                   </div>
-                  <div className="space-y-2 max-h-60 overflow-y-auto">
-                    {budgetAlerts.map((al) => (
-                      <div
-                        key={al.id}
-                        className="p-2.5 rounded-xl bg-[#FEF7EC] dark:bg-[#1E1A11] border border-[#F3D9B1] dark:border-[#3A2F1C]"
-                      >
-                        <div className="font-bold text-[#9A5B13] dark:text-[#F1B74A]">
-                          {al.category}
-                        </div>
-                        <div className="text-[11px] text-[#5C6660] dark:text-[#B8AE9E] mt-0.5 tabular-nums">
-                          Realizado R$ {formatBRL(al.currentSpent)} · Meta R${' '}
-                          {formatBRL(al.limitAmount)}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setShowNotificationsPopover(false);
-                      navigateTo('cashflow');
-                    }}
-                    className="w-full py-1.5 text-center font-semibold text-[#56AD17] dark:text-[#8CE02C] hover:underline cursor-pointer"
-                  >
-                    Ver Relatório de Custos →
-                  </button>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-
-            <ShimmerActionButton
-              type="button"
-              variant="forest"
-              onClick={() => {
-                setAddBillDefaultCat('house');
-                setIsAddBillOpen(true);
-              }}
-              className="px-3.5 py-1.5 rounded-lg text-xs font-semibold shadow-2xs"
-            >
-              <Plus className="w-3.5 h-3.5 text-[#8CE02C] dark:text-[#060807] stroke-[2.5]" />
-              <span>Novo lançamento</span>
-            </ShimmerActionButton>
-          </div>
-        </header>
-
-        {/* PUSH NOTIFICATION BANNER */}
-        <AnimatePresence>
-          {pushBanner && (
-            <motion.div
-              role="status"
-              initial={{ opacity: 0, y: -10, scale: 0.99 }}
-              animate={{
-                opacity: 1,
-                y: 0,
-                scale: 1,
-                transition: { duration: 0.28, ease: EDITORIAL_EASE },
-              }}
-              exit={{
-                opacity: 0,
-                y: -8,
-                scale: 0.99,
-                transition: { duration: 0.18, ease: EDITORIAL_EXIT_EASE },
-              }}
-              className="bg-[#0B130F] text-[#F3F5F4] rounded-xl p-4 flex items-center justify-between gap-4 shadow-md border border-[#1E2823]"
-            >
-              <div className="flex items-center gap-3">
-                <span className="w-8 h-8 rounded-lg bg-[#8CE02C] flex items-center justify-center shrink-0">
-                  <Bell className="w-4 h-4 text-[#060807]" />
-                </span>
-                <div>
-                  <div className="text-xs font-bold">{pushBanner.title}</div>
-                  <div className="text-[11px] text-[#A2B0A8] mt-0.5">{pushBanner.body}</div>
                 </div>
-              </div>
-              <button
-                type="button"
-                onClick={() => setPushBanner(null)}
-                aria-label="Dispensar notificação"
-                className="text-[#8C9891] hover:text-white p-1 cursor-pointer"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* MAIN VIEW SWITCHER */}
-        <main>
-          <SlideViewTransition viewKey={activeSection}>
-            {activeSection === 'overview' && (
-              <OverviewView
-                profile={profile}
-                pluggyConnections={pluggyConnections}
-                bills={bills}
-                creditCards={creditCards}
-                transactions={transactions}
-                savingsGoals={savingsGoals}
-                onToggleBillPaid={handleToggleBillPaid}
-                onSettlePix={handleSettlePix}
-                onEditSalaryClick={() => navigateTo('income')}
-                onOpenInvoiceModal={(card) => setSelectedCardForInvoice(card)}
-                onOpenAddBillModal={(cat) => {
-                  setAddBillDefaultCat(cat || 'house');
-                  setIsAddBillOpen(true);
-                }}
-                onNavigateToCards={() => navigateTo('cards')}
-                onNavigateSection={(sec) => navigateTo(sec)}
-                onQuickSyncPluggy={handleQuickSyncAllPluggy}
-                onOpenCopilot={() => setIsVoiceStudioOpen(true)}
-              />
+                <button
+                  type="button"
+                  onClick={() => setPushBanner(null)}
+                  aria-label="Dispensar notificação"
+                  className="text-[#8E8E96] hover:text-white p-1 cursor-pointer"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </motion.div>
             )}
+          </AnimatePresence>
 
-            {activeSection === 'cashflow' && (
-              <CashFlowReportsView
-                profile={profile}
-                bills={bills}
-                transactions={transactions}
-                budgetAlerts={budgetAlerts}
-                onApplySavingsSuggestion={handleApplySavingsSuggestion}
-                onTriggerPushNotification={triggerPushNotification}
-              />
-            )}
-
-            {activeSection === 'cards' && (
-              <CardsPluggyView
-                profile={profile}
-                pluggyConnections={pluggyConnections}
-                creditCards={creditCards}
-                transactions={transactions}
-                onSyncPluggyInstitution={handleSyncPluggyInstitution}
-                onDisconnectSlot={handleDisconnectPluggySlot}
-                onOpenInvoiceModal={(card) => setSelectedCardForInvoice(card)}
-                onRefreshWorkspace={fetchWorkspace}
-                clientUserId={userEmail || 'alanpires.contato@gmail.com'}
-              />
-            )}
-
-            {activeSection === 'house' && (
-              <IncomeAndHouseSettingsView
-                profile={profile}
-                bills={bills}
-                mode="house_bills"
-                onUpdateProfile={handleUpdateProfile}
-                onToggleBillPaid={handleToggleBillPaid}
-                onSettlePix={handleSettlePix}
-                onDeleteBill={handleDeleteBill}
-                onOpenAddBillModal={(cat) => {
-                  setAddBillDefaultCat(cat || 'house');
-                  setIsAddBillOpen(true);
-                }}
-              />
-            )}
-
-            {activeSection === 'savings' && (
-              <SavingsGoalsView
-                goals={savingsGoals}
-                onCreateGoal={handleCreateGoal}
-                onContributeGoal={handleContributeGoal}
-              />
-            )}
-
-            {activeSection === 'income' && (
-              <IncomeAndHouseSettingsView
-                profile={profile}
-                bills={bills}
-                mode="income"
-                onUpdateProfile={handleUpdateProfile}
-                onToggleBillPaid={handleToggleBillPaid}
-                onSettlePix={handleSettlePix}
-                onDeleteBill={handleDeleteBill}
-                onOpenAddBillModal={(cat) => {
-                  setAddBillDefaultCat(cat || 'house');
-                  setIsAddBillOpen(true);
-                }}
-              />
-            )}
-
-            {activeSection === 'workspace' && (
-              <WorkspaceHubView
-                profile={profile}
-                bills={bills}
-                isAuthenticated={isAuthenticated}
-                onRequestGoogleSignIn={handleGoogleLogin}
-              />
-            )}
-          </SlideViewTransition>
-        </main>
-      </div>
-
-      {/* MOBILE BOTTOM TAB BAR (< lg) — 5 ergonomic destinations with shared spring top laser */}
-      <nav
-        aria-label="Navegação rápida mobile"
-        className="lg:hidden fixed bottom-0 left-0 right-0 z-40 h-[58px] pb-safe bg-[#F7F8F7]/92 dark:bg-[#090C0B]/92 backdrop-blur-xl border-t border-[#E4E7E5] dark:border-[#1B231F] grid grid-cols-5 items-center px-1"
-      >
-        {(
-          [
-            { id: 'overview', label: 'Resumo', icon: <LayoutGrid className="w-4 h-4" /> },
-            { id: 'cards', label: 'Pluggy', icon: <CreditCard className="w-4 h-4" /> },
-            { id: 'cashflow', label: 'Fluxo', icon: <ArrowLeftRight className="w-4 h-4" /> },
-            { id: 'savings', label: 'Reserva', icon: <PiggyBank className="w-4 h-4" /> },
-          ] as const
-        ).map((tab) => {
-          const isActive = activeSection === tab.id;
-          return (
-            <button
-              key={tab.id}
-              type="button"
-              onClick={() => navigateTo(tab.id)}
-              className={`relative h-full min-h-[44px] flex flex-col items-center justify-center gap-0.5 rounded-xl text-[11px] font-medium transition-colors ${
-                isActive
-                  ? 'text-[#0B110E] dark:text-[#8CE02C] font-bold'
-                  : 'text-[#5C6660] dark:text-[#8C9891]'
-              }`}
-            >
-              {isActive && (
-                <motion.span
-                  layoutId="mobile-tab-indicator"
-                  transition={{ type: 'spring', stiffness: 440, damping: 34 }}
-                  className="absolute top-0 w-7 h-0.5 rounded-full bg-[#56AD17] dark:bg-[#8CE02C]"
+          {/* MAIN VIEW SWITCHER */}
+          <main>
+            <SlideViewTransition viewKey={activeSection}>
+              {activeSection === 'overview' && (
+                <OverviewView
+                  profile={profile}
+                  pluggyConnections={pluggyConnections}
+                  bills={bills}
+                  creditCards={creditCards}
+                  transactions={transactions}
+                  savingsGoals={savingsGoals}
+                  onToggleBillPaid={handleToggleBillPaid}
+                  onSettlePix={handleSettlePix}
+                  onEditSalaryClick={() => navigateTo('income')}
+                  onOpenInvoiceModal={(card) => setSelectedCardForInvoice(card)}
+                  onOpenAddBillModal={(cat) => {
+                    setAddBillDefaultCat(cat || 'house');
+                    setIsAddBillOpen(true);
+                  }}
+                  onNavigateToCards={() => navigateTo('cards')}
+                  onNavigateSection={(sec) => navigateTo(sec)}
+                  onQuickSyncPluggy={handleQuickSyncAllPluggy}
+                  onOpenCopilot={() => setIsVoiceStudioOpen(true)}
                 />
               )}
-              {tab.id === 'cards' ? (
-                <div className="relative">
-                  {tab.icon}
-                  <span className="absolute -top-1 -right-2.5 text-[9px] font-mono-num font-bold text-[#56AD17] dark:text-[#8CE02C]">
-                    {connectedPluggyCount}/2
-                  </span>
-                </div>
-              ) : (
-                tab.icon
+
+              {activeSection === 'cashflow' && (
+                <CashFlowReportsView
+                  profile={profile}
+                  bills={bills}
+                  transactions={transactions}
+                  budgetAlerts={budgetAlerts}
+                  onApplySavingsSuggestion={handleApplySavingsSuggestion}
+                  onTriggerPushNotification={triggerPushNotification}
+                />
               )}
-              <span>{tab.label}</span>
-            </button>
-          );
-        })}
 
-        <button
-          type="button"
-          onClick={() => setMobileMenuOpen(true)}
-          className={`relative h-full min-h-[44px] flex flex-col items-center justify-center gap-0.5 rounded-xl text-[11px] font-medium transition-colors ${
-            ['house', 'income', 'workspace'].includes(activeSection)
-              ? 'text-[#0B110E] dark:text-[#8CE02C] font-bold'
-              : 'text-[#5C6660] dark:text-[#8C9891]'
-          }`}
+              {activeSection === 'cards' && (
+                <CardsPluggyView
+                  profile={profile}
+                  pluggyConnections={pluggyConnections}
+                  creditCards={creditCards}
+                  transactions={transactions}
+                  onSyncPluggyInstitution={handleSyncPluggyInstitution}
+                  onDisconnectSlot={handleDisconnectPluggySlot}
+                  onOpenInvoiceModal={(card) => setSelectedCardForInvoice(card)}
+                  onRefreshWorkspace={fetchWorkspace}
+                  clientUserId={userEmail || 'alanpires.contato@gmail.com'}
+                />
+              )}
+
+              {activeSection === 'house' && (
+                <IncomeAndHouseSettingsView
+                  profile={profile}
+                  bills={bills}
+                  mode="house_bills"
+                  onUpdateProfile={handleUpdateProfile}
+                  onToggleBillPaid={handleToggleBillPaid}
+                  onSettlePix={handleSettlePix}
+                  onDeleteBill={handleDeleteBill}
+                  onOpenAddBillModal={(cat) => {
+                    setAddBillDefaultCat(cat || 'house');
+                    setIsAddBillOpen(true);
+                  }}
+                />
+              )}
+
+              {activeSection === 'savings' && (
+                <SavingsGoalsView
+                  goals={savingsGoals}
+                  onCreateGoal={handleCreateGoal}
+                  onContributeGoal={handleContributeGoal}
+                />
+              )}
+
+              {activeSection === 'income' && (
+                <IncomeAndHouseSettingsView
+                  profile={profile}
+                  bills={bills}
+                  mode="income"
+                  onUpdateProfile={handleUpdateProfile}
+                  onToggleBillPaid={handleToggleBillPaid}
+                  onSettlePix={handleSettlePix}
+                  onDeleteBill={handleDeleteBill}
+                  onOpenAddBillModal={(cat) => {
+                    setAddBillDefaultCat(cat || 'house');
+                    setIsAddBillOpen(true);
+                  }}
+                />
+              )}
+
+              {activeSection === 'workspace' && (
+                <WorkspaceHubView
+                  profile={profile}
+                  bills={bills}
+                  isAuthenticated={isAuthenticated}
+                  onRequestGoogleSignIn={handleGoogleLogin}
+                />
+              )}
+            </SlideViewTransition>
+          </main>
+        </div>
+
+        {/* MOBILE BOTTOM TAB BAR (< lg) — 5 destinations with Klein Cobalt indicator */}
+        <nav
+          aria-label="Navegação rápida mobile"
+          className="lg:hidden fixed bottom-0 left-0 right-0 z-40 h-[56px] pb-safe bg-[#FAFAF8]/95 dark:bg-[#09090B]/95 backdrop-blur-xl border-t border-[#E2E2DC] dark:border-[#242429] grid grid-cols-5 items-center px-1"
         >
-          {['house', 'income', 'workspace'].includes(activeSection) && (
-            <motion.span
-              layoutId="mobile-tab-indicator"
-              transition={{ type: 'spring', stiffness: 440, damping: 34 }}
-              className="absolute top-0 w-7 h-0.5 rounded-full bg-[#56AD17] dark:bg-[#8CE02C]"
-            />
-          )}
-          <SlidersHorizontal className="w-4 h-4" />
-          <span>Mais</span>
-        </button>
-      </nav>
+          {(
+            [
+              { id: 'overview', label: 'Resumo', icon: <LayoutGrid className="w-4 h-4" /> },
+              { id: 'cards', label: 'Pluggy', icon: <CreditCard className="w-4 h-4" /> },
+              { id: 'cashflow', label: 'Fluxo', icon: <ArrowLeftRight className="w-4 h-4" /> },
+              { id: 'savings', label: 'Reserva', icon: <PiggyBank className="w-4 h-4" /> },
+            ] as const
+          ).map((tab) => {
+            const isActive = activeSection === tab.id;
+            return (
+              <button
+                key={tab.id}
+                type="button"
+                onClick={() => navigateTo(tab.id)}
+                className={`relative h-full min-h-[44px] flex flex-col items-center justify-center gap-0.5 text-[11px] font-medium transition-colors ${
+                  isActive
+                    ? 'text-[#1D4ED8] dark:text-[#6088FF] font-bold'
+                    : 'text-[#5A5A54] dark:text-[#8E8E96]'
+                }`}
+              >
+                {isActive && (
+                  <motion.span
+                    layoutId="mobile-tab-indicator"
+                    transition={EDITORIAL_SPRING}
+                    className="absolute top-0 left-3 right-3 h-[2px] bg-[#1D4ED8] dark:bg-[#6088FF]"
+                  />
+                )}
+                {tab.id === 'cards' ? (
+                  <div className="relative">
+                    {tab.icon}
+                    <span className="absolute -top-1 -right-2.5 text-[9px] font-mono-num font-bold text-[#1D4ED8] dark:text-[#6088FF]">
+                      {connectedPluggyCount}/2
+                    </span>
+                  </div>
+                ) : (
+                  tab.icon
+                )}
+                <span>{tab.label}</span>
+              </button>
+            );
+          })}
 
-      {/* MODALS */}
-      <AddBillModal
-        isOpen={isAddBillOpen}
-        defaultCategory={addBillDefaultCat}
-        partnerName={profile.partnerName}
-        onClose={() => setIsAddBillOpen(false)}
-        onCreateBill={handleCreateBill}
-      />
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen(true)}
+            className={`relative h-full min-h-[44px] flex flex-col items-center justify-center gap-0.5 text-[11px] font-medium transition-colors ${
+              isInCoupleGroup
+                ? 'text-[#1D4ED8] dark:text-[#6088FF] font-bold'
+                : 'text-[#5A5A54] dark:text-[#8E8E96]'
+            }`}
+          >
+            {isInCoupleGroup && (
+              <motion.span
+                layoutId="mobile-tab-indicator"
+                transition={EDITORIAL_SPRING}
+                className="absolute top-0 left-3 right-3 h-[2px] bg-[#1D4ED8] dark:bg-[#6088FF]"
+              />
+            )}
+            <SlidersHorizontal className="w-4 h-4" />
+            <span>Mais</span>
+          </button>
+        </nav>
 
-      <InvoiceModal
-        card={selectedCardForInvoice}
-        transactions={transactions}
-        onClose={() => setSelectedCardForInvoice(null)}
-      />
+        {/* MODALS */}
+        <AddBillModal
+          isOpen={isAddBillOpen}
+          defaultCategory={addBillDefaultCat}
+          partnerName={profile.partnerName}
+          onClose={() => setIsAddBillOpen(false)}
+          onCreateBill={handleCreateBill}
+        />
 
-      <VoiceAssistantWidget
-        isOpen={isVoiceStudioOpen}
-        onClose={() => setIsVoiceStudioOpen(false)}
-        profile={profile}
-        bills={bills}
-        onWorkspaceMutated={fetchWorkspace}
-        onNavigateSection={navigateTo}
-      />
+        <InvoiceModal
+          card={selectedCardForInvoice}
+          transactions={transactions}
+          onClose={() => setSelectedCardForInvoice(null)}
+        />
 
-      <CommandPaletteModal
-        isOpen={isCommandPaletteOpen}
-        onClose={() => setIsCommandPaletteOpen(false)}
-        bills={bills}
-        transactions={transactions}
-        darkMode={darkMode}
-        onToggleTheme={() => setDarkMode((prev) => !prev)}
-        onNavigate={navigateTo}
-        onOpenNewBill={() => {
-          setAddBillDefaultCat('house');
-          setIsAddBillOpen(true);
-        }}
-        onOpenCopilot={() => setIsVoiceStudioOpen(true)}
-        onQuickSyncPluggy={handleQuickSyncAllPluggy}
-      />
+        <VoiceAssistantWidget
+          isOpen={isVoiceStudioOpen}
+          onClose={() => setIsVoiceStudioOpen(false)}
+          profile={profile}
+          bills={bills}
+          onWorkspaceMutated={fetchWorkspace}
+          onNavigateSection={navigateTo}
+        />
+
+        <CommandPaletteModal
+          isOpen={isCommandPaletteOpen}
+          onClose={() => setIsCommandPaletteOpen(false)}
+          bills={bills}
+          transactions={transactions}
+          darkMode={darkMode}
+          onToggleTheme={() => setDarkMode((prev) => !prev)}
+          onNavigate={navigateTo}
+          onOpenNewBill={() => {
+            setAddBillDefaultCat('house');
+            setIsAddBillOpen(true);
+          }}
+          onOpenCopilot={() => setIsVoiceStudioOpen(true)}
+          onQuickSyncPluggy={handleQuickSyncAllPluggy}
+        />
       </div>
     </MotionConfig>
   );

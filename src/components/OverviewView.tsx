@@ -242,19 +242,19 @@ export function OverviewView({
   const renderHousingIcon = (iconType: string) => {
     switch (iconType) {
       case 'key':
-        return <KeyRound className="w-3.5 h-3.5 text-[#0B110E] dark:text-[#8CE02C]" />;
+        return <KeyRound className="w-3.5 h-3.5 text-[#111110] dark:text-[#6088FF]" />;
       case 'crane':
-        return <Triangle className="w-3.5 h-3.5 text-[#0B110E] dark:text-[#8CE02C]" />;
+        return <Triangle className="w-3.5 h-3.5 text-[#111110] dark:text-[#6088FF]" />;
       case 'card':
-        return <CardIcon className="w-3.5 h-3.5 text-[#0B110E] dark:text-[#8CE02C]" />;
+        return <CardIcon className="w-3.5 h-3.5 text-[#111110] dark:text-[#6088FF]" />;
       case 'building':
-        return <Building2 className="w-3.5 h-3.5 text-[#0B110E] dark:text-[#8CE02C]" />;
+        return <Building2 className="w-3.5 h-3.5 text-[#111110] dark:text-[#6088FF]" />;
       case 'zap':
-        return <Zap className="w-3.5 h-3.5 text-[#0B110E] dark:text-[#8CE02C]" />;
+        return <Zap className="w-3.5 h-3.5 text-[#111110] dark:text-[#6088FF]" />;
       case 'wifi':
-        return <Wifi className="w-3.5 h-3.5 text-[#0B110E] dark:text-[#8CE02C]" />;
+        return <Wifi className="w-3.5 h-3.5 text-[#111110] dark:text-[#6088FF]" />;
       default:
-        return <Building2 className="w-3.5 h-3.5 text-[#0B110E] dark:text-[#8CE02C]" />;
+        return <Building2 className="w-3.5 h-3.5 text-[#111110] dark:text-[#6088FF]" />;
     }
   };
 
@@ -265,21 +265,21 @@ export function OverviewView({
     }
     if (desc.includes('carioca') || desc.includes('supermercado') || tx.category === 'Groceries') {
       return (
-        <span className="w-8 h-8 rounded-lg bg-[#F1F3F2] dark:bg-[#141C17] text-[#0B110E] dark:text-[#8CE02C] flex items-center justify-center shrink-0">
+        <span className="w-8 h-8 rounded-xs bg-[#F3F3EF] dark:bg-[#161619] border border-[#E2E2DC] dark:border-[#242429] text-[#111110] dark:text-[#F5F5F2] flex items-center justify-center shrink-0">
           <ShoppingCart className="w-3.5 h-3.5" />
         </span>
       );
     }
     if (tx.category === 'Investments' || desc.includes('cdb')) {
       return (
-        <span className="w-8 h-8 rounded-lg bg-[#ECF7E1] dark:bg-[#142919] text-[#458B12] dark:text-[#8CE02C] flex items-center justify-center shrink-0">
+        <span className="w-8 h-8 rounded-xs bg-[#0F766E]/10 dark:bg-[#2DD4BF]/15 text-[#0F766E] dark:text-[#2DD4BF] flex items-center justify-center shrink-0">
           <TrendingUp className="w-3.5 h-3.5" />
         </span>
       );
     }
     if (isIncomeTransaction(tx)) {
       return (
-        <span className="w-8 h-8 rounded-lg bg-[#ECF7E1] dark:bg-[#142919] text-[#458B12] dark:text-[#8CE02C] flex items-center justify-center shrink-0">
+        <span className="w-8 h-8 rounded-xs bg-[#1D4ED8]/10 dark:bg-[#6088FF]/15 text-[#1D4ED8] dark:text-[#6088FF] flex items-center justify-center shrink-0">
           <HeartHandshake className="w-3.5 h-3.5" />
         </span>
       );
@@ -303,57 +303,27 @@ export function OverviewView({
 
   return (
     <div className="grid grid-cols-1 gap-6">
-      {/* BAND 1: SCULPTURAL CARBON COMMAND HERO — ASYMMETRIC ARCHITECTURAL ANCHOR */}
+      {/* BAND 1: OPEN SWISS BROADSHEET HERO (No Dark Box Cliché — Monumental Paper & Ink Architecture) */}
       <motion.section
         aria-label="Resumo financeiro principal"
-        initial={{ opacity: 0, scale: 0.98, y: 8 }}
+        initial={{ opacity: 0, scale: 0.98, y: 6 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 0.36, ease: EDITORIAL_EASE }}
-        className="relative overflow-hidden rounded-2xl bg-[#090E0C] text-[#F3F5F4] border border-[#1E2823] p-5 sm:p-7"
+        transition={{ duration: 0.34, ease: EDITORIAL_EASE }}
+        className="border-t-2 border-[#111110] dark:border-[#F5F5F2] border-b border-b-[#E2E2DC] dark:border-b-[#242429] pt-5 pb-7"
       >
-        {/* Minimalist Architectural Mesh & Rim Line (No Generic Blobs) */}
-        <svg
-          viewBox="0 0 1200 380"
-          fill="none"
-          preserveAspectRatio="none"
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 w-full h-full opacity-50"
-        >
-          <defs>
-            <radialGradient id="carbonHeroRim" cx="12%" cy="10%" r="58%">
-              <stop offset="0%" stopColor="#8CE02C" stopOpacity="0.14" />
-              <stop offset="100%" stopColor="#090E0C" stopOpacity="0" />
-            </radialGradient>
-          </defs>
-          <rect width="1200" height="380" fill="url(#carbonHeroRim)" />
-          <path d="M0 295 H1200" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
-          <path d="M720 0 V380" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
-          <path d="M880 0 L1200 220" stroke="rgba(140,224,44,0.08)" strokeWidth="1" />
-        </svg>
-
-        {/* Top Identity & Scope Strip */}
-        <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-5 border-b border-white/10">
-          <div className="flex items-center gap-3 min-w-0">
-            <div className="flex -space-x-2 shrink-0">
-              <div className="w-9 h-9 rounded-full bg-[#8CE02C] text-[#060807] font-editorial font-extrabold text-xs flex items-center justify-center ring-2 ring-[#090E0C]">
-                AL
-              </div>
-              <div className="w-9 h-9 rounded-full bg-[#D97706] text-white font-editorial font-extrabold text-xs flex items-center justify-center ring-2 ring-[#090E0C]">
-                LF
-              </div>
+        {/* Broadsheet Masthead Strip */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 pb-6 border-b border-[#E2E2DC] dark:border-[#242429]">
+          <div className="min-w-0">
+            <div className="text-[11px] font-mono-num uppercase tracking-[0.12em] text-[#5A5A54] dark:text-[#8E8E96]">
+              Patrimônio &amp; Fluxo do Casal · {connectedCount}/2 Pluggy ativo
             </div>
-            <div className="min-w-0">
-              <h1 className="font-editorial text-lg sm:text-xl font-bold text-white truncate leading-tight">
-                {profile.displayName.split(' ')[0]} &amp;{' '}
-                <span className="font-accent-serif text-[#8CE02C] font-semibold">
-                  {profile.partnerName.split(' ')[0]}
-                </span>
-              </h1>
-              <p className="text-xs text-[#8C9891] truncate mt-0.5">
-                {profile.displayName} (Titular) &amp; {profile.partnerName} (Namorada) ·{' '}
-                {connectedCount}/2 Pluggy conectado
-              </p>
-            </div>
+            <h1 className="font-broadsheet text-3xl sm:text-4xl font-semibold text-[#111110] dark:text-[#F5F5F2] leading-[1.08] mt-1">
+              {profile.displayName.split(' ')[0]}{' '}
+              <span className="font-accent-serif text-[#1D4ED8] dark:text-[#6088FF] font-normal">
+                &amp;
+              </span>{' '}
+              {profile.partnerName.split(' ')[0]}
+            </h1>
           </div>
 
           <div className="flex flex-col sm:flex-row sm:items-center gap-2.5 w-full lg:w-auto">
@@ -378,82 +348,92 @@ export function OverviewView({
               <button
                 type="button"
                 onClick={onNavigateToCards}
-                className="min-h-[38px] px-3.5 py-1.5 rounded-lg bg-white/[0.06] hover:bg-white/[0.11] border border-white/10 text-xs font-medium text-[#D5E0D9] flex items-center justify-between sm:justify-start gap-2 transition-colors cursor-pointer whitespace-nowrap"
+                className="min-h-[36px] px-3 py-1.5 rounded-sm bg-white dark:bg-[#111113] hover:border-[#111110] dark:hover:border-[#6088FF] border border-[#D8D8D0] dark:border-[#242429] text-xs font-medium text-[#111110] dark:text-[#F5F5F2] flex items-center justify-between sm:justify-start gap-2 transition-colors cursor-pointer whitespace-nowrap"
               >
-                <span>
+                <span className="text-[#5A5A54] dark:text-[#8E8E96]">
                   Alan ({alanSlot?.status === 'pending' ? 'Pendente' : 'Ativo'})
                 </span>
-                <span className="text-white/25">/</span>
-                <span className="text-white">
+                <span className="text-[#D0D0C8] dark:text-[#2E2E36]">/</span>
+                <span className="font-semibold text-[#1D4ED8] dark:text-[#6088FF]">
                   Larissa ({larissaSlot?.status === 'connected' ? 'Ativo' : 'Conectar'})
                 </span>
-                <Link2 className="w-3.5 h-3.5 text-[#8CE02C] shrink-0" />
+                <Link2 className="w-3.5 h-3.5 text-[#1D4ED8] dark:text-[#6088FF] shrink-0" />
               </button>
             )}
           </div>
         </div>
 
-        {/* Asymmetric Split: Massive Consolidated Balance (7 cols) + Projection & Actions (5 cols) */}
-        <div className="relative z-10 mt-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-end">
-          <div className="lg:col-span-7 flex items-center justify-between sm:justify-start gap-6 min-w-0">
+        {/* Monumental Asymmetric Ledger Split: 7 Cols Giant Figure | 5 Cols Projection & Actions */}
+        <div className="mt-6 grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+          <div className="lg:col-span-7 flex items-center justify-between sm:justify-start gap-8 min-w-0">
             <div className="min-w-0">
-              <div className="flex items-center gap-2 text-xs font-medium text-[#8C9891]">
-                <span>{balanceLabel}</span>
+              <div className="flex items-center gap-2 text-xs font-medium text-[#5A5A54] dark:text-[#8E8E96]">
+                <span className="uppercase tracking-[0.08em] font-mono-num text-[11px]">
+                  {balanceLabel}
+                </span>
                 <button
                   type="button"
                   onClick={onEditSalaryClick}
                   aria-label="Editar renda e orçamento"
-                  className="p-1 rounded-md hover:bg-white/10 text-[#8CE02C] transition-colors cursor-pointer"
+                  className="p-1 rounded-xs hover:bg-[#EAEAE4] dark:hover:bg-[#1B1B20] text-[#1D4ED8] dark:text-[#6088FF] transition-colors cursor-pointer"
                 >
                   <Pencil className="w-3.5 h-3.5" />
                 </button>
               </div>
 
-              <div className="mt-2 font-display-num text-[42px] sm:text-[56px] font-extrabold tracking-tight text-white leading-none tabular-nums">
+              <div className="mt-2 font-display-num text-[44px] sm:text-[62px] font-extrabold tracking-tight text-[#111110] dark:text-[#F5F5F2] leading-[0.98] tabular-nums">
                 <NumberTicker
                   value={consolidatedBalance}
                   prefix="R$ "
-                  centsClassName="text-[0.46em] font-medium opacity-55"
+                  centsClassName="text-[0.44em] font-semibold text-[#5A5A54] dark:text-[#8E8E96]"
                 />
               </div>
 
-              <p className="text-xs text-[#98A69E] mt-3 tabular-nums">
-                Saldo livre R$ {formatBRL(predicted.predictedLeftover)} · Reservas CDB R${' '}
-                {formatBRL(totalLiquidity)} (100% CDI)
+              <p className="text-xs font-mono-num text-[#5A5A54] dark:text-[#8E8E96] mt-3.5">
+                Livre <strong className="text-[#111110] dark:text-[#F5F5F2]">R$ {formatBRL(predicted.predictedLeftover)}</strong> · Reservas CDB{' '}
+                <strong className="text-[#0F766E] dark:text-[#2DD4BF]">R$ {formatBRL(totalLiquidity)}</strong> (100% CDI)
               </p>
             </div>
 
-            <div className="shrink-0 pl-2 sm:pl-6 sm:border-l sm:border-white/10">
+            <div className="shrink-0 pl-4 sm:pl-8 border-l border-[#E2E2DC] dark:border-[#242429]">
               <CircularGaugeSvg
                 valuePct={predicted.predictedLeftoverPct}
-                size={68}
-                strokeWidth={5}
+                size={74}
+                strokeWidth={4.5}
+                trackColor="rgba(128,128,128,0.16)"
+                fillColor="#1D4ED8"
                 label={`${predicted.predictedLeftoverPct}%`}
                 sublabel="livre"
               />
             </div>
           </div>
 
-          {/* Right 5 Cols: Projection Ledger + Full-Width Mobile Quick Actions */}
-          <div className="lg:col-span-5 flex flex-col gap-4">
-            <div className="rounded-xl bg-white/[0.04] border border-white/10 grid grid-cols-3 divide-x divide-white/10">
-              <div className="p-3 min-w-0">
-                <div className="text-[10px] text-[#8C9891]">Fatura Nov</div>
-                <div className="font-display-num text-sm sm:text-base font-bold text-white tabular-nums truncate mt-0.5">
+          {/* Right 5 Cols: Engraved Invoice Projection Ledger + Razor-Edged Primary Actions */}
+          <div className="lg:col-span-5 lg:border-l lg:border-[#E2E2DC] lg:dark:border-[#242429] lg:pl-8 flex flex-col gap-4">
+            <div className="grid grid-cols-3 divide-x divide-[#E2E2DC] dark:divide-[#242429] border-y border-[#E2E2DC] dark:border-[#242429] py-3">
+              <div className="pr-3 min-w-0">
+                <div className="text-[10px] font-mono-num uppercase tracking-wider text-[#5A5A54] dark:text-[#8E8E96]">
+                  Fatura Nov
+                </div>
+                <div className="font-mono-num text-sm sm:text-base font-bold text-[#111110] dark:text-[#F5F5F2] truncate mt-1">
                   R$ {formatBRL(invoiceNov)}
                 </div>
               </div>
 
-              <div className="p-3 min-w-0">
-                <div className="text-[10px] text-[#8C9891]">Projeção Dez</div>
-                <div className="font-display-num text-sm sm:text-base font-bold text-[#D5E0D9] tabular-nums truncate mt-0.5">
+              <div className="px-3 min-w-0">
+                <div className="text-[10px] font-mono-num uppercase tracking-wider text-[#5A5A54] dark:text-[#8E8E96]">
+                  Projeção Dez
+                </div>
+                <div className="font-mono-num text-sm sm:text-base font-bold text-[#5A5A54] dark:text-[#B4B4BC] truncate mt-1">
                   R$ {formatBRL(invoiceDez)}
                 </div>
               </div>
 
-              <div className="p-3 min-w-0">
-                <div className="text-[10px] text-[#8CE02C]">Alívio Jan</div>
-                <div className="font-display-num text-sm sm:text-base font-bold text-[#8CE02C] tabular-nums truncate mt-0.5">
+              <div className="pl-3 min-w-0">
+                <div className="text-[10px] font-mono-num uppercase tracking-wider text-[#0F766E] dark:text-[#2DD4BF]">
+                  Alívio Jan
+                </div>
+                <div className="font-mono-num text-sm sm:text-base font-bold text-[#0F766E] dark:text-[#2DD4BF] truncate mt-1">
                   R$ {formatBRL(invoiceJan)}
                 </div>
               </div>
@@ -462,11 +442,11 @@ export function OverviewView({
             <div className="grid grid-cols-2 gap-3 w-full">
               <ShimmerActionButton
                 type="button"
-                variant="lime"
+                variant="cobalt"
                 onClick={() => onOpenAddBillModal('house')}
-                className="min-h-[44px] w-full px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap"
+                className="min-h-[42px] w-full px-4 py-2 rounded-sm text-xs sm:text-[13px] font-semibold whitespace-nowrap"
               >
-                <Plus className="w-4 h-4 stroke-[2.5]" />
+                <Plus className="w-4 h-4 stroke-[2.2]" />
                 <span>Nova Despesa</span>
               </ShimmerActionButton>
 
@@ -474,10 +454,10 @@ export function OverviewView({
                 type="button"
                 disabled={isQuickSyncing}
                 onClick={handleQuickSyncClick}
-                className="min-h-[44px] w-full px-4 py-2.5 rounded-xl bg-white/[0.08] hover:bg-white/[0.14] disabled:opacity-60 border border-white/12 text-white text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-colors cursor-pointer whitespace-nowrap"
+                className="min-h-[42px] w-full px-4 py-2 rounded-sm bg-white dark:bg-[#111113] hover:border-[#111110] dark:hover:border-[#6088FF] disabled:opacity-60 border border-[#D4D4CC] dark:border-[#2C2C34] text-[#111110] dark:text-[#F5F5F2] text-xs sm:text-[13px] font-semibold flex items-center justify-center gap-2 transition-colors cursor-pointer whitespace-nowrap"
               >
                 <RefreshCw
-                  className={`w-4 h-4 text-[#8CE02C] ${isQuickSyncing ? 'animate-spin' : ''}`}
+                  className={`w-3.5 h-3.5 text-[#1D4ED8] dark:text-[#6088FF] ${isQuickSyncing ? 'animate-spin' : ''}`}
                 />
                 <span>{isQuickSyncing ? 'Sincronizando...' : 'Sync Pluggy'}</span>
               </button>
@@ -486,25 +466,25 @@ export function OverviewView({
         </div>
       </motion.section>
 
-      {/* BAND 2: UNIFIED MERCURY-STYLE HAIRLINE KPI STRIP (ZERO BOX REPETITION) */}
+      {/* BAND 2: ARCHITECTURAL 3-COLUMN BROADSHEET KPI LEDGER */}
       <motion.section
         aria-label="Indicadores de saldo e equilíbrio"
         initial={{ opacity: 0, scale: 0.98, y: 6 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.34, delay: 0.04, ease: EDITORIAL_EASE }}
-        className="bento-card rounded-2xl bg-white dark:bg-[#0D1210] border border-[#E4E7E5] dark:border-[#1B231F] grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[#E4E7E5] dark:divide-[#1B231F] overflow-hidden"
+        className="bento-card rounded-sm bg-white dark:bg-[#111113] border border-[#E2E2DC] dark:border-[#242429] grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[#E2E2DC] dark:divide-[#242429] overflow-hidden"
       >
         <button
           type="button"
           onClick={onEditSalaryClick}
-          className="w-full p-5 sm:p-6 text-left flex flex-col justify-between gap-4 hover:bg-[#F7F8F7]/80 dark:hover:bg-[#111714]/70 transition-colors cursor-pointer group"
+          className="w-full p-5 sm:p-6 text-left flex flex-col justify-between gap-4 hover:bg-[#FAFAF8] dark:hover:bg-[#161619] transition-colors cursor-pointer group"
         >
           <div className="flex items-start justify-between gap-3">
             <div className="min-w-0">
-              <div className="text-xs font-medium text-[#5C6660] dark:text-[#8C9891]">
+              <div className="text-[11px] font-mono-num uppercase tracking-wider text-[#5A5A54] dark:text-[#8E8E96]">
                 Saldo livre previsto
               </div>
-              <div className="mt-1.5 font-display-num text-[30px] font-bold text-[#0B110E] dark:text-white leading-none tabular-nums">
+              <div className="mt-2 font-display-num text-[30px] font-bold text-[#111110] dark:text-white leading-none tabular-nums">
                 <NumberTicker
                   value={predicted.predictedLeftover}
                   prefix="R$ "
@@ -512,11 +492,11 @@ export function OverviewView({
                 />
               </div>
             </div>
-            <ArrowUpRight className="w-4 h-4 text-[#5C6660] group-hover:text-[#56AD17] dark:group-hover:text-[#8CE02C] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform shrink-0" />
+            <ArrowUpRight className="w-4 h-4 text-[#5A5A54] group-hover:text-[#1D4ED8] dark:group-hover:text-[#6088FF] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform shrink-0" />
           </div>
-          <div className="flex items-center justify-between text-[11px] text-[#5C6660] dark:text-[#8C9891] tabular-nums">
+          <div className="flex items-center justify-between text-[11px] font-mono-num text-[#5A5A54] dark:text-[#8E8E96]">
             <span>Entradas R$ {formatBRL(predicted.salary)}</span>
-            <span className="font-semibold text-[#56AD17] dark:text-[#8CE02C]">
+            <span className="font-sans font-semibold text-[#1D4ED8] dark:text-[#6088FF]">
               Ajustar renda
             </span>
           </div>
@@ -525,10 +505,10 @@ export function OverviewView({
         <div className="w-full p-5 sm:p-6 flex flex-col justify-between gap-4">
           <div className="flex items-start justify-between gap-3">
             <div className="min-w-0">
-              <div className="text-xs font-medium text-[#5C6660] dark:text-[#8C9891]">
+              <div className="text-[11px] font-mono-num uppercase tracking-wider text-[#5A5A54] dark:text-[#8E8E96]">
                 Acerto 50/50 · Casa
               </div>
-              <div className="mt-1.5 font-display-num text-[30px] font-bold text-[#D97706] dark:text-[#F59E0B] leading-none tabular-nums">
+              <div className="mt-2 font-display-num text-[30px] font-bold text-[#C83E2B] dark:text-[#F9735B] leading-none tabular-nums">
                 <NumberTicker
                   value={houseSplit.pixSettlementAmount}
                   prefix="R$ "
@@ -541,10 +521,10 @@ export function OverviewView({
                 type="button"
                 onClick={handleCopyPixSummary}
                 aria-label="Copiar resumo do acerto Pix 50/50"
-                className="min-h-[34px] px-2.5 py-1 rounded-lg bg-[#F1F3F2] dark:bg-[#141C17] hover:bg-[#E4E7E5] dark:hover:bg-[#1C2720] text-[11px] font-semibold text-[#0B110E] dark:text-[#F3F5F4] flex items-center gap-1 cursor-pointer transition-colors"
+                className="min-h-[32px] px-2.5 py-1 rounded-xs bg-[#F3F3EF] dark:bg-[#161619] border border-[#E2E2DC] dark:border-[#242429] hover:border-[#111110] text-[11px] font-semibold text-[#111110] dark:text-[#F5F5F2] flex items-center gap-1 cursor-pointer transition-colors"
               >
                 {pixCopied ? (
-                  <Check className="w-3 h-3 text-[#56AD17] dark:text-[#8CE02C]" />
+                  <Check className="w-3 h-3 text-[#0F766E] dark:text-[#2DD4BF]" />
                 ) : (
                   <Copy className="w-3 h-3" />
                 )}
@@ -553,10 +533,10 @@ export function OverviewView({
               <button
                 type="button"
                 onClick={() => onSettlePix(!profile.pixSettled)}
-                className={`min-h-[34px] px-3 py-1 rounded-lg text-[11px] font-bold cursor-pointer transition-colors ${
+                className={`min-h-[32px] px-3 py-1 rounded-xs text-[11px] font-bold cursor-pointer transition-colors ${
                   profile.pixSettled
-                    ? 'bg-[#ECF7E1] dark:bg-[#142919] text-[#3B7A1E] dark:text-[#8CE02C]'
-                    : 'bg-[#0B130F] dark:bg-[#8CE02C] text-[#F3F5F4] dark:text-[#060807]'
+                    ? 'bg-[#0F766E]/12 dark:bg-[#2DD4BF]/15 text-[#0F766E] dark:text-[#2DD4BF]'
+                    : 'bg-[#111110] dark:bg-[#F5F5F2] text-white dark:text-[#09090B]'
                 }`}
               >
                 {profile.pixSettled ? 'Quitado ✓' : 'Quitar'}
@@ -564,9 +544,9 @@ export function OverviewView({
             </div>
           </div>
 
-          <div className="flex items-center justify-between text-[11px] text-[#5C6660] dark:text-[#8C9891]">
+          <div className="flex items-center justify-between text-[11px] text-[#5A5A54] dark:text-[#8E8E96]">
             <span>Direção do Pix</span>
-            <span className="font-semibold text-[#0B110E] dark:text-[#F3F5F4]">
+            <span className="font-semibold text-[#111110] dark:text-[#F5F5F2]">
               {profile.pixSettled
                 ? 'Equilíbrio quitado'
                 : houseSplit.whoOwesWhom === 'partner_owes_user'
@@ -579,14 +559,14 @@ export function OverviewView({
         <button
           type="button"
           onClick={() => onNavigateSection?.('savings')}
-          className="w-full p-5 sm:p-6 text-left flex flex-col justify-between gap-4 hover:bg-[#F7F8F7]/80 dark:hover:bg-[#111714]/70 transition-colors cursor-pointer group"
+          className="w-full p-5 sm:p-6 text-left flex flex-col justify-between gap-4 hover:bg-[#FAFAF8] dark:hover:bg-[#161619] transition-colors cursor-pointer group"
         >
           <div className="flex items-start justify-between gap-3">
             <div className="min-w-0">
-              <div className="text-xs font-medium text-[#5C6660] dark:text-[#8C9891]">
+              <div className="text-[11px] font-mono-num uppercase tracking-wider text-[#5A5A54] dark:text-[#8E8E96]">
                 Liquidez CDB (100% CDI)
               </div>
-              <div className="mt-1.5 font-display-num text-[30px] font-bold text-[#0B110E] dark:text-white leading-none tabular-nums">
+              <div className="mt-2 font-display-num text-[30px] font-bold text-[#0F766E] dark:text-[#2DD4BF] leading-none tabular-nums">
                 <NumberTicker
                   value={totalLiquidity}
                   prefix="R$ "
@@ -594,25 +574,27 @@ export function OverviewView({
                 />
               </div>
             </div>
-            <ArrowUpRight className="w-4 h-4 text-[#5C6660] group-hover:text-[#D97706] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform shrink-0" />
+            <ArrowUpRight className="w-4 h-4 text-[#5A5A54] group-hover:text-[#0F766E] dark:group-hover:text-[#2DD4BF] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform shrink-0" />
           </div>
-          <div className="flex items-center justify-between text-[11px] text-[#5C6660] dark:text-[#8C9891] tabular-nums">
+          <div className="flex items-center justify-between text-[11px] font-mono-num text-[#5A5A54] dark:text-[#8E8E96]">
             <span>
               Contas {paidBillsCount}/{payableBills.length} (R$ {formatBRL(totalPayableAmount)})
             </span>
-            <span className="font-semibold text-[#D97706] dark:text-[#F59E0B]">Ver reserva</span>
+            <span className="font-sans font-semibold text-[#0F766E] dark:text-[#2DD4BF]">
+              Ver reserva
+            </span>
           </div>
         </button>
       </motion.section>
 
-      {/* BAND 3: MATTE ARCHITECTURAL FINTECH CARDS (RESPONSIVE 1 -> 2 -> 4 COLS, 24PX GAP) */}
+      {/* BAND 3: TACTILE BRUSHED-PLATE BANK CARDS (RESPONSIVE 1 -> 2 -> 4 COLS, 24PX EDITORIAL GAP) */}
       <section aria-label="Cartões e contas Pluggy" className="grid grid-cols-1 gap-4">
-        <div className="flex flex-wrap items-center justify-between gap-2 px-0.5">
+        <div className="flex flex-wrap items-end justify-between gap-2 pb-2 border-b border-[#E2E2DC] dark:border-[#242429]">
           <div>
-            <h2 className="font-editorial text-base font-bold text-[#0B110E] dark:text-[#F3F5F4]">
-              Cartões &amp; Contas Pluggy
+            <h2 className="font-broadsheet text-xl font-semibold text-[#111110] dark:text-[#F5F5F2]">
+              Cartões &amp; Contas <span className="font-accent-serif text-[#1D4ED8] dark:text-[#6088FF] font-normal">Pluggy</span>
             </h2>
-            <p className="text-xs text-[#5C6660] dark:text-[#8C9891]">
+            <p className="text-xs text-[#5A5A54] dark:text-[#8E8E96] mt-0.5">
               Entradas e faturas sincronizadas via Open Finance
             </p>
           </div>
@@ -620,16 +602,16 @@ export function OverviewView({
             <button
               type="button"
               onClick={onNavigateToCards}
-              className="min-h-[34px] px-3 py-1.5 rounded-lg bg-white dark:bg-[#0D1210] border border-[#E4E7E5] dark:border-[#1B231F] hover:border-[#0B110E]/25 text-xs font-semibold text-[#0B110E] dark:text-[#8CE02C] flex items-center gap-1.5 cursor-pointer transition-colors"
+              className="min-h-[34px] px-3 py-1 rounded-xs bg-white dark:bg-[#111113] border border-[#D4D4CC] dark:border-[#242429] hover:border-[#111110] dark:hover:border-[#6088FF] text-xs font-semibold text-[#111110] dark:text-[#F5F5F2] flex items-center gap-1.5 cursor-pointer transition-colors"
             >
-              <Plus className="w-3.5 h-3.5" />
+              <Plus className="w-3.5 h-3.5 text-[#1D4ED8] dark:text-[#6088FF]" />
               <span>Gerenciar 2 Contas</span>
             </button>
           )}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
-          {/* Chartreuse-Obsidian Signature Income Card */}
+          {/* Klein Cobalt Signature Income Plate */}
           <motion.button
             type="button"
             onClick={onEditSalaryClick}
@@ -637,22 +619,18 @@ export function OverviewView({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             whileHover={{ y: -2, transition: { duration: 0.2, ease: EDITORIAL_EASE } }}
             whileTap={{ scale: 0.985, transition: { duration: 0.1 } }}
-            transition={{ duration: 0.36, delay: 0.08, ease: EDITORIAL_EASE }}
-            className="w-full min-h-[144px] rounded-2xl p-5 text-left relative overflow-hidden bg-[#0D1A12] border border-[#8CE02C]/40 flex flex-col justify-between cursor-pointer"
+            transition={{ duration: 0.34, delay: 0.06, ease: EDITORIAL_EASE }}
+            className="w-full min-h-[146px] rounded-md p-5 text-left relative overflow-hidden bg-[#1D4ED8] dark:bg-[#1E3A8A] border border-[#1E40AF] dark:border-[#3B5FD9] text-white flex flex-col justify-between cursor-pointer"
           >
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute -right-10 -top-10 w-36 h-36 rounded-full bg-[#8CE02C]/15 blur-2xl"
-            />
             <div className="relative z-10 flex items-center justify-between w-full">
-              <span className="text-[11px] font-semibold text-[#8CE02C]">
+              <span className="text-[10px] font-mono-num uppercase tracking-[0.12em] text-white/80">
                 Entradas · PIX 50/50
               </span>
-              <Wifi className="w-4 h-4 rotate-90 text-[#8CE02C]/80" />
+              <Wifi className="w-4 h-4 rotate-90 text-white/75" />
             </div>
 
             <div className="relative z-10 my-2">
-              <div className="text-xs text-[#98A69E] font-medium">
+              <div className="text-xs text-white/75 font-medium">
                 {casalScope === 'all'
                   ? 'Renda do casal'
                   : casalScope === 'partner'
@@ -668,20 +646,20 @@ export function OverviewView({
               </div>
             </div>
 
-            <div className="relative z-10 flex items-center justify-between text-[11px] font-code text-[#8C9891] w-full">
+            <div className="relative z-10 flex items-center justify-between text-[11px] font-code text-white/80 w-full">
               <span>•• 6917</span>
-              <span className="text-[#8CE02C]">Editar renda →</span>
+              <span className="font-sans font-semibold text-white">Editar renda →</span>
             </div>
           </motion.button>
 
-          {/* Matte Metal Institution Cards */}
+          {/* Architectural Obsidian Institution Plates */}
           {cardsToUse.map((card, cardIdx) => {
-            const accentStroke =
+            const topBarColor =
               card.colorTheme === 'orange'
-                ? 'border-[#D97706]/35'
+                ? 'bg-[#EA580C]'
                 : card.colorTheme === 'purple'
-                  ? 'border-[#8B5CF6]/35'
-                  : 'border-[#334139]';
+                  ? 'bg-[#7C3AED]'
+                  : 'bg-[#C83E2B]';
 
             return (
               <motion.button
@@ -693,12 +671,14 @@ export function OverviewView({
                 whileHover={{ y: -2, transition: { duration: 0.2, ease: EDITORIAL_EASE } }}
                 whileTap={{ scale: 0.985, transition: { duration: 0.1 } }}
                 transition={{
-                  duration: 0.36,
-                  delay: Math.min(0.11 + cardIdx * 0.03, 0.22),
+                  duration: 0.34,
+                  delay: Math.min(0.09 + cardIdx * 0.03, 0.2),
                   ease: EDITORIAL_EASE,
                 }}
-                className={`w-full min-h-[144px] rounded-2xl p-5 text-left relative overflow-hidden bg-[#111714] border ${accentStroke} flex flex-col justify-between cursor-pointer`}
+                className="w-full min-h-[146px] rounded-md p-5 text-left relative overflow-hidden bg-[#141416] dark:bg-[#141418] border border-[#2A2A32] flex flex-col justify-between cursor-pointer"
               >
+                <span aria-hidden="true" className={`absolute top-0 left-0 right-0 h-[2px] ${topBarColor}`} />
+
                 <div className="relative z-10 flex items-center justify-between gap-2 w-full">
                   <div className="flex items-center gap-2 min-w-0">
                     <BankEmblem institution={card.name} size="sm" />
@@ -708,7 +688,7 @@ export function OverviewView({
                 </div>
 
                 <div className="relative z-10 my-2">
-                  <div className="text-xs text-[#8C9891] truncate">
+                  <div className="text-xs text-[#9A9AA4] truncate">
                     {card.owner === 'partner' ? 'Larissa' : 'Alan'} · {card.status}
                   </div>
                   <div className="font-display-num text-2xl font-bold text-white tabular-nums mt-1 leading-none">
@@ -720,7 +700,7 @@ export function OverviewView({
                   </div>
                 </div>
 
-                <div className="relative z-10 flex items-center justify-between text-[11px] font-mono-num text-[#8C9891] w-full">
+                <div className="relative z-10 flex items-center justify-between text-[11px] font-mono-num text-[#9A9AA4] w-full">
                   <span>Venc. {card.dueDate}</span>
                   <span>Lim. R$ {formatBRL(card.availableLimit)}</span>
                 </div>
@@ -730,7 +710,7 @@ export function OverviewView({
         </div>
       </section>
 
-      {/* BAND 4: 12-COLUMN ARCHITECTURAL BENTO WORKBENCH (24PX EDITORIAL GUTTERS) */}
+      {/* BAND 4: 12-COLUMN ARCHITECTURAL LEDGER WORKBENCH (24PX EDITORIAL GUTTERS) */}
       <div className="grid grid-cols-1 xl:grid-cols-12 gap-6 items-start">
         {/* LEFT 7 COLUMNS */}
         <div className="xl:col-span-7 grid grid-cols-1 gap-6">
@@ -741,12 +721,12 @@ export function OverviewView({
             aria-label="Últimas movimentações Pluggy"
             className="p-5 sm:p-6"
           >
-            <div className="flex items-center justify-between gap-3 mb-3">
+            <div className="flex items-center justify-between gap-3 pb-3.5 border-b border-[#E2E2DC] dark:border-[#242429]">
               <div>
-                <h2 className="font-editorial text-lg font-bold text-[#0B110E] dark:text-[#F3F5F4]">
+                <h2 className="font-broadsheet text-xl font-semibold text-[#111110] dark:text-[#F5F5F2]">
                   Últimas Movimentações
                 </h2>
-                <p className="text-xs text-[#5C6660] dark:text-[#8C9891]">
+                <p className="text-xs text-[#5A5A54] dark:text-[#8E8E96] mt-0.5">
                   {scopedTransactions.length} lançamentos reais sincronizados via Pluggy
                 </p>
               </div>
@@ -754,7 +734,7 @@ export function OverviewView({
                 <button
                   type="button"
                   onClick={onNavigateToCards}
-                  className="min-h-[34px] px-3 py-1.5 text-xs font-semibold text-[#56AD17] dark:text-[#8CE02C] hover:bg-[#F1F3F2] dark:hover:bg-[#141C17] rounded-lg transition-colors flex items-center gap-1 cursor-pointer shrink-0"
+                  className="min-h-[34px] px-3 py-1 text-xs font-semibold text-[#1D4ED8] dark:text-[#6088FF] hover:bg-[#F3F3EF] dark:hover:bg-[#161619] rounded-xs transition-colors flex items-center gap-1 cursor-pointer shrink-0"
                 >
                   <span>Extrato completo</span>
                   <ChevronRight className="w-3.5 h-3.5" />
@@ -763,8 +743,8 @@ export function OverviewView({
             </div>
 
             {scopedTransactions.length === 0 ? (
-              <div className="py-8 border-t border-dashed border-[#E4E7E5] dark:border-[#1B231F] text-center space-y-2.5">
-                <p className="text-xs font-semibold text-[#0B110E] dark:text-[#F3F5F4]">
+              <div className="py-8 text-center space-y-2.5">
+                <p className="text-xs font-semibold text-[#111110] dark:text-[#F5F5F2]">
                   {casalScope === 'partner'
                     ? `Conta Pluggy de ${profile.partnerName} ainda não conectada`
                     : 'Nenhuma movimentação neste filtro'}
@@ -773,14 +753,14 @@ export function OverviewView({
                   <button
                     type="button"
                     onClick={onNavigateToCards}
-                    className="min-h-[40px] px-4 py-2 rounded-lg bg-[#0B130F] dark:bg-[#8CE02C] text-[#F3F5F4] dark:text-[#060807] text-xs font-semibold cursor-pointer"
+                    className="min-h-[38px] px-4 py-2 rounded-xs bg-[#111110] dark:bg-[#F5F5F2] text-white dark:text-[#09090B] text-xs font-semibold cursor-pointer"
                   >
                     Conectar Conta da Larissa
                   </button>
                 )}
               </div>
             ) : (
-              <div className="divide-y divide-[#EEF0EE] dark:divide-[#18201C] text-xs">
+              <div className="divide-y divide-[#ECECE6] dark:divide-[#1D1D22] text-xs mt-1">
                 {scopedTransactions.slice(0, 7).map((tx) => {
                   const isPartnerTx = tx.owner === 'partner';
                   const positive = isIncomeTransaction(tx);
@@ -789,10 +769,10 @@ export function OverviewView({
                       <div className="flex items-center gap-3 min-w-0">
                         {renderTxIcon(tx)}
                         <div className="min-w-0">
-                          <div className="font-semibold text-[#0B110E] dark:text-[#F3F5F4] truncate">
+                          <div className="font-semibold text-[#111110] dark:text-[#F5F5F2] truncate">
                             {cleanTxDescription(tx.description)}
                           </div>
-                          <div className="text-[11px] text-[#5C6660] dark:text-[#8C9891] truncate mt-0.5">
+                          <div className="text-[11px] font-mono-num text-[#5A5A54] dark:text-[#8E8E96] truncate mt-0.5">
                             {tx.date} · {isPartnerTx ? profile.partnerName.split(' ')[0] : 'Alan'} ·{' '}
                             {tx.accountName}
                           </div>
@@ -800,10 +780,10 @@ export function OverviewView({
                       </div>
                       <div className="text-right shrink-0">
                         <div
-                          className={`font-display-num text-sm font-bold whitespace-nowrap tabular-nums ${
+                          className={`font-mono-num text-sm font-bold whitespace-nowrap tabular-nums ${
                             positive
-                              ? 'text-[#458B12] dark:text-[#8CE02C]'
-                              : 'text-[#0B110E] dark:text-[#F3F5F4]'
+                              ? 'text-[#0F766E] dark:text-[#2DD4BF]'
+                              : 'text-[#111110] dark:text-[#F5F5F2]'
                           }`}
                         >
                           <NumberTicker
@@ -812,7 +792,7 @@ export function OverviewView({
                             centsClassName="text-[0.72em] font-medium opacity-60"
                           />
                         </div>
-                        <div className="text-[10px] text-[#5C6660] dark:text-[#78847D]">
+                        <div className="text-[10px] text-[#5A5A54] dark:text-[#8E8E96]">
                           {tx.category === 'Investments'
                             ? 'investimento'
                             : positive
@@ -834,16 +814,16 @@ export function OverviewView({
             aria-label="Visão Semanal de Gastos"
             className="p-5 sm:p-6"
           >
-            <div className="flex flex-wrap items-center justify-between gap-2">
+            <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-[#E2E2DC] dark:border-[#242429]">
               <div>
-                <h2 className="font-editorial text-lg font-bold text-[#0B110E] dark:text-[#F3F5F4]">
+                <h2 className="font-broadsheet text-xl font-semibold text-[#111110] dark:text-[#F5F5F2]">
                   Ritmo Semanal de Gastos
                 </h2>
-                <p className="text-xs text-[#5C6660] dark:text-[#8C9891]">
+                <p className="text-xs text-[#5A5A54] dark:text-[#8E8E96] mt-0.5">
                   Últimos 7 dias ativos nas contas Pluggy · Toque para detalhar
                 </p>
               </div>
-              <span className="text-xs font-mono-num text-[#5C6660] dark:text-[#8C9891]">
+              <span className="text-xs font-mono-num text-[#5A5A54] dark:text-[#8E8E96]">
                 {weeklySummary.rangeLabel}
               </span>
             </div>
@@ -851,17 +831,17 @@ export function OverviewView({
             {activeWeekPoint && (
               <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
                 <div className="inline-flex items-center gap-2 text-xs">
-                  <span className="font-display-num font-bold text-[#0B110E] dark:text-white">
+                  <span className="font-mono-num font-bold text-[#1D4ED8] dark:text-[#6088FF]">
                     R$ {formatBRL(activeWeekPoint.spent)}
                   </span>
-                  <span className="text-[#5C6660] dark:text-[#8C9891]">
+                  <span className="text-[#5A5A54] dark:text-[#8E8E96]">
                     em {activeWeekPoint.dateLabel} ({activeWeekPoint.day})
                   </span>
                 </div>
 
-                <div className="text-xs font-mono-num text-[#5C6660] dark:text-[#8C9891]">
+                <div className="text-xs font-mono-num text-[#5A5A54] dark:text-[#8E8E96]">
                   Total 7d:{' '}
-                  <strong className="text-[#0B110E] dark:text-white">
+                  <strong className="text-[#111110] dark:text-white">
                     R$ {formatBRL(weeklySummary.weeklyTotal)}
                   </strong>
                 </div>
@@ -877,12 +857,12 @@ export function OverviewView({
               >
                 <defs>
                   <linearGradient id="archBarActive" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#65C91D" stopOpacity="0.34" />
-                    <stop offset="100%" stopColor="#65C91D" stopOpacity="0.06" />
+                    <stop offset="0%" stopColor="#1D4ED8" stopOpacity="0.24" />
+                    <stop offset="100%" stopColor="#1D4ED8" stopOpacity="0.03" />
                   </linearGradient>
                   <linearGradient id="archLineGlow" x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0%" stopColor="#0B130F" />
-                    <stop offset="100%" stopColor="#65C91D" />
+                    <stop offset="0%" stopColor="#111110" />
+                    <stop offset="100%" stopColor="#1D4ED8" />
                   </linearGradient>
                 </defs>
 
@@ -899,16 +879,17 @@ export function OverviewView({
                         y={8}
                         width={28}
                         height={chartH - 12}
-                        rx={8}
-                        fill={isActive ? 'url(#archBarActive)' : 'rgba(11, 17, 14, 0.035)'}
+                        rx={2}
+                        fill={isActive ? 'url(#archBarActive)' : 'rgba(17, 17, 16, 0.03)'}
                       />
                       <text
                         x={pt.x}
                         y={chartH + 14}
                         textAnchor="middle"
-                        fontSize="10.5"
+                        fontSize="10"
                         fontWeight={isActive ? '700' : '500'}
-                        fill={isActive ? '#458B12' : '#5C6660'}
+                        fill={isActive ? '#1D4ED8' : '#74746C'}
+                        className="font-mono-num"
                       >
                         {pt.day}
                       </text>
@@ -921,7 +902,7 @@ export function OverviewView({
                     d={smoothLinePath}
                     fill="none"
                     stroke="url(#archLineGlow)"
-                    strokeWidth="2.4"
+                    strokeWidth="2.2"
                     strokeLinecap="round"
                   />
                 )}
@@ -939,16 +920,16 @@ export function OverviewView({
                           cx={pt.x}
                           cy={pt.y}
                           r="8"
-                          fill="#65C91D"
-                          fillOpacity="0.22"
+                          fill="#1D4ED8"
+                          fillOpacity="0.18"
                         />
                       )}
                       <circle
                         cx={pt.x}
                         cy={pt.y}
-                        r={isActive ? 4.5 : 3.2}
-                        fill={isActive ? '#8CE02C' : '#FFFFFF'}
-                        stroke="#0B130F"
+                        r={isActive ? 4.5 : 3}
+                        fill={isActive ? '#1D4ED8' : '#FFFFFF'}
+                        stroke="#111110"
                         strokeWidth="1.8"
                       />
                     </g>
@@ -957,18 +938,18 @@ export function OverviewView({
               </svg>
             </div>
 
-            <div className="mt-3 pt-3 border-t border-[#EEF0EE] dark:border-[#1B231F] flex items-center justify-between gap-4">
+            <div className="mt-3 pt-3 border-t border-[#E2E2DC] dark:border-[#242429] flex items-center justify-between gap-4">
               <div
-                className={`font-display-num text-2xl font-extrabold shrink-0 ${
+                className={`font-mono-num text-2xl font-bold shrink-0 ${
                   weeklySummary.deltaPct <= 0
-                    ? 'text-[#458B12] dark:text-[#8CE02C]'
-                    : 'text-[#D97706] dark:text-[#F59E0B]'
+                    ? 'text-[#0F766E] dark:text-[#2DD4BF]'
+                    : 'text-[#C83E2B] dark:text-[#F9735B]'
                 }`}
               >
                 {weeklySummary.deltaPct > 0 ? '+' : ''}
                 {weeklySummary.deltaPct}%
               </div>
-              <p className="text-xs text-[#5C6660] dark:text-[#8C9891] leading-relaxed">
+              <p className="text-xs text-[#5A5A54] dark:text-[#8E8E96] leading-relaxed">
                 {weeklySummary.deltaPct <= 0
                   ? `Ritmo de gastos ${Math.abs(weeklySummary.deltaPct)}% menor que a janela anterior.`
                   : `Ritmo de gastos ${weeklySummary.deltaPct}% acima da janela anterior (inclui aportes/compras).`}
@@ -985,96 +966,96 @@ export function OverviewView({
           >
             <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
               <div>
-                <h2 className="font-editorial text-lg font-bold text-[#0B110E] dark:text-[#F3F5F4]">
+                <h2 className="font-broadsheet text-xl font-semibold text-[#111110] dark:text-[#F5F5F2]">
                   Distribuição das Entradas
                 </h2>
-                <p className="text-xs text-[#5C6660] dark:text-[#8C9891]">
+                <p className="text-xs text-[#5A5A54] dark:text-[#8E8E96] mt-0.5">
                   Alocação mensal entre casa, cartões, reservas e dia a dia
                 </p>
               </div>
               <button
                 type="button"
                 onClick={onEditSalaryClick}
-                className="min-h-[34px] px-3 py-1.5 rounded-lg bg-[#F1F3F2] dark:bg-[#141C17] border border-[#E4E7E5] dark:border-[#1B231F] text-xs font-semibold text-[#0B110E] dark:text-[#F3F5F4] hover:border-[#0B110E]/25 flex items-center gap-1.5 transition-colors cursor-pointer"
+                className="min-h-[34px] px-3 py-1 rounded-xs bg-[#F3F3EF] dark:bg-[#161619] border border-[#E2E2DC] dark:border-[#242429] text-xs font-semibold text-[#111110] dark:text-[#F5F5F2] hover:border-[#111110] flex items-center gap-1.5 transition-colors cursor-pointer"
               >
-                <Pencil className="w-3 h-3 text-[#56AD17]" />
+                <Pencil className="w-3 h-3 text-[#1D4ED8] dark:text-[#6088FF]" />
                 <span>Ajustar Renda</span>
               </button>
             </div>
 
-            <div className="flex items-center gap-1.5">
-              <div className="flex-1 h-2.5 bg-[#F1F3F2] dark:bg-[#141C17] rounded-full overflow-hidden flex">
+            <div className="flex items-center gap-1">
+              <div className="flex-1 h-2.5 bg-[#F3F3EF] dark:bg-[#161619] rounded-xs overflow-hidden flex">
                 <div
                   style={{
                     width: `${Math.min(100, Math.round((predicted.userHouseSharePct / Math.max(1, 100 - predicted.predictedLeftoverPct)) * 100))}%`,
                   }}
-                  className="bg-[#0B130F] dark:bg-[#3A4D42] h-full transition-all duration-300"
+                  className="bg-[#111110] dark:bg-[#4B4B57] h-full transition-all duration-300"
                   title={`Sua metade da casa: R$ ${formatBRL(predicted.userHouseShare)}`}
                 />
                 <div
                   style={{
                     width: `${Math.min(100, Math.round((predicted.personalBillsPct / Math.max(1, 100 - predicted.predictedLeftoverPct)) * 100))}%`,
                   }}
-                  className="bg-[#D97706] h-full transition-all duration-300"
+                  className="bg-[#C83E2B] dark:bg-[#F9735B] h-full transition-all duration-300"
                   title={`Cartões & CDB: R$ ${formatBRL(predicted.personalBillsTotal)}`}
                 />
                 <div
                   style={{
                     width: `${Math.max(5, Math.round((predicted.dayToDayPct / Math.max(1, 100 - predicted.predictedLeftoverPct)) * 100))}%`,
                   }}
-                  className="bg-[#94A39B] h-full transition-all duration-300"
+                  className="bg-[#9A9A92] h-full transition-all duration-300"
                   title={`Dia a dia: R$ ${formatBRL(predicted.dayToDayBudget)}`}
                 />
               </div>
               <div
                 style={{ width: `${Math.max(14, predicted.predictedLeftoverPct)}%` }}
-                className="h-2.5 bg-[#65C91D] dark:bg-[#8CE02C] rounded-full transition-all duration-300"
+                className="h-2.5 bg-[#1D4ED8] dark:bg-[#6088FF] rounded-xs transition-all duration-300"
                 title={`Sobra prevista: R$ ${formatBRL(predicted.predictedLeftover)}`}
               />
             </div>
 
-            <div className="mt-5 grid grid-cols-2 sm:grid-cols-5 gap-3 pt-4 border-t border-[#EEF0EE] dark:border-[#1B231F] text-xs">
+            <div className="mt-5 grid grid-cols-2 sm:grid-cols-5 gap-3 pt-4 border-t border-[#E2E2DC] dark:border-[#242429] text-xs">
               <div>
-                <div className="text-[#5C6660] dark:text-[#8C9891] text-[11px]">
+                <div className="text-[#5A5A54] dark:text-[#8E8E96] text-[11px]">
                   Entradas líquidas
                 </div>
-                <div className="font-display-num font-bold text-[#0B110E] dark:text-[#F3F5F4] mt-0.5">
+                <div className="font-mono-num font-bold text-[#111110] dark:text-[#F5F5F2] mt-0.5">
                   R$ {formatBRL(predicted.salary)}
                 </div>
               </div>
 
               <div>
-                <div className="text-[#5C6660] dark:text-[#8C9891] text-[11px]">
+                <div className="text-[#5A5A54] dark:text-[#8E8E96] text-[11px]">
                   Metade da casa
                 </div>
-                <div className="font-mono-num font-semibold text-[#0B110E] dark:text-[#E2E6E3] mt-0.5">
+                <div className="font-mono-num font-semibold text-[#111110] dark:text-[#D4D4DC] mt-0.5">
                   – R$ {formatBRL(predicted.userHouseShare)}
                 </div>
               </div>
 
               <div>
-                <div className="text-[#5C6660] dark:text-[#8C9891] text-[11px]">
+                <div className="text-[#5A5A54] dark:text-[#8E8E96] text-[11px]">
                   Cartões &amp; CDB
                 </div>
-                <div className="font-mono-num font-semibold text-[#D97706] dark:text-[#F59E0B] mt-0.5">
+                <div className="font-mono-num font-semibold text-[#C83E2B] dark:text-[#F9735B] mt-0.5">
                   – R$ {formatBRL(predicted.personalBillsTotal)}
                 </div>
               </div>
 
               <div>
-                <div className="text-[#5C6660] dark:text-[#8C9891] text-[11px]">
+                <div className="text-[#5A5A54] dark:text-[#8E8E96] text-[11px]">
                   Dia a dia
                 </div>
-                <div className="font-mono-num font-semibold text-[#5C6660] dark:text-[#A4B0A9] mt-0.5">
+                <div className="font-mono-num font-semibold text-[#5A5A54] dark:text-[#8E8E96] mt-0.5">
                   – R$ {formatBRL(predicted.dayToDayBudget)}
                 </div>
               </div>
 
-              <div className="col-span-2 sm:col-span-1 pt-2 sm:pt-0 border-t sm:border-t-0 border-[#EEF0EE] dark:border-[#1B231F] flex sm:block items-center justify-between">
-                <div className="text-[#0B110E] dark:text-[#F3F5F4] font-semibold text-[11px]">
+              <div className="col-span-2 sm:col-span-1 pt-2 sm:pt-0 border-t sm:border-t-0 border-[#E2E2DC] dark:border-[#242429] flex sm:block items-center justify-between">
+                <div className="text-[#111110] dark:text-[#F5F5F2] font-semibold text-[11px]">
                   Sobra livre
                 </div>
-                <div className="font-display-num font-bold text-[#458B12] dark:text-[#8CE02C] sm:mt-0.5">
+                <div className="font-mono-num font-bold text-[#1D4ED8] dark:text-[#6088FF] sm:mt-0.5">
                   R$ {formatBRL(predicted.predictedLeftover)}
                 </div>
               </div>
@@ -1093,20 +1074,20 @@ export function OverviewView({
             className="p-5 sm:p-6 flex flex-col justify-between"
           >
             <div>
-              <div className="flex items-start justify-between gap-2">
+              <div className="flex items-start justify-between gap-2 pb-3.5 border-b border-[#E2E2DC] dark:border-[#242429]">
                 <div>
-                  <h2 className="font-editorial text-lg font-bold text-[#0B110E] dark:text-[#F3F5F4]">
+                  <h2 className="font-broadsheet text-xl font-semibold text-[#111110] dark:text-[#F5F5F2]">
                     Divisão da Casa (50/50)
                   </h2>
-                  <p className="text-xs text-[#5C6660] dark:text-[#8C9891] mt-0.5">
+                  <p className="text-xs text-[#5A5A54] dark:text-[#8E8E96] mt-0.5">
                     Total compartilhado no mês
                   </p>
                 </div>
-                <div className="font-display-num text-xl font-bold text-[#0B110E] dark:text-[#F3F5F4]">
+                <div className="font-mono-num text-lg font-bold text-[#111110] dark:text-[#F5F5F2]">
                   <NumberTicker
                     value={houseSplit.totalHouseBills}
                     prefix="R$ "
-                    centsClassName="text-[0.65em] font-medium opacity-55"
+                    centsClassName="text-[0.68em] font-medium opacity-55"
                   />
                 </div>
               </div>
@@ -1114,36 +1095,36 @@ export function OverviewView({
               <div className="mt-4">
                 <div className="flex items-center justify-between text-xs mb-2">
                   <div>
-                    <div className="text-[11px] text-[#5C6660] dark:text-[#8C9891]">Alan paga</div>
-                    <div className="font-display-num font-bold text-[#0B110E] dark:text-[#F3F5F4]">
+                    <div className="text-[11px] text-[#5A5A54] dark:text-[#8E8E96]">Alan paga</div>
+                    <div className="font-mono-num font-bold text-[#111110] dark:text-[#F5F5F2]">
                       R$ {formatBRL(houseSplit.userPaidTotal)}
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="text-[11px] text-[#5C6660] dark:text-[#8C9891]">
+                    <div className="text-[11px] text-[#5A5A54] dark:text-[#8E8E96]">
                       {profile.partnerName.split(' ')[0]} (Namorada)
                     </div>
-                    <div className="font-display-num font-bold text-[#D97706] dark:text-[#F59E0B]">
+                    <div className="font-mono-num font-bold text-[#C83E2B] dark:text-[#F9735B]">
                       R$ {formatBRL(houseSplit.partnerPaidTotal)}
                     </div>
                   </div>
                 </div>
 
-                <div className="relative h-5 rounded-lg overflow-hidden flex text-[10px] font-bold text-white select-none">
+                <div className="relative h-5 rounded-xs overflow-hidden flex text-[10px] font-mono-num font-bold text-white select-none">
                   <div
                     style={{ width: `${userSplitDisplayPct}%` }}
-                    className="bg-[#0B130F] dark:bg-[#243B2E] flex items-center pl-2.5 transition-all duration-300"
+                    className="bg-[#111110] dark:bg-[#1D4ED8] flex items-center pl-2.5 transition-all duration-300"
                   >
                     {userSplitDisplayPct.toFixed(1).replace('.', ',')}%
                   </div>
                   <div
                     style={{ width: `${partnerSplitDisplayPct}%` }}
-                    className="bg-[#D97706] text-white flex items-center justify-end pr-2.5 transition-all duration-300"
+                    className="bg-[#C83E2B] dark:bg-[#F9735B] text-white dark:text-[#09090B] flex items-center justify-end pr-2.5 transition-all duration-300"
                   >
                     {partnerSplitDisplayPct.toFixed(1).replace('.', ',')}%
                   </div>
                   <div
-                    className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-0.5 bg-white dark:bg-[#0D1210] z-10"
+                    className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-0.5 bg-white dark:bg-[#111113] z-10"
                     title="Equilíbrio 50% / 50%"
                   />
                 </div>
@@ -1151,19 +1132,19 @@ export function OverviewView({
 
               <div className="mt-5">
                 <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-xs font-semibold text-[#5C6660] dark:text-[#8C9891]">
+                  <h3 className="text-xs font-semibold text-[#5A5A54] dark:text-[#8E8E96]">
                     Contas compartilhadas ({sharedHouseBills.length})
                   </h3>
                   <button
                     type="button"
                     onClick={() => onOpenAddBillModal('house')}
-                    className="min-h-[32px] px-2 -mr-2 text-xs font-semibold text-[#56AD17] dark:text-[#8CE02C] hover:underline flex items-center gap-0.5 cursor-pointer"
+                    className="min-h-[32px] px-2 -mr-2 text-xs font-semibold text-[#1D4ED8] dark:text-[#6088FF] hover:underline flex items-center gap-0.5 cursor-pointer"
                   >
                     <Plus className="w-3.5 h-3.5" /> Nova despesa
                   </button>
                 </div>
 
-                <ul className="divide-y divide-[#EEF0EE] dark:divide-[#18201C] text-xs">
+                <ul className="divide-y divide-[#ECECE6] dark:divide-[#1D1D22] text-xs">
                   {visibleSharedBills.map((item) => (
                     <li
                       key={item.id}
@@ -1173,17 +1154,17 @@ export function OverviewView({
                         <span
                           className={`text-[10px] font-mono-num font-bold shrink-0 ${
                             item.paidBy === 'user'
-                              ? 'text-[#0B110E] dark:text-[#8CE02C]'
-                              : 'text-[#D97706]'
+                              ? 'text-[#1D4ED8] dark:text-[#6088FF]'
+                              : 'text-[#C83E2B] dark:text-[#F9735B]'
                           }`}
                         >
                           {item.paidBy === 'user' ? 'AL' : 'LF'}
                         </span>
-                        <span className="text-[#0B110E] dark:text-[#E2E6E3] truncate">
+                        <span className="text-[#111110] dark:text-[#E4E4EA] truncate">
                           {item.title}
                         </span>
                       </div>
-                      <span className="font-mono-num font-semibold text-[#0B110E] dark:text-[#F3F5F4] whitespace-nowrap">
+                      <span className="font-mono-num font-semibold text-[#111110] dark:text-[#F5F5F2] whitespace-nowrap">
                         R$ {formatBRL(item.amount)}
                       </span>
                     </li>
@@ -1194,7 +1175,7 @@ export function OverviewView({
                   <button
                     type="button"
                     onClick={() => setShowAllSharedBills((prev) => !prev)}
-                    className="mt-1.5 text-[11px] font-semibold text-[#56AD17] dark:text-[#8CE02C] hover:underline cursor-pointer"
+                    className="mt-1.5 text-[11px] font-semibold text-[#1D4ED8] dark:text-[#6088FF] hover:underline cursor-pointer"
                   >
                     {showAllSharedBills
                       ? 'Mostrar resumo'
@@ -1204,8 +1185,8 @@ export function OverviewView({
               </div>
             </div>
 
-            <div className="mt-4 pt-3.5 border-t border-[#EEF0EE] dark:border-[#1B231F] flex items-center justify-between gap-2">
-              <p className="text-xs text-[#5C6660] dark:text-[#A4B0A9] truncate">
+            <div className="mt-4 pt-3.5 border-t border-[#E2E2DC] dark:border-[#242429] flex items-center justify-between gap-2">
+              <p className="text-xs text-[#5A5A54] dark:text-[#8E8E96] truncate">
                 {profile.pixSettled
                   ? `Pix de R$ ${formatBRL(houseSplit.pixSettlementAmount)} acertado`
                   : houseSplit.whoOwesWhom === 'partner_owes_user'
@@ -1217,10 +1198,10 @@ export function OverviewView({
               <button
                 type="button"
                 onClick={() => onSettlePix(!profile.pixSettled)}
-                className={`min-h-[36px] px-3.5 py-1.5 text-xs font-semibold rounded-lg border transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
+                className={`min-h-[34px] px-3.5 py-1 text-xs font-semibold rounded-xs border transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
                   profile.pixSettled
-                    ? 'bg-[#ECF7E1] dark:bg-[#142919] border-[#8CE02C]/45 text-[#3B7A1E] dark:text-[#8CE02C]'
-                    : 'bg-[#F1F3F2] dark:bg-[#141C17] border-[#E4E7E5] dark:border-[#1B231F] text-[#0B110E] dark:text-[#F3F5F4]'
+                    ? 'bg-[#0F766E]/10 dark:bg-[#2DD4BF]/15 border-[#0F766E]/35 text-[#0F766E] dark:text-[#2DD4BF]'
+                    : 'bg-[#F3F3EF] dark:bg-[#161619] border-[#D8D8D0] dark:border-[#28282E] text-[#111110] dark:text-[#F5F5F2]'
                 }`}
               >
                 {profile.pixSettled ? 'Feito ✓' : 'Marcar feito'}
@@ -1236,22 +1217,22 @@ export function OverviewView({
             aria-label="Contas e compromissos"
             className="p-5 sm:p-6"
           >
-            <div className="flex items-start justify-between gap-2">
+            <div className="flex items-start justify-between gap-2 pb-3.5 border-b border-[#E2E2DC] dark:border-[#242429]">
               <div>
-                <h2 className="font-editorial text-lg font-bold text-[#0B110E] dark:text-[#F3F5F4]">
+                <h2 className="font-broadsheet text-xl font-semibold text-[#111110] dark:text-[#F5F5F2]">
                   Contas &amp; Agenda
                 </h2>
-                <p className="text-xs text-[#5C6660] dark:text-[#8C9891] mt-0.5">
+                <p className="text-xs text-[#5A5A54] dark:text-[#8E8E96] mt-0.5">
                   {selectedDayTab === 'all'
                     ? 'Todos os vencimentos do mês'
                     : `Vencimento dia ${selectedDayTab < 10 ? `0${selectedDayTab}` : selectedDayTab}`}
                 </p>
               </div>
               <div className="text-right">
-                <div className="font-display-num text-lg font-bold text-[#0B110E] dark:text-[#F3F5F4]">
+                <div className="font-mono-num text-base font-bold text-[#111110] dark:text-[#F5F5F2]">
                   R$ {formatBRL(totalPayableAmount)}
                 </div>
-                <div className="text-[11px] font-semibold text-[#56AD17] dark:text-[#8CE02C]">
+                <div className="text-[11px] font-semibold text-[#0F766E] dark:text-[#2DD4BF]">
                   {paidBillsCount}/{payableBills.length} quitadas
                 </div>
               </div>
@@ -1261,14 +1242,16 @@ export function OverviewView({
               <button
                 type="button"
                 onClick={() => setSelectedDayTab('all')}
-                className={`min-w-[60px] min-h-[44px] px-2.5 py-1.5 rounded-lg flex flex-col items-center justify-center transition-all text-[11px] font-bold cursor-pointer shrink-0 ${
+                className={`min-w-[60px] min-h-[42px] px-2.5 py-1.5 rounded-xs flex flex-col items-center justify-center transition-all text-[11px] font-bold cursor-pointer shrink-0 border ${
                   selectedDayTab === 'all'
-                    ? 'bg-[#0B130F] dark:bg-[#8CE02C] text-[#F3F5F4] dark:text-[#060807]'
-                    : 'bg-[#F1F3F2] dark:bg-[#141C17] text-[#5C6660] dark:text-[#A4B0A9]'
+                    ? 'bg-[#111110] dark:bg-[#F5F5F2] text-white dark:text-[#09090B] border-[#111110] dark:border-[#F5F5F2]'
+                    : 'bg-[#F3F3EF] dark:bg-[#161619] text-[#5A5A54] dark:text-[#8E8E96] border-[#E2E2DC] dark:border-[#242429]'
                 }`}
               >
                 <span>Todas</span>
-                <span className="text-[10px] font-normal opacity-80">{payableBills.length}</span>
+                <span className="text-[10px] font-mono-num font-normal opacity-80">
+                  {payableBills.length}
+                </span>
               </button>
               {dayTabs.map(({ day, count }) => {
                 const isSelected = selectedDayTab === day;
@@ -1278,22 +1261,22 @@ export function OverviewView({
                     type="button"
                     onClick={() => setSelectedDayTab(isSelected ? 'all' : day)}
                     aria-label={`Filtrar contas do dia ${day}`}
-                    className={`min-w-[50px] min-h-[44px] px-2.5 py-1.5 rounded-lg flex flex-col items-center justify-center transition-all cursor-pointer shrink-0 ${
+                    className={`min-w-[50px] min-h-[42px] px-2.5 py-1.5 rounded-xs flex flex-col items-center justify-center transition-all cursor-pointer shrink-0 border ${
                       isSelected
-                        ? 'bg-[#0B130F] dark:bg-[#8CE02C] text-[#F3F5F4] dark:text-[#060807]'
-                        : 'bg-[#F1F3F2] dark:bg-[#141C17] text-[#5C6660] dark:text-[#A4B0A9]'
+                        ? 'bg-[#111110] dark:bg-[#F5F5F2] text-white dark:text-[#09090B] border-[#111110] dark:border-[#F5F5F2]'
+                        : 'bg-[#F3F3EF] dark:bg-[#161619] text-[#5A5A54] dark:text-[#8E8E96] border-[#E2E2DC] dark:border-[#242429]'
                     }`}
                   >
                     <span className="font-mono-num text-xs font-bold">
                       {day < 10 ? `0${day}` : day}
                     </span>
-                    <span className="text-[9px] opacity-75">{count}x</span>
+                    <span className="text-[9px] font-mono-num opacity-75">{count}x</span>
                   </button>
                 );
               })}
             </div>
 
-            <ul className="mt-3 divide-y divide-[#EEF0EE] dark:divide-[#18201C] text-xs">
+            <ul className="mt-3 divide-y divide-[#ECECE6] dark:divide-[#1D1D22] text-xs">
               {displayedPayableBills.map((bill) => (
                 <li key={bill.id} className="group">
                   <button
@@ -1303,10 +1286,10 @@ export function OverviewView({
                   >
                     <div className="flex items-center gap-2.5 min-w-0 flex-1">
                       <span
-                        className={`w-5 h-5 rounded-md border flex items-center justify-center transition-colors shrink-0 ${
+                        className={`w-4 h-4 rounded-xs border flex items-center justify-center transition-colors shrink-0 ${
                           bill.isPaid
-                            ? 'bg-[#8CE02C] border-[#8CE02C] text-[#060807]'
-                            : 'border-[#CFD5D1] dark:border-[#2E3D35] group-hover:border-[#0B110E]'
+                            ? 'bg-[#0F766E] dark:bg-[#2DD4BF] border-[#0F766E] dark:border-[#2DD4BF] text-white dark:text-[#09090B]'
+                            : 'border-[#C4C4BC] dark:border-[#34343E] group-hover:border-[#111110] dark:group-hover:border-[#6088FF]'
                         }`}
                       >
                         {bill.isPaid && <Check className="w-3 h-3 stroke-[3]" />}
@@ -1315,13 +1298,13 @@ export function OverviewView({
                         <span
                           className={`block truncate transition-colors ${
                             bill.isPaid
-                              ? 'text-[#5C6660] dark:text-[#78847D] font-normal'
-                              : 'text-[#0B110E] dark:text-[#F3F5F4] font-semibold'
+                              ? 'text-[#5A5A54] dark:text-[#8E8E96] font-normal'
+                              : 'text-[#111110] dark:text-[#F5F5F2] font-semibold'
                           }`}
                         >
                           {bill.title}
                         </span>
-                        <span className="text-[11px] text-[#5C6660] dark:text-[#78847D]">
+                        <span className="text-[11px] font-mono-num text-[#5A5A54] dark:text-[#8E8E96]">
                           Dia {bill.dueDay < 10 ? `0${bill.dueDay}` : bill.dueDay} ·{' '}
                           {bill.isPaid ? 'Quitada' : 'Em aberto'}
                         </span>
@@ -1331,8 +1314,8 @@ export function OverviewView({
                     <span
                       className={`font-mono-num font-semibold whitespace-nowrap shrink-0 ${
                         bill.isPaid
-                          ? 'text-[#458B12] dark:text-[#8CE02C]'
-                          : 'text-[#0B110E] dark:text-[#F3F5F4]'
+                          ? 'text-[#0F766E] dark:text-[#2DD4BF]'
+                          : 'text-[#111110] dark:text-[#F5F5F2]'
                       }`}
                     >
                       R$ {formatBRL(bill.amount)}
@@ -1345,7 +1328,7 @@ export function OverviewView({
               <button
                 type="button"
                 onClick={() => setShowAllPayableBills((prev) => !prev)}
-                className="mt-2 text-[11px] font-semibold text-[#56AD17] dark:text-[#8CE02C] hover:underline cursor-pointer"
+                className="mt-2 text-[11px] font-semibold text-[#1D4ED8] dark:text-[#6088FF] hover:underline cursor-pointer"
               >
                 {showAllPayableBills
                   ? 'Mostrar resumo'
@@ -1363,21 +1346,21 @@ export function OverviewView({
           >
             <div className="flex items-center justify-between gap-3">
               <div>
-                <h2 className="font-editorial text-lg font-bold text-[#0B110E] dark:text-[#F3F5F4]">
+                <h2 className="font-broadsheet text-xl font-semibold text-[#111110] dark:text-[#F5F5F2]">
                   Comprometimento Fixo
                 </h2>
-                <p className="text-xs text-[#5C6660] dark:text-[#8C9891] mt-0.5">
+                <p className="text-xs text-[#5A5A54] dark:text-[#8E8E96] mt-0.5">
                   R$ {formatBRL(housingBenchmark.activeHousingCost)} · Meta saudável até 30%
                 </p>
               </div>
               <CircularGaugeSvg
                 valuePct={Math.min(100, Math.round((housingBenchmark.housingPctOfSalary / 30) * 100))}
                 size={52}
-                strokeWidth={4.5}
-                trackColor="rgba(101,201,29,0.16)"
-                fillColor={housingBenchmark.isWithinRecommended30Pct ? '#65C91D' : '#D97706'}
+                strokeWidth={4}
+                trackColor="rgba(128,128,128,0.16)"
+                fillColor={housingBenchmark.isWithinRecommended30Pct ? '#0F766E' : '#C83E2B'}
                 label={`${housingBenchmark.housingPctOfSalary}%`}
-                labelClassName="text-[#0B110E] dark:text-[#F3F5F4]"
+                labelClassName="text-[#111110] dark:text-[#F5F5F2]"
               />
             </div>
 
@@ -1396,36 +1379,38 @@ export function OverviewView({
             </div>
 
             <div className="mt-4">
-              <div className="relative h-2 bg-[#F1F3F2] dark:bg-[#141C17] rounded-full overflow-visible flex items-center">
+              <div className="relative h-2 bg-[#F3F3EF] dark:bg-[#161619] rounded-xs overflow-visible flex items-center">
                 <div
                   style={{
                     width: `${Math.min(100, Math.round((housingBenchmark.housingPctOfSalary / 60) * 100))}%`,
                   }}
-                  className={`h-full rounded-l-full transition-all duration-300 ${
-                    housingBenchmark.isWithinRecommended30Pct ? 'bg-[#65C91D]' : 'bg-[#D97706]'
+                  className={`h-full transition-all duration-300 ${
+                    housingBenchmark.isWithinRecommended30Pct
+                      ? 'bg-[#0F766E] dark:bg-[#2DD4BF]'
+                      : 'bg-[#C83E2B] dark:bg-[#F9735B]'
                   }`}
                 />
-                <div className="absolute left-1/2 -top-1 -bottom-1 w-0.5 bg-[#0B110E] dark:bg-white" />
+                <div className="absolute left-1/2 -top-1 -bottom-1 w-0.5 bg-[#111110] dark:bg-white" />
               </div>
-              <div className="flex items-center justify-between text-[10px] text-[#5C6660] dark:text-[#78847D] mt-1.5">
+              <div className="flex items-center justify-between text-[10px] font-mono-num text-[#5A5A54] dark:text-[#8E8E96] mt-1.5">
                 <span>0%</span>
                 <span>30% ideal</span>
                 <span>60%</span>
               </div>
             </div>
 
-            <ul className="mt-4 pt-2 border-t border-[#EEF0EE] dark:border-[#1B231F] divide-y divide-[#EEF0EE] dark:divide-[#18201C]">
+            <ul className="mt-4 pt-2 border-t border-[#E2E2DC] dark:border-[#242429] divide-y divide-[#ECECE6] dark:divide-[#1D1D22]">
               {housingBenchmark.items.map((item) => (
                 <li key={item.id} className="flex items-center justify-between gap-3 py-2.5">
                   <div className="flex items-center gap-2.5 min-w-0">
-                    <span className="w-7 h-7 rounded-lg bg-[#F1F3F2] dark:bg-[#141C17] flex items-center justify-center shrink-0">
+                    <span className="w-7 h-7 rounded-xs bg-[#F3F3EF] dark:bg-[#161619] flex items-center justify-center shrink-0">
                       {renderHousingIcon(item.iconType)}
                     </span>
-                    <span className="text-xs font-medium text-[#0B110E] dark:text-[#E2E6E3] truncate">
+                    <span className="text-xs font-medium text-[#111110] dark:text-[#E4E4EA] truncate">
                       {item.title}
                     </span>
                   </div>
-                  <span className="font-mono-num text-xs font-bold text-[#0B110E] dark:text-[#F3F5F4] whitespace-nowrap shrink-0">
+                  <span className="font-mono-num text-xs font-bold text-[#111110] dark:text-[#F5F5F2] whitespace-nowrap shrink-0">
                     R$ {formatBRL(item.displayAmount)}
                   </span>
                 </li>
@@ -1452,14 +1437,14 @@ export function OverviewView({
       >
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
           <div className="flex items-start sm:items-center gap-3.5 min-w-0">
-            <span className="w-10 h-10 rounded-xl bg-[#F1F3F2] dark:bg-[#141C17] text-[#458B12] dark:text-[#8CE02C] flex items-center justify-center shrink-0">
+            <span className="w-10 h-10 rounded-xs bg-[#1D4ED8]/10 dark:bg-[#6088FF]/15 text-[#1D4ED8] dark:text-[#6088FF] flex items-center justify-center shrink-0">
               <BarChart3 className="w-5 h-5" />
             </span>
             <div className="min-w-0">
-              <h2 className="font-editorial text-base sm:text-lg font-bold text-[#0B110E] dark:text-[#F3F5F4]">
+              <h2 className="font-broadsheet text-lg sm:text-xl font-semibold text-[#111110] dark:text-[#F5F5F2]">
                 Estúdio de Gráficos, Planilha Viva &amp; Simulador CDI
               </h2>
-              <p className="text-xs text-[#5C6660] dark:text-[#8C9891] mt-0.5">
+              <p className="text-xs text-[#5A5A54] dark:text-[#8E8E96] mt-0.5">
                 Explore os 5 motores de gráficos anuais, edite a matriz orçamentária para Excel e
                 simule projeções em 100% CDI com seus {scopedTransactions.length} lançamentos reais.
               </p>
@@ -1471,9 +1456,9 @@ export function OverviewView({
               <button
                 type="button"
                 onClick={onOpenCopilot}
-                className="min-h-[38px] px-4 py-2 rounded-lg bg-[#F1F3F2] dark:bg-[#141C17] border border-[#E4E7E5] dark:border-[#1B231F] hover:border-[#0B110E]/25 text-xs font-semibold text-[#0B110E] dark:text-[#F3F5F4] flex items-center gap-1.5 cursor-pointer transition-colors"
+                className="min-h-[38px] px-4 py-2 rounded-sm bg-white dark:bg-[#161619] border border-[#D4D4CC] dark:border-[#2C2C34] hover:border-[#1D4ED8] dark:hover:border-[#6088FF] text-xs font-semibold text-[#111110] dark:text-[#F5F5F2] flex items-center gap-1.5 cursor-pointer transition-colors"
               >
-                <Bot className="w-3.5 h-3.5 text-[#56AD17] dark:text-[#8CE02C]" />
+                <Bot className="w-3.5 h-3.5 text-[#1D4ED8] dark:text-[#6088FF]" />
                 <span>Resumir com Copiloto AI</span>
               </button>
             )}
@@ -1482,9 +1467,9 @@ export function OverviewView({
               <button
                 type="button"
                 onClick={() => onNavigateSection('cashflow')}
-                className="min-h-[38px] px-4 py-2 rounded-lg bg-[#0B130F] dark:bg-[#8CE02C] hover:opacity-90 text-[#F3F5F4] dark:text-[#060807] text-xs font-semibold flex items-center gap-1.5 cursor-pointer transition-opacity"
+                className="min-h-[38px] px-4 py-2 rounded-sm bg-[#111110] dark:bg-[#F5F5F2] hover:opacity-90 text-white dark:text-[#09090B] text-xs font-semibold flex items-center gap-1.5 cursor-pointer transition-opacity"
               >
-                <Table2 className="w-3.5 h-3.5 text-[#8CE02C] dark:text-[#060807]" />
+                <Table2 className="w-3.5 h-3.5" />
                 <span>Abrir Fluxo &amp; Planilha</span>
                 <ChevronRight className="w-3.5 h-3.5" />
               </button>

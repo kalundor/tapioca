@@ -99,7 +99,7 @@ export function AddBillModal({
       variant="dialog"
       containerClassName="flex items-end sm:items-center justify-center p-0 sm:p-4"
     >
-      <div className="bg-[#FFFFFF] dark:bg-[#0D1210] rounded-t-3xl sm:rounded-3xl border border-[#E4E7E5] dark:border-[#1B231F] max-w-md w-full p-5 sm:p-6 shadow-2xl">
+      <div className="bento-card bg-[#FFFFFF] dark:bg-[#0D1210] rounded-t-3xl sm:rounded-3xl border border-[#E4E7E5] dark:border-[#1B231F] max-w-md w-full p-5 sm:p-6 shadow-2xl">
         <div className="w-10 h-1 bg-[#D3D8D5] dark:bg-[#27322C] rounded-full mx-auto mb-3 sm:hidden" />
         <div className="flex items-center justify-between mb-4">
           <h2
@@ -978,7 +978,7 @@ export function InvoiceModal({ card, transactions = [], onClose }: InvoiceModalP
       containerClassName="flex items-end sm:items-center justify-center p-0 sm:p-4"
     >
       {card && (
-        <div className="bg-[#FFFFFF] dark:bg-[#0D1210] rounded-t-3xl sm:rounded-3xl border border-[#E4E7E5] dark:border-[#1B231F] max-w-lg w-full p-5 sm:p-6 shadow-2xl space-y-4">
+        <div className="bento-card bg-[#FFFFFF] dark:bg-[#0D1210] rounded-t-3xl sm:rounded-3xl border border-[#E4E7E5] dark:border-[#1B231F] max-w-lg w-full p-5 sm:p-6 shadow-2xl space-y-4">
           <div className="w-10 h-1 bg-[#D3D8D5] dark:bg-[#27322C] rounded-full mx-auto mb-1 sm:hidden" />
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2.5">

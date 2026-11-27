@@ -3,16 +3,16 @@ import { motion, AnimatePresence } from 'motion/react';
 import { formatBRL } from '../utils/financeMath';
 
 /**
- * Curvas de easing personalizadas em harmonia com a tipografia Bricolage Grotesque & Fraunces:
- * Abertura decisiva seguida de desaceleração editorial sedosa ("folha arquitectônica assentando").
+ * Curvas de easing personalizadas em harmonia com a tipografia editorial Swiss Broadsheet:
+ * Abertura decisiva seguida de desaceleração arquitetônica precisa.
  */
 export const EDITORIAL_EASE = [0.22, 1, 0.36, 1] as const;
 export const EDITORIAL_EXIT_EASE = [0.4, 0, 1, 1] as const;
 export const EDITORIAL_SPRING = {
   type: 'spring' as const,
-  stiffness: 360,
-  damping: 32,
-  mass: 0.85,
+  stiffness: 400,
+  damping: 34,
+  mass: 0.8,
 };
 
 interface NumberTickerProps {
@@ -26,16 +26,14 @@ interface NumberTickerProps {
 }
 
 /**
- * MagicUI / Onyx smooth tabular number ticker.
- * Renders crisp split-cents typography by default (bold integer + muted decimal ",85")
- * while respecting prefers-reduced-motion with zero layout shift.
+ * Smooth tabular number ticker with split-cents editorial typography.
  */
 export function NumberTicker({
   value,
   prefix = '',
   suffix = '',
   className = '',
-  centsClassName = 'text-[0.58em] font-medium opacity-60',
+  centsClassName = 'text-[0.58em] font-medium opacity-55',
   splitCents = true,
   durationMs = 360,
 }: NumberTickerProps) {
@@ -113,15 +111,15 @@ interface SpotlightBentoProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 /**
- * 21st.dev / MagicUI spotlight bento surface with Framer Motion editorial transition
- * using Papel Atelier & Obsidian Floresta styling and custom EDITORIAL_EASE curve.
+ * Swiss Architectural Hairline Bento Surface with smooth Framer Motion scale (0.98 -> 1)
+ * and restrained Klein Cobalt spotlight sweep.
  */
 export function SpotlightBento({
   children,
   className = '',
   as = 'section',
   delay = 0,
-  hoverLift = true,
+  hoverLift = false,
   ...rest
 }: SpotlightBentoProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -150,22 +148,22 @@ export function SpotlightBento({
       ref={containerRef as any}
       onMouseMove={handleMouseMove}
       onMouseLeave={() => setCoords((prev) => ({ ...prev, visible: false }))}
-      initial={{ opacity: 0, scale: 0.98, y: 8 }}
+      initial={{ opacity: 0, scale: 0.98, y: 6 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       whileHover={
         hoverLift
           ? {
-              y: -2,
-              transition: { duration: 0.22, ease: EDITORIAL_EASE },
+              y: -1,
+              transition: { duration: 0.2, ease: EDITORIAL_EASE },
             }
           : undefined
       }
       transition={{
-        duration: 0.38,
+        duration: 0.34,
         delay: cappedDelay,
         ease: EDITORIAL_EASE,
       }}
-      className={`bento-card bg-white dark:bg-[#0D1210] rounded-2xl border border-[#E4E7E5] dark:border-[#1B231F] overflow-hidden ${className}`}
+      className={`bento-card bg-white dark:bg-[#111113] rounded-sm border border-[#E2E2DC] dark:border-[#242429] overflow-hidden ${className}`}
       {...(rest as any)}
     >
       <div
@@ -173,7 +171,7 @@ export function SpotlightBento({
         className="pointer-events-none absolute inset-0 transition-opacity duration-200"
         style={{
           opacity: coords.visible ? 1 : 0,
-          background: `radial-gradient(380px circle at ${coords.x}px ${coords.y}px, rgba(101, 201, 29, 0.065), transparent 65%)`,
+          background: `radial-gradient(360px circle at ${coords.x}px ${coords.y}px, rgba(140, 224, 44, 0.12), transparent 65%)`,
         }}
       />
       <div className="relative z-10 h-full">{children}</div>
@@ -187,9 +185,6 @@ interface BentoMotionTileProps extends React.ButtonHTMLAttributes<HTMLButtonElem
   className?: string;
 }
 
-/**
- * Tactile Framer Motion tile for compact bento action cards using EDITORIAL_EASE.
- */
 export function BentoMotionTile({
   children,
   delay = 0,
@@ -200,9 +195,9 @@ export function BentoMotionTile({
     <motion.button
       initial={{ opacity: 0, scale: 0.98, y: 6 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
-      whileHover={{ y: -2, transition: { duration: 0.2, ease: EDITORIAL_EASE } }}
-      whileTap={{ scale: 0.982, transition: { duration: 0.1 } }}
-      transition={{ duration: 0.34, delay: Math.min(delay, 0.24), ease: EDITORIAL_EASE }}
+      whileHover={{ y: -1, transition: { duration: 0.18, ease: EDITORIAL_EASE } }}
+      whileTap={{ scale: 0.985, transition: { duration: 0.1 } }}
+      transition={{ duration: 0.32, delay: Math.min(delay, 0.24), ease: EDITORIAL_EASE }}
       className={`bento-card ${className}`}
       {...(props as any)}
     >
@@ -222,10 +217,6 @@ interface EditorialModalShellProps {
   zIndexClass?: string;
 }
 
-/**
- * Editorial Framer Motion dialog / bottom-sheet / command-palette backdrop & container.
- * Handles Escape key, backdrop dismiss, smooth enter/exit under AnimatePresence.
- */
 export function EditorialModalShell({
   isOpen,
   onClose,
@@ -255,17 +246,32 @@ export function EditorialModalShell({
           animate: {
             opacity: 1,
             y: 0,
-            transition: { duration: 0.38, ease: EDITORIAL_EASE },
+            transition: { duration: 0.34, ease: EDITORIAL_EASE },
           },
           exit: {
             opacity: 0,
             y: '100%',
-            transition: { duration: 0.24, ease: EDITORIAL_EXIT_EASE },
+            transition: { duration: 0.22, ease: EDITORIAL_EXIT_EASE },
           },
         }
       : variant === 'palette'
         ? {
-            initial: { opacity: 0, y: -14, scale: 0.975 },
+            initial: { opacity: 0, y: -12, scale: 0.98 },
+            animate: {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              transition: { duration: 0.26, ease: EDITORIAL_EASE },
+            },
+            exit: {
+              opacity: 0,
+              y: -8,
+              scale: 0.985,
+              transition: { duration: 0.16, ease: EDITORIAL_EXIT_EASE },
+            },
+          }
+        : {
+            initial: { opacity: 0, y: 16, scale: 0.98 },
             animate: {
               opacity: 1,
               y: 0,
@@ -274,24 +280,9 @@ export function EditorialModalShell({
             },
             exit: {
               opacity: 0,
-              y: -10,
+              y: 10,
               scale: 0.985,
               transition: { duration: 0.18, ease: EDITORIAL_EXIT_EASE },
-            },
-          }
-        : {
-            initial: { opacity: 0, y: 20, scale: 0.975 },
-            animate: {
-              opacity: 1,
-              y: 0,
-              scale: 1,
-              transition: { duration: 0.34, ease: EDITORIAL_EASE },
-            },
-            exit: {
-              opacity: 0,
-              y: 12,
-              scale: 0.985,
-              transition: { duration: 0.2, ease: EDITORIAL_EXIT_EASE },
             },
           };
 
@@ -308,10 +299,10 @@ export function EditorialModalShell({
           <motion.div
             aria-hidden="true"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1, transition: { duration: 0.24, ease: EDITORIAL_EASE } }}
-            exit={{ opacity: 0, transition: { duration: 0.18, ease: EDITORIAL_EXIT_EASE } }}
+            animate={{ opacity: 1, transition: { duration: 0.22, ease: EDITORIAL_EASE } }}
+            exit={{ opacity: 0, transition: { duration: 0.16, ease: EDITORIAL_EXIT_EASE } }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/58 backdrop-blur-xs"
+            className="fixed inset-0 bg-[#09090B]/60 backdrop-blur-[2px]"
           />
           <motion.div
             initial={panelVariants.initial}
@@ -344,7 +335,7 @@ interface AnimatedSegmentedControlProps<T extends string> {
 }
 
 /**
- * ReactBits / Mobbin inspired spring-animated segmented control with shared layoutId indicator.
+ * Razor-crisp Swiss architectural segmented switch with shared spring indicator.
  */
 export function AnimatedSegmentedControl<T extends string>({
   options,
@@ -360,10 +351,10 @@ export function AnimatedSegmentedControl<T extends string>({
     <div
       role="group"
       aria-label={ariaLabel}
-      className={`p-1 rounded-xl inline-flex max-w-full flex-wrap sm:flex-nowrap items-center gap-0.5 ${
+      className={`p-0.5 rounded-sm inline-flex max-w-full flex-wrap sm:flex-nowrap items-center gap-0.5 ${
         isHero
-          ? 'bg-white/[0.06] backdrop-blur-xs border border-white/10'
-          : 'bg-[#F1F3F2] dark:bg-[#111714] border border-[#E4E7E5] dark:border-[#1B231F]'
+          ? 'bg-[#F3F3EF] dark:bg-[#161619] border border-[#D4D4CC] dark:border-[#28282E]'
+          : 'bg-[#F3F3EF] dark:bg-[#161619] border border-[#E2E2DC] dark:border-[#242429]'
       } ${className}`}
     >
       {options.map((opt) => {
@@ -373,24 +364,22 @@ export function AnimatedSegmentedControl<T extends string>({
             key={opt.id}
             type="button"
             onClick={() => onChange(opt.id)}
-            className={`relative min-h-[34px] px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors whitespace-nowrap shrink-0 flex items-center justify-center gap-1.5 cursor-pointer ${
+            className={`relative min-h-[32px] px-3 py-1 rounded-xs text-xs font-semibold transition-colors whitespace-nowrap shrink-0 flex items-center justify-center gap-1.5 cursor-pointer ${
               active
                 ? isHero
-                  ? 'text-[#060807]'
-                  : 'text-[#0B110E] dark:text-[#F3F5F4]'
-                : isHero
-                  ? 'text-[#A8B5AE] hover:text-white'
-                  : 'text-[#5C6660] dark:text-[#8C9891] hover:text-[#0B110E] dark:hover:text-white'
+                  ? 'text-white dark:text-[#09090B]'
+                  : 'text-[#111110] dark:text-[#F5F5F2]'
+                : 'text-[#5A5A54] dark:text-[#8E8E96] hover:text-[#111110] dark:hover:text-white'
             }`}
           >
             {active && (
               <motion.span
                 layoutId={layoutId}
                 transition={EDITORIAL_SPRING}
-                className={`absolute inset-0 rounded-lg ${
+                className={`absolute inset-0 rounded-xs ${
                   isHero
-                    ? 'bg-[#8CE02C] shadow-xs'
-                    : 'bg-white dark:bg-[#19221D] shadow-2xs border border-[#E4E7E5] dark:border-[#27332D]'
+                    ? 'bg-[#111110] dark:bg-[#F5F5F2]'
+                    : 'bg-white dark:bg-[#222228] border border-[#D4D4CC] dark:border-[#32323A]'
                 }`}
               />
             )}
@@ -410,24 +399,21 @@ interface SlideViewTransitionProps {
   children: React.ReactNode;
 }
 
-/**
- * Smooth compositor-only editorial page transition between navigation views.
- */
 export function SlideViewTransition({ viewKey, children }: SlideViewTransitionProps) {
   return (
     <AnimatePresence mode="wait" initial={false}>
       <motion.div
         key={viewKey}
-        initial={{ opacity: 0, y: 10 }}
+        initial={{ opacity: 0, y: 8 }}
         animate={{
           opacity: 1,
           y: 0,
-          transition: { duration: 0.28, ease: EDITORIAL_EASE },
+          transition: { duration: 0.24, ease: EDITORIAL_EASE },
         }}
         exit={{
           opacity: 0,
-          y: -6,
-          transition: { duration: 0.16, ease: EDITORIAL_EXIT_EASE },
+          y: -5,
+          transition: { duration: 0.14, ease: EDITORIAL_EXIT_EASE },
         }}
       >
         {children}
@@ -438,33 +424,34 @@ export function SlideViewTransition({ viewKey, children }: SlideViewTransitionPr
 
 interface ShimmerActionButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
-  variant?: 'lime' | 'forest';
+  variant?: 'lime' | 'forest' | 'cobalt';
 }
 
 /**
- * MagicUI / Uiverse inspired crisp tactile primary action button with subtle highlight sweep.
+ * Architectural tactile primary action button in Klein Cobalt or Obsidian Ink.
  */
 export function ShimmerActionButton({
   children,
-  variant = 'lime',
+  variant = 'forest',
   className = '',
   ...props
 }: ShimmerActionButtonProps) {
+  const isCobalt = variant === 'lime' || variant === 'cobalt';
   return (
     <motion.button
-      whileHover={{ y: -1, transition: { duration: 0.2, ease: EDITORIAL_EASE } }}
+      whileHover={{ y: -1, transition: { duration: 0.18, ease: EDITORIAL_EASE } }}
       whileTap={{ scale: 0.985 }}
       transition={{ duration: 0.14, ease: EDITORIAL_EASE }}
       className={`relative overflow-hidden group cursor-pointer ${
-        variant === 'lime'
-          ? 'bg-[#8CE02C] hover:bg-[#9AE83C] text-[#060807]'
-          : 'bg-[#0B130F] hover:bg-[#15221B] dark:bg-[#8CE02C] dark:hover:bg-[#9AE83C] text-[#F3F5F4] dark:text-[#060807]'
+        isCobalt
+          ? 'bg-[#8CE02C] hover:bg-[#65C91D] dark:bg-[#8CE02C] dark:hover:bg-[#A6F04A] text-[#0B130F] dark:text-[#0B130F]'
+          : 'bg-[#0B130F] hover:bg-[#14231A] dark:bg-[#F5F5F2] dark:hover:bg-white text-[#FAFAF8] dark:text-[#0B130F]'
       } ${className}`}
       {...(props as any)}
     >
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out bg-gradient-to-r from-transparent via-white/25 to-transparent"
+        className="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out bg-gradient-to-r from-transparent via-white/20 to-transparent"
       />
       <span className="relative z-10 flex items-center justify-center gap-2">{children}</span>
     </motion.button>

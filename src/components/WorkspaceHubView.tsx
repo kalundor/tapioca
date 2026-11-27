@@ -355,30 +355,27 @@ export function WorkspaceHubView({
   };
 
   return (
-    <div className="space-y-5">
-      {/* CARBON ARCHITECTURAL HERO BANNER */}
+    <div className="space-y-6 animate-enter">
+      {/* OPEN SWISS BROADSHEET MASTHEAD — GOOGLE WORKSPACE */}
       <section
         aria-label="Central Google Workspace"
-        className="relative overflow-hidden rounded-3xl bg-[#090E0C] text-[#F3F5F4] p-5 sm:p-7 border border-[#1E2823] shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-5"
+        className="border-t-2 border-[#111110] dark:border-[#F5F5F2] border-b border-b-[#E2E2DC] dark:border-b-[#242429] pt-5 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-5"
       >
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 opacity-[0.06]"
-          style={{
-            backgroundImage:
-              'linear-gradient(to right, #8CE02C 1px, transparent 1px), linear-gradient(to bottom, #8CE02C 1px, transparent 1px)',
-            backgroundSize: '32px 32px',
-          }}
-        />
-        <div className="relative space-y-2 max-w-2xl">
-          <div className="flex items-center gap-2 text-xs text-[#8CE02C] font-medium">
-            <Sparkles className="w-4 h-4 shrink-0" />
-            <span>Ecossistema Google Workspace · {profile.displayName.split(' ')[0]} &amp; {profile.partnerName.split(' ')[0]}</span>
+        <div className="space-y-2 max-w-2xl">
+          <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#1D4ED8] dark:text-[#6088FF]">
+            <Sparkles className="w-3.5 h-3.5 shrink-0" />
+            <span>
+              Ecossistema Google Workspace · {profile.displayName.split(' ')[0]} &amp;{' '}
+              {profile.partnerName.split(' ')[0]}
+            </span>
           </div>
-          <h2 className="font-editorial text-2xl sm:text-[28px] font-bold tracking-tight leading-tight">
-            Sincronia com <span className="font-accent-serif text-[#8CE02C]">Calendar, Drive &amp; Gmail</span>
-          </h2>
-          <p className="text-xs sm:text-[13px] text-[#9BA6A0] leading-relaxed">
+          <h1 className="font-broadsheet text-3xl sm:text-4xl font-semibold tracking-[-0.025em] leading-[1.06] text-[#111110] dark:text-[#F5F5F2]">
+            Sincronia com{' '}
+            <span className="font-accent-serif font-normal text-[#1D4ED8] dark:text-[#6088FF]">
+              Calendar, Drive &amp; Gmail
+            </span>
+          </h1>
+          <p className="text-xs sm:text-[13px] text-[#5A5A54] dark:text-[#8E8E96] leading-relaxed">
             Exporte fechamentos em JSON, crie lembretes para o Pix de R${' '}
             {formatBRL(houseSplit.pixSettlementAmount)} e mantenha vencimentos na agenda do casal.
           </p>
@@ -387,7 +384,7 @@ export function WorkspaceHubView({
         <button
           type="button"
           onClick={onRequestGoogleSignIn}
-          className="relative min-h-[44px] px-5 py-2.5 rounded-xl bg-white hover:bg-[#F1F3F2] text-[#0B110E] text-xs font-bold flex items-center justify-center gap-2.5 shrink-0 shadow-md transition-colors cursor-pointer"
+          className="min-h-[44px] px-5 py-2.5 rounded-xs bg-white dark:bg-[#161619] hover:border-[#1D4ED8] dark:hover:border-[#6088FF] border border-[#D4D4CC] dark:border-[#2C2C34] text-[#111110] dark:text-[#F5F5F2] text-xs font-bold flex items-center justify-center gap-2.5 shrink-0 transition-colors cursor-pointer"
         >
           <svg className="w-4 h-4" viewBox="0 0 48 48" aria-hidden="true">
             <path
@@ -412,14 +409,14 @@ export function WorkspaceHubView({
       </section>
 
       {statusMessage && (
-        <div className="p-3.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-xs text-emerald-800 dark:text-emerald-200 flex items-center gap-2">
+        <div className="p-3.5 rounded-sm bg-[#E6F4F1] dark:bg-[#0D2624] border border-[#0F766E]/30 dark:border-[#2DD4BF]/30 text-xs text-[#0F766E] dark:text-[#2DD4BF] flex items-center gap-2">
           <CheckCircle2 className="w-4 h-4 shrink-0" />
           <span>{statusMessage}</span>
         </div>
       )}
 
       {errorMessage && (
-        <div className="p-3.5 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 text-xs text-amber-900 dark:text-amber-200 space-y-1">
+        <div className="p-3.5 rounded-sm bg-[#FDF2F0] dark:bg-[#231210] border border-[#C83E2B]/30 dark:border-[#F9735B]/30 text-xs text-[#C83E2B] dark:text-[#F9735B] space-y-1">
           <div className="flex items-center gap-2 font-semibold">
             <AlertCircle className="w-4 h-4 shrink-0" />
             <span>Aviso da API Google Workspace: {errorMessage}</span>
@@ -429,7 +426,7 @@ export function WorkspaceHubView({
               href={chatConsoleUrl}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-1 text-[#0B110E] dark:text-[#8CE02C] underline font-semibold mt-1"
+              className="inline-flex items-center gap-1 text-[#1D4ED8] dark:text-[#6088FF] underline font-semibold mt-1"
             >
               <span>Abrir Configuração da Google Chat API no Cloud Console</span>
               <ExternalLink className="w-3 h-3" />
@@ -445,23 +442,25 @@ export function WorkspaceHubView({
           <div className="space-y-2.5">
             <div className="flex items-center justify-between gap-2">
               <div className="flex items-center gap-2.5">
-                <span className="w-9 h-9 rounded-xl bg-[#EEF7E4] dark:bg-[#132215] text-[#56AD17] dark:text-[#8CE02C] border border-[#DCEBC9] dark:border-[#1E3321] flex items-center justify-center shrink-0">
+                <span className="w-9 h-9 rounded-xs bg-[#F3F3EF] dark:bg-[#161619] text-[#1D4ED8] dark:text-[#6088FF] border border-[#E2E2DC] dark:border-[#242429] flex items-center justify-center shrink-0">
                   <Calendar className="w-4 h-4" />
                 </span>
                 <div>
-                  <h3 className="font-editorial text-sm font-bold text-[#0B110E] dark:text-[#F3F5F4]">
+                  <h2 className="font-broadsheet text-base font-semibold text-[#111110] dark:text-[#F5F5F2]">
                     Google Calendar
-                  </h3>
-                  <span className="text-[10px] text-[#5C6660] dark:text-[#8C9891]">Agenda do Casal</span>
+                  </h2>
+                  <span className="text-[10px] text-[#5A5A54] dark:text-[#8E8E96]">Agenda do Casal</span>
                 </div>
               </div>
-              <span className="text-[10px] font-semibold text-[#56AD17] dark:text-[#8CE02C]">Ativo</span>
+              <span className="text-[10px] font-semibold uppercase tracking-[0.06em] text-[#0F766E] dark:text-[#2DD4BF]">
+                Ativo
+              </span>
             </div>
-            <p className="text-xs text-[#5C6660] dark:text-[#8C9891] leading-relaxed">
+            <p className="text-xs text-[#5A5A54] dark:text-[#8E8E96] leading-relaxed">
               Agende lembretes de vencimento do mês diretamente na agenda do casal.
             </p>
             {calendarEvents.length > 0 && (
-              <ul className="text-[11px] text-[#5C6660] dark:text-[#D1D7D4] space-y-1 pt-2 border-t border-[#E4E7E5] dark:border-[#1B231F]">
+              <ul className="text-[11px] text-[#5A5A54] dark:text-[#D5D5D0] space-y-1 pt-2 border-t border-[#E2E2DC] dark:border-[#242429]">
                 {calendarEvents.map((ev) => (
                   <li key={ev.id} className="truncate">
                     · {ev.summary}
@@ -475,7 +474,7 @@ export function WorkspaceHubView({
               type="button"
               onClick={handleListCalendarEvents}
               disabled={loadingService === 'calendar'}
-              className="min-h-[38px] w-full py-2 text-xs font-semibold text-[#0B110E] dark:text-[#F3F5F4] bg-[#F1F3F2] dark:bg-[#111714] hover:bg-[#E4E7E5] dark:hover:bg-[#1B231F] border border-[#E4E7E5] dark:border-[#1B231F] rounded-xl transition-colors cursor-pointer"
+              className="min-h-[38px] w-full py-2 text-xs font-semibold text-[#111110] dark:text-[#F5F5F2] bg-[#F3F3EF] dark:bg-[#161619] hover:border-[#111110]/30 dark:hover:border-[#F5F5F2]/30 border border-[#E2E2DC] dark:border-[#242429] rounded-xs transition-colors cursor-pointer"
             >
               Listar Próximos Eventos
             </button>
@@ -483,7 +482,7 @@ export function WorkspaceHubView({
               type="button"
               onClick={requestSyncBillsToCalendar}
               disabled={loadingService === 'calendar'}
-              className="min-h-[38px] w-full py-2 text-xs font-semibold text-white dark:text-[#060807] bg-[#0B130F] hover:bg-[#16221C] dark:bg-[#8CE02C] dark:hover:bg-[#9CEB3F] rounded-xl transition-colors cursor-pointer"
+              className="min-h-[38px] w-full py-2 text-xs font-semibold text-white dark:text-[#09090B] bg-[#1D4ED8] hover:bg-[#1E40AF] dark:bg-[#6088FF] dark:hover:bg-[#4F78F5] rounded-xs transition-colors cursor-pointer"
             >
               Agendar Contas na Agenda
             </button>
@@ -495,23 +494,25 @@ export function WorkspaceHubView({
           <div className="space-y-2.5">
             <div className="flex items-center justify-between gap-2">
               <div className="flex items-center gap-2.5">
-                <span className="w-9 h-9 rounded-xl bg-[#EEF7E4] dark:bg-[#132215] text-[#56AD17] dark:text-[#8CE02C] border border-[#DCEBC9] dark:border-[#1E3321] flex items-center justify-center shrink-0">
+                <span className="w-9 h-9 rounded-xs bg-[#F3F3EF] dark:bg-[#161619] text-[#0F766E] dark:text-[#2DD4BF] border border-[#E2E2DC] dark:border-[#242429] flex items-center justify-center shrink-0">
                   <CheckSquare className="w-4 h-4" />
                 </span>
                 <div>
-                  <h3 className="font-editorial text-sm font-bold text-[#0B110E] dark:text-[#F3F5F4]">
+                  <h2 className="font-broadsheet text-base font-semibold text-[#111110] dark:text-[#F5F5F2]">
                     Google Tasks
-                  </h3>
-                  <span className="text-[10px] text-[#5C6660] dark:text-[#8C9891]">Checklist Pix</span>
+                  </h2>
+                  <span className="text-[10px] text-[#5A5A54] dark:text-[#8E8E96]">Checklist Pix</span>
                 </div>
               </div>
-              <span className="text-[10px] font-semibold text-[#56AD17] dark:text-[#8CE02C]">Ativo</span>
+              <span className="text-[10px] font-semibold uppercase tracking-[0.06em] text-[#0F766E] dark:text-[#2DD4BF]">
+                Ativo
+              </span>
             </div>
-            <p className="text-xs text-[#5C6660] dark:text-[#8C9891] leading-relaxed">
+            <p className="text-xs text-[#5A5A54] dark:text-[#8E8E96] leading-relaxed">
               Transforme o acerto Pix mensal (R$ {formatBRL(houseSplit.pixSettlementAmount)}) e contas em tarefas.
             </p>
             {taskItems.length > 0 && (
-              <ul className="text-[11px] text-[#5C6660] dark:text-[#D1D7D4] space-y-1 pt-2 border-t border-[#E4E7E5] dark:border-[#1B231F]">
+              <ul className="text-[11px] text-[#5A5A54] dark:text-[#D5D5D0] space-y-1 pt-2 border-t border-[#E2E2DC] dark:border-[#242429]">
                 {taskItems.map((t) => (
                   <li key={t.id} className="truncate">
                     · {t.title}
@@ -525,7 +526,7 @@ export function WorkspaceHubView({
               type="button"
               onClick={handleListTasks}
               disabled={loadingService === 'tasks'}
-              className="min-h-[38px] w-full py-2 text-xs font-semibold text-[#0B110E] dark:text-[#F3F5F4] bg-[#F1F3F2] dark:bg-[#111714] hover:bg-[#E4E7E5] dark:hover:bg-[#1B231F] border border-[#E4E7E5] dark:border-[#1B231F] rounded-xl transition-colors cursor-pointer"
+              className="min-h-[38px] w-full py-2 text-xs font-semibold text-[#111110] dark:text-[#F5F5F2] bg-[#F3F3EF] dark:bg-[#161619] hover:border-[#111110]/30 dark:hover:border-[#F5F5F2]/30 border border-[#E2E2DC] dark:border-[#242429] rounded-xs transition-colors cursor-pointer"
             >
               Carregar Minhas Tarefas
             </button>
@@ -533,7 +534,7 @@ export function WorkspaceHubView({
               type="button"
               onClick={requestCreatePixTask}
               disabled={loadingService === 'tasks'}
-              className="min-h-[38px] w-full py-2 text-xs font-semibold text-white dark:text-[#060807] bg-[#0B130F] hover:bg-[#16221C] dark:bg-[#8CE02C] dark:hover:bg-[#9CEB3F] rounded-xl transition-colors cursor-pointer"
+              className="min-h-[38px] w-full py-2 text-xs font-semibold text-white dark:text-[#09090B] bg-[#1D4ED8] hover:bg-[#1E40AF] dark:bg-[#6088FF] dark:hover:bg-[#4F78F5] rounded-xs transition-colors cursor-pointer"
             >
               Criar Tarefa de Acerto Pix
             </button>
@@ -545,23 +546,25 @@ export function WorkspaceHubView({
           <div className="space-y-2.5">
             <div className="flex items-center justify-between gap-2">
               <div className="flex items-center gap-2.5">
-                <span className="w-9 h-9 rounded-xl bg-amber-50 dark:bg-amber-950/30 text-[#D97706] dark:text-[#F59E0B] border border-amber-200/70 dark:border-amber-900/40 flex items-center justify-center shrink-0">
+                <span className="w-9 h-9 rounded-xs bg-[#F3F3EF] dark:bg-[#161619] text-[#B45309] dark:text-[#F59E0B] border border-[#E2E2DC] dark:border-[#242429] flex items-center justify-center shrink-0">
                   <HardDrive className="w-4 h-4" />
                 </span>
                 <div>
-                  <h3 className="font-editorial text-sm font-bold text-[#0B110E] dark:text-[#F3F5F4]">
+                  <h2 className="font-broadsheet text-base font-semibold text-[#111110] dark:text-[#F5F5F2]">
                     Google Drive
-                  </h3>
-                  <span className="text-[10px] text-[#5C6660] dark:text-[#8C9891]">Arquivo em Nuvem</span>
+                  </h2>
+                  <span className="text-[10px] text-[#5A5A54] dark:text-[#8E8E96]">Arquivo em Nuvem</span>
                 </div>
               </div>
-              <span className="text-[10px] font-semibold text-[#56AD17] dark:text-[#8CE02C]">Ativo</span>
+              <span className="text-[10px] font-semibold uppercase tracking-[0.06em] text-[#0F766E] dark:text-[#2DD4BF]">
+                Ativo
+              </span>
             </div>
-            <p className="text-xs text-[#5C6660] dark:text-[#8C9891] leading-relaxed">
+            <p className="text-xs text-[#5A5A54] dark:text-[#8E8E96] leading-relaxed">
               Exporte o fechamento mensal do casal e comprovantes para o seu Google Drive.
             </p>
             {driveFiles.length > 0 && (
-              <ul className="text-[11px] text-[#5C6660] dark:text-[#D1D7D4] space-y-1 pt-2 border-t border-[#E4E7E5] dark:border-[#1B231F]">
+              <ul className="text-[11px] text-[#5A5A54] dark:text-[#D5D5D0] space-y-1 pt-2 border-t border-[#E2E2DC] dark:border-[#242429]">
                 {driveFiles.map((f) => (
                   <li key={f.id} className="truncate">
                     · {f.name}
@@ -575,7 +578,7 @@ export function WorkspaceHubView({
               type="button"
               onClick={handleListDriveFiles}
               disabled={loadingService === 'drive'}
-              className="min-h-[38px] w-full py-2 text-xs font-semibold text-[#0B110E] dark:text-[#F3F5F4] bg-[#F1F3F2] dark:bg-[#111714] hover:bg-[#E4E7E5] dark:hover:bg-[#1B231F] border border-[#E4E7E5] dark:border-[#1B231F] rounded-xl transition-colors cursor-pointer"
+              className="min-h-[38px] w-full py-2 text-xs font-semibold text-[#111110] dark:text-[#F5F5F2] bg-[#F3F3EF] dark:bg-[#161619] hover:border-[#111110]/30 dark:hover:border-[#F5F5F2]/30 border border-[#E2E2DC] dark:border-[#242429] rounded-xs transition-colors cursor-pointer"
             >
               Listar Arquivos Recentes
             </button>
@@ -583,7 +586,7 @@ export function WorkspaceHubView({
               type="button"
               onClick={requestExportToDrive}
               disabled={loadingService === 'drive'}
-              className="min-h-[38px] w-full py-2 text-xs font-semibold text-white dark:text-[#060807] bg-[#0B130F] hover:bg-[#16221C] dark:bg-[#8CE02C] dark:hover:bg-[#9CEB3F] rounded-xl transition-colors cursor-pointer"
+              className="min-h-[38px] w-full py-2 text-xs font-semibold text-white dark:text-[#09090B] bg-[#1D4ED8] hover:bg-[#1E40AF] dark:bg-[#6088FF] dark:hover:bg-[#4F78F5] rounded-xs transition-colors cursor-pointer"
             >
               Salvar Fechamento no Drive
             </button>
@@ -595,23 +598,25 @@ export function WorkspaceHubView({
           <div className="space-y-2.5">
             <div className="flex items-center justify-between gap-2">
               <div className="flex items-center gap-2.5">
-                <span className="w-9 h-9 rounded-xl bg-rose-50 dark:bg-rose-950/30 text-rose-700 dark:text-rose-400 border border-rose-200/70 dark:border-rose-900/40 flex items-center justify-center shrink-0">
+                <span className="w-9 h-9 rounded-xs bg-[#F3F3EF] dark:bg-[#161619] text-[#C83E2B] dark:text-[#F9735B] border border-[#E2E2DC] dark:border-[#242429] flex items-center justify-center shrink-0">
                   <Mail className="w-4 h-4" />
                 </span>
                 <div>
-                  <h3 className="font-editorial text-sm font-bold text-[#0B110E] dark:text-[#F3F5F4]">
+                  <h2 className="font-broadsheet text-base font-semibold text-[#111110] dark:text-[#F5F5F2]">
                     Gmail
-                  </h3>
-                  <span className="text-[10px] text-[#5C6660] dark:text-[#8C9891]">Radar de Faturas</span>
+                  </h2>
+                  <span className="text-[10px] text-[#5A5A54] dark:text-[#8E8E96]">Radar de Faturas</span>
                 </div>
               </div>
-              <span className="text-[10px] font-semibold text-[#56AD17] dark:text-[#8CE02C]">Ativo</span>
+              <span className="text-[10px] font-semibold uppercase tracking-[0.06em] text-[#0F766E] dark:text-[#2DD4BF]">
+                Ativo
+              </span>
             </div>
-            <p className="text-xs text-[#5C6660] dark:text-[#8C9891] leading-relaxed">
+            <p className="text-xs text-[#5A5A54] dark:text-[#8E8E96] leading-relaxed">
               Localize boletos, faturas Nubank/Inter e comprovantes Pix diretamente no seu e-mail.
             </p>
             {gmailSubjects.length > 0 && (
-              <ul className="text-[11px] text-[#5C6660] dark:text-[#D1D7D4] space-y-1 pt-2 border-t border-[#E4E7E5] dark:border-[#1B231F]">
+              <ul className="text-[11px] text-[#5A5A54] dark:text-[#D5D5D0] space-y-1 pt-2 border-t border-[#E2E2DC] dark:border-[#242429]">
                 {gmailSubjects.map((s, idx) => (
                   <li key={idx} className="truncate">
                     · {s}
@@ -624,7 +629,7 @@ export function WorkspaceHubView({
             type="button"
             onClick={handleScanGmailBills}
             disabled={loadingService === 'gmail'}
-            className="min-h-[38px] w-full py-2 text-xs font-semibold text-[#0B110E] dark:text-[#F3F5F4] bg-[#F1F3F2] dark:bg-[#111714] hover:bg-[#E4E7E5] dark:hover:bg-[#1B231F] border border-[#E4E7E5] dark:border-[#1B231F] rounded-xl transition-colors cursor-pointer"
+            className="min-h-[38px] w-full py-2 text-xs font-semibold text-[#111110] dark:text-[#F5F5F2] bg-[#F3F3EF] dark:bg-[#161619] hover:border-[#1D4ED8] dark:hover:border-[#6088FF] border border-[#E2E2DC] dark:border-[#242429] rounded-xs transition-colors cursor-pointer"
           >
             Buscar Faturas e Boletos no Gmail
           </button>
@@ -635,35 +640,37 @@ export function WorkspaceHubView({
           <div className="space-y-2.5">
             <div className="flex items-center justify-between gap-2">
               <div className="flex items-center gap-2.5">
-                <span className="w-9 h-9 rounded-xl bg-[#F1F3F2] dark:bg-[#111714] text-[#0B110E] dark:text-[#8CE02C] border border-[#E4E7E5] dark:border-[#1B231F] flex items-center justify-center shrink-0">
+                <span className="w-9 h-9 rounded-xs bg-[#F3F3EF] dark:bg-[#161619] text-[#111110] dark:text-[#F5F5F2] border border-[#E2E2DC] dark:border-[#242429] flex items-center justify-center shrink-0">
                   <MessageSquare className="w-4 h-4" />
                 </span>
                 <div>
-                  <h3 className="font-editorial text-sm font-bold text-[#0B110E] dark:text-[#F3F5F4]">
+                  <h2 className="font-broadsheet text-base font-semibold text-[#111110] dark:text-[#F5F5F2]">
                     Google Chat
-                  </h3>
-                  <span className="text-[10px] text-[#5C6660] dark:text-[#8C9891]">Workspace Corp</span>
+                  </h2>
+                  <span className="text-[10px] text-[#5A5A54] dark:text-[#8E8E96]">Workspace Corp</span>
                 </div>
               </div>
-              <span className="text-[10px] font-semibold text-[#B45309] dark:text-[#F59E0B]">Business</span>
+              <span className="text-[10px] font-semibold uppercase tracking-[0.06em] text-[#5A5A54] dark:text-[#8E8E96]">
+                Business
+              </span>
             </div>
-            <p className="text-xs text-[#5C6660] dark:text-[#8C9891] leading-relaxed">
+            <p className="text-xs text-[#5A5A54] dark:text-[#8E8E96] leading-relaxed">
               Compartilhe o resumo de divisão da casa em espaços corporativos do Google Chat.
             </p>
-            <div className="p-2.5 rounded-xl bg-[#F7F8F7] dark:bg-[#090C0B] border border-[#E4E7E5] dark:border-[#1B231F] text-[11px] text-[#5C6660] dark:text-[#8C9891] space-y-1">
+            <div className="p-2.5 rounded-xs bg-[#FAFAF8] dark:bg-[#0D0D10] border border-[#E2E2DC] dark:border-[#242429] text-[11px] text-[#5A5A54] dark:text-[#8E8E96] space-y-1">
               <p>Disponível para contas Google Workspace Business com app Chat habilitado.</p>
               <a
                 href={chatConsoleUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-1 text-[#0B110E] dark:text-[#8CE02C] hover:underline font-medium"
+                className="inline-flex items-center gap-1 text-[#1D4ED8] dark:text-[#6088FF] hover:underline font-medium"
               >
                 <span>Abrir Console da Chat API</span>
                 <ExternalLink className="w-3 h-3" />
               </a>
             </div>
             {chatSpaces.length > 0 && (
-              <ul className="text-[11px] text-[#5C6660] dark:text-[#D1D7D4] space-y-1">
+              <ul className="text-[11px] text-[#5A5A54] dark:text-[#D5D5D0] space-y-1">
                 {chatSpaces.map((sp) => (
                   <li key={sp.name} className="truncate">
                     · {sp.displayName || sp.name}
@@ -676,7 +683,7 @@ export function WorkspaceHubView({
             type="button"
             onClick={handleListChatSpaces}
             disabled={loadingService === 'chat'}
-            className="min-h-[38px] w-full py-2 text-xs font-semibold text-[#0B110E] dark:text-[#F3F5F4] bg-[#F1F3F2] dark:bg-[#111714] hover:bg-[#E4E7E5] dark:hover:bg-[#1B231F] border border-[#E4E7E5] dark:border-[#1B231F] rounded-xl transition-colors cursor-pointer"
+            className="min-h-[38px] w-full py-2 text-xs font-semibold text-[#111110] dark:text-[#F5F5F2] bg-[#F3F3EF] dark:bg-[#161619] hover:border-[#1D4ED8] dark:hover:border-[#6088FF] border border-[#E2E2DC] dark:border-[#242429] rounded-xs transition-colors cursor-pointer"
           >
             Conectar Espaços do Google Chat
           </button>
@@ -687,22 +694,24 @@ export function WorkspaceHubView({
           <div className="space-y-2.5">
             <div className="flex items-center justify-between gap-2">
               <div className="flex items-center gap-2.5">
-                <span className="w-9 h-9 rounded-xl bg-amber-50 dark:bg-amber-950/30 text-[#D97706] dark:text-[#F59E0B] border border-amber-200/70 dark:border-amber-900/40 flex items-center justify-center shrink-0">
+                <span className="w-9 h-9 rounded-xs bg-[#F3F3EF] dark:bg-[#161619] text-[#B45309] dark:text-[#F59E0B] border border-[#E2E2DC] dark:border-[#242429] flex items-center justify-center shrink-0">
                   <StickyNote className="w-4 h-4" />
                 </span>
                 <div>
-                  <h3 className="font-editorial text-sm font-bold text-[#0B110E] dark:text-[#F3F5F4]">
+                  <h2 className="font-broadsheet text-base font-semibold text-[#111110] dark:text-[#F5F5F2]">
                     Google Keep
-                  </h3>
-                  <span className="text-[10px] text-[#5C6660] dark:text-[#8C9891]">Notas Compartilhadas</span>
+                  </h2>
+                  <span className="text-[10px] text-[#5A5A54] dark:text-[#8E8E96]">Notas Compartilhadas</span>
                 </div>
               </div>
-              <span className="text-[10px] font-semibold text-[#B45309] dark:text-[#F59E0B]">Enterprise</span>
+              <span className="text-[10px] font-semibold uppercase tracking-[0.06em] text-[#5A5A54] dark:text-[#8E8E96]">
+                Enterprise
+              </span>
             </div>
-            <p className="text-xs text-[#5C6660] dark:text-[#8C9891] leading-relaxed">
+            <p className="text-xs text-[#5A5A54] dark:text-[#8E8E96] leading-relaxed">
               Sincronize notas financeiras e listas compartilhadas do casal no Google Keep.
             </p>
-            <div className="p-2.5 rounded-xl bg-[#F7F8F7] dark:bg-[#090C0B] border border-[#E4E7E5] dark:border-[#1B231F] text-[11px] text-[#5C6660] dark:text-[#8C9891]">
+            <div className="p-2.5 rounded-xs bg-[#FAFAF8] dark:bg-[#0D0D10] border border-[#E2E2DC] dark:border-[#242429] text-[11px] text-[#5A5A54] dark:text-[#8E8E96]">
               Restrito a contas Enterprise. Para uso pessoal em @gmail.com, utilize Google Tasks ou Drive.
             </div>
           </div>
@@ -710,7 +719,7 @@ export function WorkspaceHubView({
             type="button"
             onClick={handleKeepSync}
             disabled={loadingService === 'keep'}
-            className="min-h-[38px] w-full py-2 text-xs font-semibold text-[#0B110E] dark:text-[#F3F5F4] bg-[#F1F3F2] dark:bg-[#111714] hover:bg-[#E4E7E5] dark:hover:bg-[#1B231F] border border-[#E4E7E5] dark:border-[#1B231F] rounded-xl transition-colors cursor-pointer"
+            className="min-h-[38px] w-full py-2 text-xs font-semibold text-[#111110] dark:text-[#F5F5F2] bg-[#F3F3EF] dark:bg-[#161619] hover:border-[#1D4ED8] dark:hover:border-[#6088FF] border border-[#E2E2DC] dark:border-[#242429] rounded-xs transition-colors cursor-pointer"
           >
             Sincronizar Notas Google Keep
           </button>
@@ -726,25 +735,25 @@ export function WorkspaceHubView({
         containerClassName="flex items-end sm:items-center justify-center p-0 sm:p-4"
       >
         {pendingConfirmation && (
-          <div className="bg-[#FFFFFF] dark:bg-[#0D1210] rounded-t-3xl sm:rounded-3xl border border-[#E4E7E5] dark:border-[#1B231F] max-w-md w-full p-6 space-y-4 shadow-2xl">
-            <div className="w-10 h-1 bg-[#D3D8D5] dark:bg-[#27322C] rounded-full mx-auto mb-1 sm:hidden" />
+          <div className="bg-white dark:bg-[#111113] rounded-t-xl sm:rounded-sm border border-[#E2E2DC] dark:border-[#242429] max-w-md w-full p-6 space-y-4 shadow-2xl">
+            <div className="w-10 h-1 bg-[#D4D4CC] dark:bg-[#2C2C34] rounded-xs mx-auto mb-1 sm:hidden" />
             <h3
               id="workspace-confirm-title"
-              className="font-editorial text-lg font-bold text-[#0B110E] dark:text-[#F3F5F4]"
+              className="font-broadsheet text-xl font-semibold text-[#111110] dark:text-[#F5F5F2]"
             >
               {pendingConfirmation.title}
             </h3>
-            <p className="text-xs text-[#5C6660] dark:text-[#9BA6A0] leading-relaxed">
+            <p className="text-xs text-[#5A5A54] dark:text-[#8E8E96] leading-relaxed">
               {pendingConfirmation.description}
             </p>
-            <div className="text-[11px] text-[#5C6660] dark:text-[#8C9891]">
+            <div className="text-[11px] font-mono-num text-[#5A5A54] dark:text-[#8E8E96]">
               Itens afetados: {pendingConfirmation.affectedCount} registro(s)
             </div>
             <div className="flex items-center justify-end gap-2 pt-2 pb-safe">
               <button
                 type="button"
                 onClick={() => setPendingConfirmation(null)}
-                className="min-h-[40px] px-4 py-2 text-xs font-semibold text-[#0B110E] dark:text-[#D1D7D4] bg-[#F1F3F2] dark:bg-[#111714] border border-[#E4E7E5] dark:border-[#1B231F] rounded-xl cursor-pointer"
+                className="min-h-[40px] px-4 py-2 text-xs font-semibold text-[#111110] dark:text-[#D5D5D0] bg-[#F3F3EF] dark:bg-[#161619] border border-[#E2E2DC] dark:border-[#242429] rounded-xs cursor-pointer"
               >
                 Cancelar
               </button>
@@ -755,7 +764,7 @@ export function WorkspaceHubView({
                   setPendingConfirmation(null);
                   await action();
                 }}
-                className="min-h-[40px] px-4 py-2 text-xs font-semibold text-white dark:text-[#060807] bg-[#0B130F] hover:bg-[#16221C] dark:bg-[#8CE02C] dark:hover:bg-[#9CEB3F] rounded-xl cursor-pointer"
+                className="min-h-[40px] px-4 py-2 text-xs font-semibold text-white dark:text-[#09090B] bg-[#1D4ED8] hover:bg-[#1E40AF] dark:bg-[#6088FF] dark:hover:bg-[#4F78F5] rounded-xs cursor-pointer"
               >
                 Confirmar e Executar
               </button>

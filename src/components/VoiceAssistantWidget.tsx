@@ -627,7 +627,7 @@ export function VoiceAssistantWidget({
       variant="dialog"
       containerClassName="flex items-end sm:items-center justify-center p-0 sm:p-4"
     >
-      <div className="bg-white dark:bg-[#0D1210] w-full max-w-2xl rounded-t-2xl sm:rounded-2xl border border-[#E4E7E5] dark:border-[#1B231F] shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
+      <div className="bento-card bg-white dark:bg-[#0D1210] w-full max-w-2xl rounded-t-2xl sm:rounded-2xl border border-[#E4E7E5] dark:border-[#1B231F] shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
         {/* TOP COPILOT HEADER */}
         <div className="p-4 sm:p-5 bg-[#090E0C] border-b border-[#1E2823] text-[#F3F5F4] flex items-center justify-between gap-3">
           <div className="flex items-center gap-3 min-w-0">

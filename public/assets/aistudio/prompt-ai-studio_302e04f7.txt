@@ -1,0 +1,155 @@
+# Prompt para o AI Studio — Tapioca Pay (NOVA DIRETRIZ VISUAL v2 + segurança)
+
+Contexto: o bloco CSS do passo 1 contém a 'Tapioca Skin v2', que re-estiliza o app inteiro (creme quente, verde-floresta, lima luminosa, vidro no modo escuro, raios grandes, tipografia gigante). Não altere nem simplifique esse CSS; cole integralmente.
+
+Aplique exatamente as alterações abaixo no projeto, sem remover nenhuma funcionalidade existente.
+
+## 1. src/index.css
+Substitua a linha `.bento-card { --mx: 50%; --my: 0%; overflow: hidden; }` por `.bento-card { --mx: 50%; --my: 0%; }` caso exista, e adicione ao FINAL do arquivo este bloco (inclui o ::after com `border-radius: inherit`):
+
+```css
+
+/* ===== Tapioca Motion & Polish layer ===== */
+:root { --ease-out: cubic-bezier(0.22, 1, 0.36, 1); --tp-glow: rgba(140, 224, 44, 0.16); }
+
+/* Spotlight hover (magicui-style) — any .bento-card follows the cursor */
+.bento-card { --mx: 50%; --my: 0%; }
+.bento-card::after {
+  content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0;
+  background: radial-gradient(360px circle at var(--mx) var(--my), var(--tp-glow), transparent 65%);
+  transition: opacity 260ms var(--ease-out);
+}
+.bento-card:hover::after { opacity: 1; }
+.bento-card:hover { transform: translateY(-2px); border-color: rgba(101, 201, 29, 0.45); }
+
+/* Aurora backdrop + film grain (reactbits-style ambience) */
+.tp-aurora { position: fixed; inset: -20% -10% auto; height: 70vh; z-index: -1; pointer-events: none; filter: blur(80px); opacity: 0.55;
+  background: radial-gradient(40% 50% at 20% 30%, rgba(140,224,44,.35), transparent 70%),
+              radial-gradient(35% 45% at 75% 20%, rgba(11,19,15,.25), transparent 70%);
+  animation: tp-drift 18s ease-in-out infinite alternate; }
+.dark .tp-aurora { opacity: 0.35; }
+.tp-grain::before { content: ''; position: fixed; inset: 0; z-index: 50; pointer-events: none; opacity: .035; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence baseFrequency='.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+
+/* Entrance choreography: add .tp-reveal to children, stagger with --i */
+.tp-reveal { opacity: 0; transform: translateY(14px) scale(.985); animation: tp-rise 640ms var(--ease-out) forwards; animation-delay: calc(var(--i, 0) * 70ms); }
+
+/* Shimmer skeleton, animated border, marquee, live pulse */
+.tp-skeleton { background: linear-gradient(100deg, var(--tp-hairline) 30%, var(--tp-surface) 50%, var(--tp-hairline) 70%); background-size: 200% 100%; animation: tp-shimmer 1.4s linear infinite; border-radius: 12px; }
+.tp-border-beam { position: relative; }
+.tp-border-beam::before { content: ''; position: absolute; inset: 0; padding: 1.5px; border-radius: inherit; pointer-events: none;
+  background: conic-gradient(from var(--a, 0deg), transparent 70%, #8CE02C 85%, transparent 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude;
+  animation: tp-spin 5s linear infinite; }
+@property --a { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+.tp-marquee { display: flex; gap: 2rem; width: max-content; animation: tp-marquee 28s linear infinite; }
+.tp-marquee:hover { animation-play-state: paused; }
+.tp-live::after { content: ''; display: inline-block; width: 7px; height: 7px; margin-left: 8px; border-radius: 99px; background: #65C91D; box-shadow: 0 0 0 0 rgba(101,201,29,.6); animation: tp-ping 1.8s infinite; }
+
+/* Press feedback, focus, mobile safe areas */
+button, [role='button'] { transition: transform 160ms var(--ease-out), box-shadow 200ms var(--ease-out), background-color 200ms; }
+button:active:not(:disabled) { transform: scale(.97); }
+:focus-visible { outline: 2px solid #65C91D; outline-offset: 3px; border-radius: 10px; }
+@media (max-width: 768px) { body { padding-bottom: env(safe-area-inset-bottom); } .bento-card:hover { transform: none; } }
+
+@keyframes tp-rise { to { opacity: 1; transform: none; } }
+@keyframes tp-shimmer { to { background-position: -200% 0; } }
+@keyframes tp-spin { to { --a: 360deg; } }
+@keyframes tp-marquee { to { transform: translateX(-50%); } }
+@keyframes tp-drift { to { transform: translate3d(4%, 6%, 0) scale(1.1); } }
+@keyframes tp-ping { 70% { box-shadow: 0 0 0 9px rgba(101,201,29,0); } 100% { box-shadow: 0 0 0 0 rgba(101,201,29,0); } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } .tp-reveal { opacity: 1; transform: none; } }
+
+/* Auto-stagger: add .tp-stagger to any view root */
+.tp-stagger > * { opacity: 0; animation: tp-rise 640ms var(--ease-out) forwards; }
+.tp-stagger > *:nth-child(1) { animation-delay: 70ms; }
+.tp-stagger > *:nth-child(2) { animation-delay: 140ms; }
+.tp-stagger > *:nth-child(3) { animation-delay: 210ms; }
+.tp-stagger > *:nth-child(4) { animation-delay: 280ms; }
+.tp-stagger > *:nth-child(5) { animation-delay: 350ms; }
+.tp-stagger > *:nth-child(6) { animation-delay: 420ms; }
+.tp-stagger > *:nth-child(7) { animation-delay: 490ms; }
+.tp-stagger > *:nth-child(8) { animation-delay: 560ms; }
+@media (prefers-reduced-motion: reduce) { .tp-stagger > * { opacity: 1; } }
+
+/* ===== TAPIOCA SKIN v2 — nova diretriz visual (re-skin global) =====
+   Conceito: "pérola de tapioca" — creme quente, verde-floresta profundo, lima luminosa,
+   formas macias (raios grandes), superfícies de vidro no escuro, números gigantes e editoriais. */
+:root {
+  --sk-cream: #F5EFE3; --sk-cream-2: #EDE5D3; --sk-paper: #FFFCF5; --sk-line: #E2D8C2;
+  --sk-ink: #0E1A12; --sk-muted: #6E6C5A; --sk-lime: #8CE02C; --sk-forest: #0B130F;
+  --r-md: 14px; --r-lg: 18px; --r-xl: 26px; --r-2xl: 34px;
+  --sh-card: 0 1px 0 rgba(255,255,255,.7) inset, 0 1px 2px rgba(60,45,10,.06), 0 12px 32px -12px rgba(60,45,10,.18);
+}
+/* Fundo com padrão de pérolas */
+body { background-image: radial-gradient(rgba(14,26,18,.07) 1.2px, transparent 1.4px); background-size: 22px 22px; }
+.dark body { background-image: radial-gradient(rgba(140,224,44,.07) 1.2px, transparent 1.4px); }
+
+/* ---- LIGHT: troca de paleta fria por creme quente ---- */
+html:not(.dark) [class~="bg-[#F7F8F7]"] { background-color: var(--sk-cream) !important; }
+html:not(.dark) [class~="bg-[#F1F3F2]"], html:not(.dark) [class~="bg-[#E4E7E5]"] { background-color: var(--sk-cream-2) !important; }
+html:not(.dark) [class~="bg-white"] { background-color: var(--sk-paper) !important; }
+html:not(.dark) [class~="border-[#E4E7E5]"] { border-color: var(--sk-line) !important; }
+html:not(.dark) [class~="divide-[#E4E7E5]"] > * + * { border-color: var(--sk-line) !important; }
+html:not(.dark) [class~="text-[#0B110E]"] { color: var(--sk-ink) !important; }
+html:not(.dark) [class~="text-[#5C6660]"], html:not(.dark) [class~="text-[#8C9891]"] { color: var(--sk-muted) !important; }
+html:not(.dark) .bento-card { box-shadow: var(--sh-card); }
+
+/* ---- DARK: floresta profunda + vidro com brilho lima ---- */
+.dark [class~="dark:bg-[#060807]"] { background-color: #050906 !important; }
+.dark [class~="dark:bg-[#0D1210]"], .dark [class~="dark:bg-[#111714]"] {
+  background-color: rgba(15,24,18,.72) !important; backdrop-filter: blur(18px) saturate(140%);
+}
+.dark [class~="dark:border-[#1B231F]"], .dark [class~="border-[#1B231F]"] { border-color: rgba(140,224,44,.10) !important; }
+.dark .bento-card { box-shadow: 0 0 0 1px rgba(140,224,44,.04) inset, 0 20px 40px -20px rgba(0,0,0,.8); }
+
+/* ---- Formas macias ---- */
+.rounded-lg { border-radius: var(--r-md) !important; }
+.rounded-xl { border-radius: var(--r-lg) !important; }
+.rounded-2xl { border-radius: var(--r-xl) !important; }
+.rounded-3xl { border-radius: var(--r-2xl) !important; }
+.bento-card { padding-block: max(0px, 0px); }
+
+/* ---- Tipografia editorial: números gigantes e títulos com presença ---- */
+h1 { font-size: clamp(2rem, 4.4vw, 3.4rem); line-height: 1.02; font-weight: 800; letter-spacing: -.045em; }
+h2 { font-size: clamp(1.4rem, 2.4vw, 2rem); line-height: 1.08; font-weight: 700; }
+.font-display-num { font-weight: 800; font-feature-settings: 'tnum', 'ss01'; }
+[class*="text-4xl"].font-display-num, [class*="text-5xl"].font-display-num { font-size: clamp(2.6rem, 6vw, 4.6rem) !important; line-height: .95; }
+
+/* ---- Barra lateral / navegação em vidro, botões lima com brilho ---- */
+aside { background: rgba(245,239,227,.7) !important; backdrop-filter: blur(22px) saturate(160%); border-color: var(--sk-line) !important; }
+.dark aside { background: rgba(7,11,8,.72) !important; border-color: rgba(140,224,44,.10) !important; }
+[class~="bg-[#8CE02C]"] { background-image: linear-gradient(180deg, #A6F04A, #8CE02C 55%, #6FC21A); box-shadow: 0 0 0 1px rgba(255,255,255,.35) inset, 0 8px 24px -8px rgba(140,224,44,.65); }
+[class~="bg-[#0B130F]"] { background-image: linear-gradient(180deg, #14231A, #0B130F); box-shadow: 0 10px 28px -12px rgba(11,19,15,.7); }
+input, select, textarea { transition: box-shadow 200ms, border-color 200ms; }
+input:focus, select:focus, textarea:focus { box-shadow: 0 0 0 4px rgba(140,224,44,.22); border-color: #65C91D !important; outline: none; }
+::selection { background: #8CE02C; color: #0B130F; }
+* { scrollbar-width: thin; scrollbar-color: rgba(110,108,90,.35) transparent; }
+```
+
+## 2. src/main.tsx
+Adicione ao final do arquivo:
+
+```ts
+document.addEventListener('pointermove', (e) => {
+  const c = (e.target as HTMLElement)?.closest?.('.bento-card') as HTMLElement | null;
+  if (!c) return;
+  const r = c.getBoundingClientRect();
+  c.style.setProperty('--mx', `${e.clientX - r.left}px`);
+  c.style.setProperty('--my', `${e.clientY - r.top}px`);
+});
+```
+
+## 3. src/App.tsx
+No div raiz (`min-h-screen bg-[#F7F8F7] dark:bg-[#060807] ... flex flex-col lg:flex-row`), adicione as classes `tp-grain relative` e, como primeiro filho, `<div aria-hidden="true" className="tp-aurora" />`.
+
+## 4. Telas
+- Em CardsPluggyView, CashFlowReportsView e SavingsGoalsView, troque o wrapper `className="space-y-6 animate-enter"` por `className="tp-stagger space-y-6"`.
+- Em todo card com `rounded-2xl` ou `rounded-3xl` + `bg-white dark:bg-[#0D1210]` + `border`, adicione a classe `bento-card` (se ainda não tiver).
+
+## 5. Segurança (obrigatório)
+- Em server.ts, remova TODOS os valores fixos da Pluggy: o PLUGGY_API_KEY e PLUGGY_CONNECT_TOKEN usados como fallback, DEFAULT_PLUGGY_CLIENT_ID e DEFAULT_PLUGGY_CLIENT_SECRET (deixe string vazia). O app deve usar só process.env.
+- Nunca escreva chaves, tokens ou secrets no código.
+- Adicione `.cloudsql-mirror.json` ao .gitignore.
+
+Depois me mostre o resumo do que mudou e confirme que o app compila.

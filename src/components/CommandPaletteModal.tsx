@@ -188,7 +188,7 @@ export function CommandPaletteModal({
       variant="palette"
       containerClassName="flex items-start justify-center p-4 pt-16 sm:pt-24"
     >
-      <div className="w-full max-w-xl bg-white dark:bg-[#0D1210] rounded-2xl border border-[#E4E7E5] dark:border-[#1B231F] shadow-2xl overflow-hidden">
+      <div className="bento-card w-full max-w-xl bg-white dark:bg-[#0D1210] rounded-2xl border border-[#E4E7E5] dark:border-[#1B231F] shadow-2xl overflow-hidden">
         <div className="flex items-center gap-2.5 px-4 py-3.5 border-b border-[#E4E7E5] dark:border-[#1B231F] bg-[#F7F8F7] dark:bg-[#090C0B]">
           <Search className="w-4 h-4 text-[#5C6660] dark:text-[#8C9891] shrink-0" />
           <input

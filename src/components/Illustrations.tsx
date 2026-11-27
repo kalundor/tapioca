@@ -48,8 +48,8 @@ export function CalendarCoinIllustration() {
     <svg viewBox="0 0 110 100" className="w-20 h-20 shrink-0 select-none" aria-hidden="true">
       <defs>
         <linearGradient id="calHeader" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#3B82F6" />
-          <stop offset="100%" stopColor="#1D4ED8" />
+          <stop offset="0%" stopColor="#8CE02C" />
+          <stop offset="100%" stopColor="#56AD17" />
         </linearGradient>
         <linearGradient id="goldCoin" x1="0" y1="0" x2="1" y2="1">
           <stop offset="0%" stopColor="#FDE047" />
@@ -68,14 +68,14 @@ export function CalendarCoinIllustration() {
         <rect x="51" y="12" width="5" height="12" rx="2.5" fill="#64748B" />
         <rect x="66" y="12" width="5" height="12" rx="2.5" fill="#64748B" />
         {/* Grid cells */}
-        <rect x="33" y="40" width="9" height="7" rx="2" fill="#93C5FD" />
+        <rect x="33" y="40" width="9" height="7" rx="2" fill="#BCEF7E" />
         <rect x="45" y="40" width="9" height="7" rx="2" fill="#E2E8F0" />
-        <rect x="57" y="40" width="9" height="7" rx="2" fill="#3B82F6" />
+        <rect x="57" y="40" width="9" height="7" rx="2" fill="#65C91D" />
         <rect x="69" y="40" width="6" height="7" rx="2" fill="#E2E8F0" />
         <rect x="33" y="51" width="9" height="7" rx="2" fill="#E2E8F0" />
-        <rect x="45" y="51" width="9" height="7" rx="2" fill="#60A5FA" />
+        <rect x="45" y="51" width="9" height="7" rx="2" fill="#8CE02C" />
         <rect x="57" y="51" width="9" height="7" rx="2" fill="#E2E8F0" />
-        <rect x="33" y="61" width="9" height="6" rx="2" fill="#3B82F6" />
+        <rect x="33" y="61" width="9" height="6" rx="2" fill="#56AD17" />
         <rect x="45" y="61" width="9" height="6" rx="2" fill="#E2E8F0" />
       </g>
       {/* Gold Coin */}
@@ -98,11 +98,11 @@ export function ScaleIllustration() {
       <circle cx="50" cy="18" r="5" fill="#334155" />
       {/* Crossbar */}
       <path d="M18 28 Q50 20 82 28" stroke="#475569" strokeWidth="3.5" fill="none" strokeLinecap="round" />
-      {/* Left pan (Blue) */}
+      {/* Left pan (Brand Green) */}
       <line x1="22" y1="27" x2="15" y2="50" stroke="#94A3B8" strokeWidth="1.5" />
       <line x1="22" y1="27" x2="29" y2="50" stroke="#94A3B8" strokeWidth="1.5" />
-      <path d="M11 50 Q22 60 33 50 Z" fill="#2563EB" />
-      <ellipse cx="22" cy="50" rx="11" ry="3" fill="#60A5FA" />
+      <path d="M11 50 Q22 60 33 50 Z" fill="#56AD17" />
+      <ellipse cx="22" cy="50" rx="11" ry="3" fill="#8CE02C" />
       {/* Right pan (Pink/Rose) */}
       <line x1="78" y1="27" x2="71" y2="50" stroke="#94A3B8" strokeWidth="1.5" />
       <line x1="78" y1="27" x2="85" y2="50" stroke="#94A3B8" strokeWidth="1.5" />
@@ -116,18 +116,18 @@ export function CardIllustration() {
   return (
     <svg viewBox="0 0 100 84" className="w-16 h-14 shrink-0 select-none" aria-hidden="true">
       <defs>
-        <linearGradient id="blueCard3D" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#3B82F6" />
-          <stop offset="50%" stopColor="#2563EB" />
-          <stop offset="100%" stopColor="#1E40AF" />
+        <linearGradient id="tapiocaCard3D" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#1E3526" />
+          <stop offset="50%" stopColor="#0B130F" />
+          <stop offset="100%" stopColor="#070C09" />
         </linearGradient>
       </defs>
-      <ellipse cx="52" cy="72" rx="28" ry="6" fill="rgba(37, 99, 235, 0.18)" />
+      <ellipse cx="52" cy="72" rx="28" ry="6" fill="rgba(101, 201, 29, 0.22)" />
       <g transform="rotate(-12 50 42)">
-        <rect x="16" y="18" width="66" height="42" rx="7" fill="url(#blueCard3D)" stroke="#93C5FD" strokeWidth="1" />
-        <rect x="23" y="28" width="12" height="9" rx="2" fill="#FBBF24" />
-        <line x1="23" y1="32.5" x2="35" y2="32.5" stroke="#B45309" strokeWidth="0.8" />
-        <rect x="23" y="45" width="24" height="3.5" rx="1.5" fill="#93C5FD" opacity="0.7" />
+        <rect x="16" y="18" width="66" height="42" rx="7" fill="url(#tapiocaCard3D)" stroke="#8CE02C" strokeWidth="1" />
+        <rect x="23" y="28" width="12" height="9" rx="2" fill="#8CE02C" />
+        <line x1="23" y1="32.5" x2="35" y2="32.5" stroke="#0B130F" strokeWidth="0.8" />
+        <rect x="23" y="45" width="24" height="3.5" rx="1.5" fill="#8CE02C" opacity="0.7" />
         <circle cx="67" cy="48" r="5" fill="#EF4444" opacity="0.85" />
         <circle cx="72" cy="48" r="5" fill="#F59E0B" opacity="0.85" />
       </g>
@@ -144,15 +144,15 @@ export function HouseIllustration() {
       {/* House walls */}
       <rect x="28" y="40" width="44" height="33" rx="3" fill="#F8FAFC" stroke="#CBD5E1" strokeWidth="1.5" />
       {/* Roof */}
-      <path d="M20 43 L50 17 L80 43 Z" fill="#2563EB" stroke="#1D4ED8" strokeWidth="2" strokeLinejoin="round" />
+      <path d="M20 43 L50 17 L80 43 Z" fill="#0B130F" stroke="#56AD17" strokeWidth="2" strokeLinejoin="round" />
       {/* Chimney */}
-      <rect x="62" y="22" width="8" height="14" rx="1.5" fill="#1E40AF" />
+      <rect x="62" y="22" width="8" height="14" rx="1.5" fill="#56AD17" />
       {/* Door */}
       <rect x="44" y="53" width="12" height="20" rx="2" fill="#F59E0B" />
       <circle cx="53" cy="63" r="1.2" fill="#78350F" />
       {/* Windows */}
-      <rect x="32" y="48" width="8" height="8" rx="1.5" fill="#60A5FA" stroke="#93C5FD" strokeWidth="1" />
-      <rect x="60" y="48" width="8" height="8" rx="1.5" fill="#60A5FA" stroke="#93C5FD" strokeWidth="1" />
+      <rect x="32" y="48" width="8" height="8" rx="1.5" fill="#8CE02C" stroke="#56AD17" strokeWidth="1" />
+      <rect x="60" y="48" width="8" height="8" rx="1.5" fill="#8CE02C" stroke="#56AD17" strokeWidth="1" />
       {/* Bushes */}
       <circle cx="27" cy="71" r="5" fill="#16A34A" />
       <circle cx="73" cy="71" r="5" fill="#16A34A" />

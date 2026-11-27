@@ -8,13 +8,13 @@ export function BankEmblem({
   size?: 'sm' | 'md';
 }) {
   const lower = institution.toLowerCase();
-  const dim = size === 'sm' ? 'w-7 h-7 text-[10px]' : 'w-9 h-9 text-xs';
+  const dim = size === 'sm' ? 'w-7 h-7 text-[10px]' : 'w-8 h-8 text-xs';
 
   if (lower.includes('nu')) {
     return (
       <span
         aria-hidden="true"
-        className={`${dim} rounded-xl bg-gradient-to-br from-[#820AD1] to-[#4C057A] text-white font-editorial font-extrabold flex items-center justify-center shrink-0 shadow-xs`}
+        className={`${dim} rounded-xs bg-[#6D28D9] text-white font-editorial font-extrabold flex items-center justify-center shrink-0`}
       >
         Nu
       </span>
@@ -24,7 +24,7 @@ export function BankEmblem({
     return (
       <span
         aria-hidden="true"
-        className={`${dim} rounded-xl bg-gradient-to-br from-[#FF7A00] to-[#C84E00] text-white font-editorial font-extrabold flex items-center justify-center shrink-0 shadow-xs`}
+        className={`${dim} rounded-xs bg-[#EA580C] text-white font-editorial font-extrabold flex items-center justify-center shrink-0`}
       >
         in
       </span>
@@ -34,7 +34,7 @@ export function BankEmblem({
     return (
       <span
         aria-hidden="true"
-        className={`${dim} rounded-xl bg-gradient-to-br from-[#EC0000] to-[#9E0000] text-white font-editorial font-extrabold flex items-center justify-center shrink-0 shadow-xs`}
+        className={`${dim} rounded-xs bg-[#C83E2B] text-white font-editorial font-extrabold flex items-center justify-center shrink-0`}
       >
         S
       </span>
@@ -44,7 +44,7 @@ export function BankEmblem({
     return (
       <span
         aria-hidden="true"
-        className={`${dim} rounded-xl bg-gradient-to-br from-[#FF6200] to-[#003399] text-white font-editorial font-extrabold flex items-center justify-center shrink-0 shadow-xs`}
+        className={`${dim} rounded-xs bg-[#0B130F] text-[#8CE02C] font-editorial font-extrabold flex items-center justify-center shrink-0`}
       >
         i
       </span>
@@ -53,7 +53,7 @@ export function BankEmblem({
   return (
     <span
       aria-hidden="true"
-      className={`${dim} rounded-xl bg-[#0B130F] text-[#8CE02C] font-editorial font-extrabold flex items-center justify-center shrink-0 shadow-xs`}
+      className={`${dim} rounded-xs bg-[#111110] dark:bg-[#F5F5F2] text-white dark:text-[#09090B] font-editorial font-extrabold flex items-center justify-center shrink-0`}
     >
       TP
     </span>
@@ -71,37 +71,16 @@ export function CardChipSvg({ className = 'w-6 h-5' }: { className?: string }) {
         y="1"
         width="34"
         height="26"
-        rx="5"
-        fill="rgba(255,255,255,0.18)"
-        stroke="rgba(255,255,255,0.35)"
+        rx="3"
+        fill="rgba(255,255,255,0.12)"
+        stroke="rgba(255,255,255,0.32)"
         strokeWidth="1.2"
       />
       <path
         d="M1 10H13M23 10H35M1 18H13M23 18H35M13 1V27M23 1V27"
-        stroke="rgba(255,255,255,0.3)"
+        stroke="rgba(255,255,255,0.28)"
         strokeWidth="1"
       />
-    </svg>
-  );
-}
-
-/**
- * Faceted vector polygon prism overlay inspired by Onyx Bank card craftsmanship.
- */
-export function OnyxCardFacetSvg({ className = '' }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 220 130"
-      fill="none"
-      preserveAspectRatio="none"
-      className={`pointer-events-none absolute inset-0 w-full h-full ${className}`}
-      aria-hidden="true"
-    >
-      <polygon points="120,0 220,0 220,90 152,48" fill="rgba(255,255,255,0.11)" />
-      <polygon points="152,48 220,90 184,130 112,86" fill="rgba(255,255,255,0.06)" />
-      <polygon points="88,0 120,0 152,48 96,42" fill="rgba(255,255,255,0.05)" />
-      <line x1="120" y1="0" x2="152" y2="48" stroke="rgba(255,255,255,0.16)" strokeWidth="0.8" />
-      <line x1="152" y1="48" x2="220" y2="90" stroke="rgba(255,255,255,0.12)" strokeWidth="0.8" />
     </svg>
   );
 }
@@ -112,12 +91,12 @@ export function OnyxCardFacetSvg({ className = '' }: { className?: string }) {
 export function CircularGaugeSvg({
   valuePct,
   size = 54,
-  strokeWidth = 5,
-  trackColor = 'rgba(255,255,255,0.14)',
-  fillColor = '#8CE02C',
+  strokeWidth = 4,
+  trackColor = 'rgba(17,17,16,0.1)',
+  fillColor = '#65C91D',
   label,
   sublabel,
-  labelClassName = 'text-white',
+  labelClassName = 'text-[#111110] dark:text-[#F5F5F2]',
 }: {
   valuePct: number;
   size?: number;
@@ -154,7 +133,7 @@ export function CircularGaugeSvg({
           fill="none"
           stroke={fillColor}
           strokeWidth={strokeWidth}
-          strokeLinecap="round"
+          strokeLinecap="butt"
           strokeDasharray={c}
           strokeDashoffset={dashOffset}
           className="transition-all duration-500 ease-out"
@@ -163,12 +142,12 @@ export function CircularGaugeSvg({
       {(label || sublabel) && (
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center leading-none">
           {label && (
-            <span className={`font-display-num text-[11px] font-bold ${labelClassName}`}>
+            <span className={`font-display-num text-xs font-bold tabular-nums ${labelClassName}`}>
               {label}
             </span>
           )}
           {sublabel && (
-            <span className="text-[8px] opacity-75 mt-0.5">{sublabel}</span>
+            <span className="text-[8px] uppercase tracking-wider opacity-65 mt-0.5">{sublabel}</span>
           )}
         </div>
       )}
@@ -177,7 +156,7 @@ export function CircularGaugeSvg({
 }
 
 /**
- * Bespoke Tapioca Pay empty-state architectural illustration for pending connections or empty lists.
+ * Bespoke Tapioca Pay architectural vault illustration for pending connections or empty lists.
  */
 export function EmptyStateVaultIllustration({ className = 'w-16 h-16' }: { className?: string }) {
   return (
@@ -187,31 +166,31 @@ export function EmptyStateVaultIllustration({ className = 'w-16 h-16' }: { class
         y="16"
         width="64"
         height="48"
-        rx="14"
-        className="fill-[#F1F3F2] dark:fill-[#111714]"
+        rx="3"
+        className="fill-[#F3F3EF] dark:fill-[#161619]"
       />
       <rect
         x="16"
         y="24"
         width="48"
         height="32"
-        rx="10"
-        className="fill-white dark:fill-[#0D1210] stroke-[#0B110E]/15 dark:stroke-[#8CE02C]/30"
+        rx="2"
+        className="fill-white dark:fill-[#111113] stroke-[#111110]/20 dark:stroke-[#8CE02C]/35"
         strokeWidth="1.5"
       />
       <circle
         cx="40"
         cy="40"
         r="10"
-        className="fill-[#65C91D]/18 stroke-[#56AD17] dark:stroke-[#8CE02C]"
-        strokeWidth="2"
+        className="fill-[#65C91D]/15 dark:fill-[#8CE02C]/15 stroke-[#56AD17] dark:stroke-[#8CE02C]"
+        strokeWidth="1.8"
       />
       <path
         d="M36.5 40L39 42.5L44 37.5"
-        className="stroke-[#0B110E] dark:stroke-[#8CE02C]"
+        className="stroke-[#56AD17] dark:stroke-[#8CE02C]"
         strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        strokeLinecap="square"
+        strokeLinejoin="miter"
       />
     </svg>
   );

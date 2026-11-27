@@ -3,10 +3,9 @@ import http from 'http';
 import { WebSocketServer, WebSocket } from 'ws';
 import { GoogleGenAI, Modality, Type, type FunctionDeclaration } from '@google/genai';
 import { PluggyClient } from 'pluggy-sdk';
-import { createServer as createViteServer } from 'vite';
 import path from 'path';
 import * as dotenv from 'dotenv';
-import { requireAuth, AuthRequest } from './src/middleware/auth.ts';
+import { requireAuth, type AuthRequest } from './src/middleware/auth.ts';
 import { adminAuth } from './src/lib/firebase-admin.ts';
 import {
   DEFAULT_DEMO_UID,
@@ -30,24 +29,19 @@ import {
 
 dotenv.config();
 
-// Server-side Pluggy API Key & Connect Token fallback (supplied by user via Pluggy API)
-let runtimePluggyApiKey =
-  (process.env.PLUGGY_API_KEY || '').trim() ||
-  'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiN2Q4MWM1NjgwODUyNjYzZGZkNjFjMDdhMTRiYjA0ZjY6ODBmOGYyYmUyYTRiY2NiZmU4ODYxODhlODM5M2FiODc0MGVmZGNjMmI4MDMzNjRjYWNhZTg5ODdkYjg1OTBjY2I0NWJiZjhmM2RmY2I5YWIyNTk5OThhYWQ1ZjhlYzdhMmMwMjQzNmU4NzhlNGM5NTRiZWI2NDZlNTZkZjJhNzU1Njc0MmU3YTUzMmY1MWRhNzIzZjU5NzRmODFjMzMyYyIsImlhdCI6MTc5NDU3NzI4NiwiZXhwIjoxNzk0NTg0NDg2fQ.PO9sSdUeavIqV-i9pkmrZh8YCyy583cCRh-bn5wvFjSaChoq-6WSq9M0YL8Kx2byXRBgT-ctp8_LLml427wBVeewTf3B9PbI6CFmGsMt9SxDSdwn8z4_4ScAKE1pHbbA6KbvJe-s5SJ32bgIJmCLMQVtGrmu4cDTQ-YffnLkFhgWv0CMkX5JuEycd5-7rPBKCAqxFlLn6xHZkW8KW6dw4MUd5UXyEOSqW6g7bbwjgG9YGSLL0azORLdBBXes5vYYXxYhOQNBMtjcPJ9NGO3hnDDW1scz7qEoX4G7sgIMToQnXhEC4xZZ_nqRWNSVK4syi0xoc4DpU1xV2v-CpSo3CQ';
+// Server-side Pluggy API Key & Connect Token (configured exclusively via process.env)
+let runtimePluggyApiKey = (process.env.PLUGGY_API_KEY || '').trim();
+let runtimePluggyConnectToken = (process.env.PLUGGY_CONNECT_TOKEN || '').trim();
 
-let runtimePluggyConnectToken =
-  (process.env.PLUGGY_CONNECT_TOKEN || '').trim() ||
-  'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRJZCI6ImJkYzMxMzE3LTAxZGEtNDQ2Zi04NzA1LThhYTYwNDg0MzBmNSIsImRhdGEiOiIxYzRlYWYxODhlMThlY2RlZjY1Y2I5MzhmYWQ5MDQwNTo0NzA5ZjNmY2U1ZmJhNmNlN2FmNmZmMDlmMDI0YzUyNGUxNzRiN2Y1ZTBhOGI4YTljNmM4MTRhOTU0YmJlYWFlNWIxM2MwNDcyZmMxOGFhYjNiZWIxY2FmZDA0ZWJiOWU1MTJhZDM5NWU2NzU2NzI5NGRlZjdiMWUzMGU0MjQ2OGY5Zjk0OTc2YzMwM2MyZGY0MGNhOGRhZGUxMjJjODQzM2UyMDc4MDZmODE3M2M3OWZjZmQ3ZjJjODMxNTFlMzQ0NjdlZWIyYWUzNjY5YTEwNmUxZjczYTg2ZDUwMDg2NzY0NTczZjlhMTRkZDM5NDdmNzIxMGIyYjNhNTYzNWY4IiwiaWF0IjoxNzk0NTc3MzU4LCJleHAiOjE3OTQ1NzkxNTh9.Q16Mb0wVHdRijzsUpQ7Djgjrmn-StyqY35xnDXnyqB3Pfs_Q75vOg9vHtSW6fr8T-oFppWzIMIF2ep2scX2TSVpJD-ugJTEx3_k6ilEGy5cqg1PPo-KHk8cXpT36kdGj2SXiQmIclq_HnUvI3Um7Q78Wxcy_NCAHifW8lxG6VOsajaHAV5y0qgpPzct1p0ocU8eGYUNk9RgFGNaUELewudwWrlKQ6sGFkcBnd0q8E9EcPz70LS_EBLZ6qaVZMgjNsnYhkNm9F-89s0ilfvrtyUYBJiySR7zWrUwef2YAUEbICMQ8c_ebWWNE2jrXfp2iBfMkCY7wWH6RCV6lPL0ulQ';
-
-const DEFAULT_PLUGGY_CLIENT_ID = 'e15bb8c3-1b92-426c-ae16-495dbb7d3610';
-const DEFAULT_PLUGGY_CLIENT_SECRET = 'pluggy_sk_Moyziw2133XeQ6MXrAC77K08flNEVralHaXu2Osr2i1Rh4';
+const DEFAULT_PLUGGY_CLIENT_ID = '';
+const DEFAULT_PLUGGY_CLIENT_SECRET = '';
 const DEFAULT_PLUGGY_ITEM_IDS = [
   '33115539-9017-4732-b3d2-4d23c9caa164', // Banco Santander Pessoa Física
   '7982b3e3-d73a-49f1-bc68-dbf48c8e55a6', // Nubank (Nu Pagamentos S.A. + Cartão Gold + CDB)
   '3c8b3fca-d92e-47cb-bcb0-04a301b29920', // Banco Inter (Conta Corrente + Cartão Gold + CDB)
 ];
 
-function hasEnvPluggyClientCredentials(): { clientId: string; clientSecret: string } {
+function hasEnvPluggyClientCredentials(): { clientId: string; clientSecret: string } | null {
   const rawClientId = (process.env.CLIENT_ID || process.env.PLUGGY_CLIENT_ID || '').trim();
   const rawClientSecret = (process.env.CLIENT_SECRET || process.env.PLUGGY_CLIENT_SECRET || '').trim();
 
@@ -64,17 +58,16 @@ function hasEnvPluggyClientCredentials(): { clientId: string; clientSecret: stri
       ? rawClientSecret
       : DEFAULT_PLUGGY_CLIENT_SECRET;
 
+  if (!clientId || !clientSecret) {
+    return null;
+  }
+
   return { clientId, clientSecret };
 }
 
 async function resolvePluggyApiKey(): Promise<string> {
-  const primary = hasEnvPluggyClientCredentials();
-  const candidates = [
-    primary,
-    { clientId: DEFAULT_PLUGGY_CLIENT_ID, clientSecret: DEFAULT_PLUGGY_CLIENT_SECRET },
-  ];
-
-  for (const creds of candidates) {
+  const creds = hasEnvPluggyClientCredentials();
+  if (creds) {
     try {
       const authRes = await fetch('https://api.pluggy.ai/auth', {
         method: 'POST',
@@ -92,7 +85,7 @@ async function resolvePluggyApiKey(): Promise<string> {
         }
       }
     } catch {
-      // Try next candidate
+      // Fallback to env-provided runtimePluggyApiKey if auth call fails
     }
   }
   return runtimePluggyApiKey;
@@ -269,7 +262,7 @@ async function resolveUidAndEmail(req: express.Request): Promise<{ uid: string; 
 async function startServer() {
   const app = express();
   const server = http.createServer(app);
-  const PORT = 3000;
+  const PORT = Number(process.env.PORT) || 3000;
 
   app.use(express.json({ limit: '15mb' }));
 
@@ -1462,6 +1455,7 @@ async function startServer() {
   });
 
   if (process.env.NODE_ENV !== 'production') {
+    const { createServer: createViteServer } = await import('vite');
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: 'spa',
